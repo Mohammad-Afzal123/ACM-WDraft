@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACM-W Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #vanta-bg {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .banner-header {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .banner-overlay-text {
+            position: absolute;
+            color: #fff;
+            text-align: center;
+            z-index: 20;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            max-width: 80%;
+        }
+
+        .banner-overlay-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .banner-overlay-text p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-top: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 1;
+            margin-left: 150px;
+            padding: 20px;
+            min-height: 100vh;
+            padding-top: 60vh;
+        }
+
+        section {
+            padding: 60px 40px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        section:nth-of-type(even) {
+            background-color: rgba(249, 249, 249, 0.9);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .floating-nav {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 150px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 0 8px 8px 0;
+            padding: 15px 0;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .floating-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .floating-nav ul li {
+            margin: 0;
+        }
+
+        .floating-nav ul li a {
+            display: block;
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 0.9em;
+            background-color: transparent;
+            border-radius: 0;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: none;
+        }
+
+        .floating-nav ul li a:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05);
+        }
+
+        .floating-nav ul li a.active {
+            background-color: #007bff; /* Active color: Blue */
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* The specific rule for 'welcome' link being black when active has been removed.
+           The JavaScript now handles when to apply the 'active' class. */
+
+        .floating-social-contact {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px 0 0 8px;
+            box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .floating-social-contact a {
+            color: #fff;
+            font-size: 1.5em;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .floating-social-contact a:hover {
+            background-color: #007bff;
+            transform: scale(1.1);
+        }
+
+        .chatbot-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .chatbot-button:hover {
+            background-color: #218838;
+        }
+
+        .main-footer {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-left: 150px;
+            border-top: 1px solid rgba(85, 85, 85, 0.8);
+            z-index: 1;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="vanta-bg"></div>
+
+    <header class="banner-header">
+        <div class="banner-overlay-text">
+            <h1>Welcome to ACM-W!</h1>
+            <p>Empowering Women in Computing</p>
+        </div>
+    </header>
+
+    <nav class="floating-nav">
+        <ul>
+            <li><a href="#welcome">Welcome</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#sponsors">Sponsors</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#alumni">Connect with our Alumni</a></li>
+            <li><a href="#about-acmw">About ACM-W</a></li>
+            <li><a href="#become-member">Become a member</a></li>
+            <li><a href="#contact-us">Contact us Now!!</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <section id="welcome">
+            <h2>Welcome</h2>
+            <p>Welcome to the official page of ACM-W! We are dedicated to celebrating, supporting, and advocating for women in computing.</p>
+            <p>Our mission is to create a supportive community, offer valuable resources, and inspire the next generation of female technologists.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+
+        <section id="events">
+            <h2>Events</h2>
+            <p>Stay updated with our upcoming events, workshops, seminars, and networking opportunities. We host a variety of activities designed to enhance your skills and connect you with peers and industry leaders.</p>
+            <ul>
+                <li>Tech Talk Series: Latest trends in AI (Date: July 15, 2025)</li>
+                <li>Coding Workshop: Introduction to Python (Date: August 5, 2025)</li>
+                <li>Networking Mixer: Meet industry professionals (Date: September 1, 2025)</li>
+                <li>Mentorship Program Kick-off (Date: October 10, 2025)</li>
+            </ul>
+            <p>Check our events calendar regularly for more details and registration information.</p>
+        </section>
+
+        <section id="sponsors">
+            <h2>Sponsors</h2>
+            <p>We are grateful for the generous support of our sponsors who help us achieve our goals. Their contributions enable us to host impactful events and provide valuable resources to our members.</p>
+            <p>If you're interested in becoming a sponsor and supporting women in computing, please contact us! We offer various sponsorship packages tailored to your needs.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px;">
+                <img src="https://placehold.co/150x80/663399/FFFFFF?text=Sponsor+A" alt="Sponsor A Logo">
+                <img src="https://placehold.co/150x80/336699/FFFFFF?text=Sponsor+B" alt="Sponsor B Logo">
+                <img src="https://placehold.co/150x80/993366/FFFFFF?text=Sponsor+C" alt="Sponsor C Logo">
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <h2>Testimonials</h2>
+            <p>Hear what our members and participants have to say about their experience with ACM-W. Their success stories inspire us!</p>
+            <blockquote style="background-color: #e9f5ff; border-left: 5px solid #007bff; padding: 15px; margin: 20px 0; border-radius: 5px;">
+                <p style="font-style: italic;">"ACM-W provided me with an incredible network and mentorship opportunities that were crucial for my career growth. The support system is unmatched!"</p>
+                <footer style="text-align: right; font-weight: bold;">- Jane Doe, Software Engineer</footer>
+            </blockquote>
+            <blockquote style="background-color: #e9f5ff; border-left: 5px solid #007bff; padding: 15px; margin: 20px 0; border-radius: 5px;">
+                <p style="font-style: italic;">"The workshops incredibly insightful and have significantly improved my coding skills. I feel more confident in my abilities thanks to ACM-W."</p>
+                <footer style="text-align: right; font-weight: bold;">- Sarah Lee, Computer Science Student</footer>
+            </blockquote>
+        </section>
+
+        <section id="alumni">
+            <h2>Connect with our Alumni</h2>
+            <p>Our alumni network is a valuable resource for current members. Connect with successful professionals who started their journey with ACM-W and gain insights, advice, and potential career opportunities.</p>
+            <p>We regularly organize alumni networking events and a dedicated mentorship program to facilitate connections. Join our alumni community today!</p>
+            <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Join Alumni Network</button>
+        </section>
+
+        <section id="about-acmw">
+            <h2>About ACM-W</h2>
+            <p>ACM-W stands for Association for Computing Machinery's Council on Women in Computing. We are a global organization that supports, celebrates, and advocates internationally for the full engagement of women in all aspects of the computing field.</p>
+            <p>Our local chapter focuses on fostering a vibrant community, providing educational resources, career development opportunities, and promoting diversity and inclusion within the tech industry. We strive to be a supportive hub for all women in computing.</p>
+        </section>
+
+        <section id="become-member">
+            <h2>Become a Member</h2>
+            <p>Join ACM-W today and unlock a world of opportunities! Membership offers exclusive access to events, specialized workshops, our mentorship programs, and a supportive community of like-minded individuals.</p>
+            <p>Membership benefits include:</p>
+            <ul>
+                <li>Priority registration for workshops and seminars</li>
+                <li>Access to a dedicated mentorship program</li>
+                <li>Networking opportunities with industry leaders and peers</li>
+                <li>Career development resources</li>
+                <li>Discounts on special events</li>
+            </ul>
+            <button style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Learn More & Join</button>
+        </section>
+
+        <section id="contact-us">
+            <h2>Contact us Now!!</h2>
+            <p>Have questions, suggestions, or just want to say hello? Reach out to us! We'd love to hear from you.</p>
+            <p><strong>Email:</strong> <a href="mailto:info@acmw.org" style="color: #007bff; text-decoration: none;">info@acmw.org</a></p>
+            <p><strong>Phone:</strong> +123-456-7890</p>
+            <p>You can also find us on social media for the latest updates and direct messages:</p>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+                <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram" style="color: #007bff; font-size: 2em;"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn" style="color: #007bff; font-size: 2em;"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://twitter.com/your_acmw" target="_blank" aria-label="Twitter" style="color: #007bff; font-size: 2em;"><i class="fab fa-twitter"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <div class="floating-social-contact">
+        <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:info@acmw.org" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/your_whatsapp_number" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#contact-us" aria-label="Contact Us"><i class="fas fa-headset"></i></a>
+        <a href="#" class="chatbot-button" aria-label="Chatbot"><i class="fas fa-comment-dots"></i></a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ACM-W. All rights reserved.</p>
+        <p>Designed with ❤️ for the community.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.0,
+            scaleMobile: 1.0,
+            color: 0xffffff,
+            backgroundColor: 0x000000,
+            points: 10.0,
+            maxDistance: 20.0,
+            spacing: 15.0
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll(".floating-nav ul li a");
+            const welcomeSection = document.getElementById('welcome');
+            const bannerHeight = window.innerHeight * 0.6; // Assuming banner is 60vh
+
+            function highlightNavLink() {
+                let current = "";
+                // If scroll position is within the banner height, no nav link should be active (they'll be black)
+                if (window.pageYOffset < bannerHeight * 0.8) { // Adjust 0.8 as a threshold for entering welcome section
+                    current = ""; // Explicitly set no active section to ensure no blue link
+                } else {
+                    // Loop from bottom to find the currently active section
+                    for (let i = sections.length - 1; i >= 0; i--) {
+                        const section = sections[i];
+                        // Check if the top of the section is within the top third of the viewport
+                        if (section.offsetTop <= window.pageYOffset + (window.innerHeight / 3)) {
+                            current = section.getAttribute("id");
+                            break;
+                        }
+                    }
+                }
+
+                navLinks.forEach(a => {
+                    a.classList.remove("active");
+                    if (current && a.getAttribute("href").includes(current)) {
+                        a.classList.add("active");
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", highlightNavLink);
+            highlightNavLink(); // Call on load to set initial state
+        });
+
+        document.querySelector('.chatbot-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert("Chatbot is not yet integrated. This button would typically open a chat window or widget!");
+        });
+    </script>
+</body>
+</html>
