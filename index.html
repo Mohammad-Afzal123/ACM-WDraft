@@ -32,7 +32,7 @@
         .banner-header {
             position: relative;
             width: 100%;
-            height: calc(60vh + 50px); /* Increased by 50px */
+            height: 100vh; /* Changed to full viewport height */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -59,11 +59,11 @@
             text-align: center;
             z-index: 20; /* Higher z-index to be above the gallery */
             padding: 20px;
-            background: rgba(0, 0, 0, 0.4);
+            background: transparent; /* Changed to transparent */
             border-radius: 10px;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            backdrop-filter: none; /* Removed backdrop filter */
+            -webkit-backdrop-filter: none; /* Removed backdrop filter */
+            box-shadow: none; /* Removed box shadow */
             max-width: 80%;
         }
 
@@ -90,7 +90,7 @@
             margin-left: 150px;
             padding: 20px;
             min-height: 100vh;
-            padding-top: calc(60vh + 50px); /* Adjusted for increased banner height */
+            padding-top: 40vh; /* Adjusted for smaller gap, further decreased */
         }
 
         section {
@@ -113,19 +113,17 @@
 
         /* Styling for the new event title wrapper */
         .event-title-wrapper {
-            background-color: rgba(255, 255, 255, 0.9); /* White background for the title tile */
-            padding: 20px 40px; /* Padding inside the title tile */
-            margin: 0 auto 30px auto; /* Centered with bottom margin */
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: fit-content; /* Make width fit content */
-            text-align: center; /* Center the title */
+            /* This section is removed as per user request */
+            display: none; /* Hide if not removed directly */
         }
 
         .event-title-wrapper h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1ABC9C; /* Vibrant Teal for H2 headings */
             border-bottom: none; /* Remove border from H2 inside this wrapper */
             margin-bottom: 0; /* Adjust margin for H2 inside wrapper */
             padding-bottom: 0; /* Adjust padding for H2 inside wrapper */
+            font-size: 2.5em;
         }
 
 
@@ -187,20 +185,20 @@
         
         .floating-social-contact {
             position: fixed;
-            right: 20px;
+            right: 0; /* Moved further to the right */
             bottom: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: transparent; /* Already transparent */
+            box-shadow: none; /* Removed box shadow */
             border-radius: 8px 0 0 8px;
-            box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
             z-index: 100;
         }
 
         .floating-social-contact a {
-            color: #fff;
+            color: #fff; /* Solid white for icons */
             font-size: 1.5em;
             width: 40px;
             height: 40px;
@@ -208,13 +206,13 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: #333; /* Dark grey background for icons */
             transition: background-color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
         }
 
         .floating-social-contact a:hover {
-            background-color: #007bff;
+            background-color: #555; /* Slightly lighter grey on hover */
             transform: scale(1.1);
         }
 
@@ -346,6 +344,7 @@
             box-shadow: none; /* No shadow as it's a background */
             z-index: 1; /* Changed: Between vanta-bg (-1) and banner-overlay-text (20) */
             overflow: hidden; /* Ensure images don't overflow */
+            transition: opacity 0.5s ease-out; /* Added fade transition */
         }
 
         .banner-header .slider-wrapper {
@@ -800,31 +799,31 @@
 
     <header class="banner-header">
         <!-- Image Slider positioned as background in banner -->
-        <div class="slider-container">
+        <div class="slider-container" id="main-slider-gallery">
             <div class="slider-wrapper">
                 <!-- Cloned last image (for infinite loop) -->
                 <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+20" alt="Gallery Image 20 (clone)">
                 <!-- Actual 20 images -->
-                <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1">
-                <img src="https://placehold.co/700x400/6699cc/FFFFFF?text=ACM-W+Gallery+2" alt="Gallery Image 2">
-                <img src="https://placehold.co/700x400/cc6699/FFFFFF?text=ACM-W+Gallery+3" alt="Gallery Image 3">
-                <img src="https://placehold.co/700x400/99cc66/FFFFFF?text=ACM-W+Gallery+4" alt="Gallery Image 4">
-                <img src="https://placehold.co/700x400/cc9966/FFFFFF?text=ACM-W+Gallery+5" alt="Gallery Image 5">
-                <img src="https://placehold.co/700x400/66cc99/FFFFFF?text=ACM-W+Gallery+6" alt="Gallery Image 6">
-                <img src="https://placehold.co/700x400/99cc99/FFFFFF?text=ACM-W+Gallery+7" alt="Gallery Image 7">
-                <img src="https://placehold.co/700x400/cc6666/FFFFFF?text=ACM-W+Gallery+8" alt="Gallery Image 8">
-                <img src="https://placehold.co/700x400/6666cc/FFFFFF?text=ACM-W+Gallery+9" alt="Gallery Image 9">
-                <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+10" alt="Gallery Image 10">
-                <img src="https://placehold.co/700x400/556B2F/FFFFFF?text=ACM-W+Gallery+11" alt="Gallery Image 11">
-                <img src="https://placehold.co/700x400/8B0000/FFFFFF?text=ACM-W+Gallery+12" alt="Gallery Image 12">
-                <img src="https://placehold.co/700x400/4B0082/FFFFFF?text=ACM-W+Gallery+13" alt="Gallery Image 13">
-                <img src="https://placehold.co/700x400/D2691E/FFFFFF?text=ACM-W+Gallery+14" alt="Gallery Image 14">
-                <img src="https://placehold.co/700x400/2F4F4F/FFFFFF?text=ACM-W+Gallery+15" alt="Gallery Image 15">
-                <img src="https://placehold.co/700x400/008080/FFFFFF?text=ACM-W+Gallery+16" alt="Gallery Image 16">
-                <img src="https://placehold.co/700x400/778899/FFFFFF?text=ACM-W+Gallery+17" alt="Gallery Image 17">
-                <img src="https://placehold.co/700x400/4682B4/FFFFFF?text=ACM-W+Gallery+18" alt="Gallery Image 18">
-                <img src="https://placehold.co/700x400/DEB887/FFFFFF?text=ACM-W+Gallery+19" alt="Gallery Image 19">
-                <img src="https://placehold.co/700x400/8A2BE2/FFFFFF?text=ACM-W+Gallery+20" alt="Gallery Image 20">
+                <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=_" alt="Gallery Image 1">
+                <img src="https://placehold.co/700x400/6699cc/FFFFFF?text=_" alt="Gallery Image 2">
+                <img src="https://placehold.co/700x400/cc6699/FFFFFF?text=_" alt="Gallery Image 3">
+                <img src="https://placehold.co/700x400/99cc66/FFFFFF?text=_" alt="Gallery Image 4">
+                <img src="https://placehold.co/700x400/cc9966/FFFFFF?text=_" alt="Gallery Image 5">
+                <img src="https://placehold.co/700x400/66cc99/FFFFFF?text=_" alt="Gallery Image 6">
+                <img src="https://placehold.co/700x400/99cc99/FFFFFF?text=_" alt="Gallery Image 7">
+                <img src="https://placehold.co/700x400/cc6666/FFFFFF?text=_" alt="Gallery Image 8">
+                <img src="https://placehold.co/700x400/6666cc/FFFFFF?text=_" alt="Gallery Image 9">
+                <img src="https://placehold.co/700x400/333333/FFFFFF?text=_" alt="Gallery Image 10">
+                <img src="https://placehold.co/700x400/556B2F/FFFFFF?text=_" alt="Gallery Image 11">
+                <img src="https://placehold.co/700x400/8B0000/FFFFFF?text=_" alt="Gallery Image 12">
+                <img src="https://placehold.co/700x400/4B0082/FFFFFF?text=_" alt="Gallery Image 13">
+                <img src="https://placehold.co/700x400/D2691E/FFFFFF?text=_" alt="Gallery Image 14">
+                <img src="https://placehold.co/700x400/2F4F4F/FFFFFF?text=_" alt="Gallery Image 15">
+                <img src="https://placehold.co/700x400/008080/FFFFFF?text=_" alt="Gallery Image 16">
+                <img src="https://placehold.co/700x400/778899/FFFFFF?text=_" alt="Gallery Image 17">
+                <img src="https://placehold.co/700x400/4682B4/FFFFFF?text=_" alt="Gallery Image 18">
+                <img src="https://placehold.co/700x400/DEB887/FFFFFF?text=_" alt="Gallery Image 19">
+                <img src="https://placehold.co/700x400/8A2BE2/FFFFFF?text=_" alt="Gallery Image 20">
                 <!-- Cloned first image (for infinite loop) -->
                 <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1 (clone)">
             </div>
@@ -847,12 +846,10 @@
 
     <nav class="floating-nav">
         <ul>
-            <li><a href="#welcome">Welcome</a></li>
-            <li><a href="#events">Events</a></li>
+            <li><a href="#events">Events</a></li> <!-- Removed Welcome link -->
             <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#alumni">Our Team & Alumni</a></li> <!-- Combined nav link -->
-            <!-- Gallery link removed as it's now part of the banner -->
+            <li><a href="#alumni">Our Team & Alumni</a></li>
             <li><a href="#about-acmw">About ACM-W</a></li>
             <li><a href="#become-member">Become a member</a></li>
             <li><a href="#contact-us">Contact us Now!!</a></li>
@@ -860,17 +857,8 @@
     </nav>
 
     <main class="main-content">
-        <section id="welcome">
-            <h2>Welcome</h2>
-            <p>Welcome to the official page of ACM-W! We are dedicated to celebrating, supporting, and advocating for women in computing.</p>
-            <p>Our mission is to create a supportive community, offer valuable resources, and inspire the next generation of female technologists.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </section>
-
         <section id="events">
-            <div class="event-title-wrapper"> <!-- New white tile for the title -->
-                <h2>Events</h2>
-            </div>
+            
             <div class="timeline">
                 <div class="line">
                     <div class="scroller-indicator"></div>
@@ -1130,7 +1118,7 @@
                 </div>
                 <div class="member-card color-3">
                     <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Manya">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Manya">
                     </div>
                     <h3>Manya</h3>
                     <p>Technical</p>
@@ -1141,7 +1129,7 @@
                 </div>
                 <div class="member-card color-4">
                     <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="CH L Sudheera">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="CH L Sudheera">
                     </div>
                     <h3>CH L Sudheera</h3>
                     <p>Design</p>
@@ -1152,7 +1140,7 @@
                 </div>
                 <div class="member-card color-1">
                     <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Hrituja">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Hrituja">
                     </div>
                     <h3>Hrituja</h3>
                     <p>Event Management</p>
@@ -1163,7 +1151,7 @@
                 </div>
                 <div class="member-card color-2">
                     <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Jahnvi">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Jahnvi">
                     </div>
                     <h3>Jahnvi</h3>
                     <p>Outreach</p>
@@ -1174,7 +1162,7 @@
                 </div>
                 <div class="member-card color-3">
                     <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Sireesha">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Sireesha">
                     </div>
                     <h3>Sireesha</h3>
                     <p>Social media</p>
@@ -1185,7 +1173,7 @@
                 </div>
                  <div class="member-card color-4">
                     <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Lynda">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Lynda">
                     </div>
                     <h3>Lynda</h3>
                     <p>Finance & Awards</p>
@@ -1244,9 +1232,10 @@
             <div class="footer-column">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#welcome">Home</a></li>
+                    <!-- Removed Home link as Welcome section is gone -->
                     <li><a href="#events">Events</a></li>
                     <li><a href="#sponsors">Sponsors</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#alumni">Alumni</a></li>
                     <li><a href="#about-acmw">About Us</a></li>
                 </ul>
@@ -1296,7 +1285,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll("section[id]");
             const navLinks = document.querySelectorAll(".floating-nav ul li a");
-            const bannerHeight = window.innerHeight * 0.6; // Base banner height
+            const bannerHeight = window.innerHeight; // Use actual banner height (100vh)
 
             function highlightNavLink() {
                 let current = "";
@@ -1321,7 +1310,7 @@
                     // Special handling for "Our Team & Alumni" if it's the combined one
                     if (a.getAttribute("href").includes("alumni") && (current === "alumni")) {
                         a.classList.add("active");
-                    } else if (current && a.getAttribute("href").includes(current) && a.id !== 'gallery-nav-link') { // Exclude gallery if it's not a standalone section
+                    } else if (current && a.getAttribute("href").includes(current)) {
                         a.classList.add("active");
                     }
                 });
@@ -1344,7 +1333,7 @@
             const timelineElement = document.querySelector('.timeline');
             const timelineLine = document.querySelector('.timeline .line');
             const scrollerIndicator = timelineLine.querySelector('.scroller-indicator');
-
+            const mainSliderGallery = document.getElementById('main-slider-gallery');
 
             const observerOptions = {
                 root: null,
@@ -1399,9 +1388,34 @@
                 scrollerIndicator.style.height = `${progress * 100}%`;
             }
 
+            // Slider Gallery Fade on Scroll Logic
+            function updateSliderGalleryOpacity() {
+                if (!mainSliderGallery) return;
+
+                const scrollY = window.scrollY;
+                const bannerHeight = document.querySelector('.banner-header').offsetHeight;
+                const fadeStart = 0; // Start fading from the very top
+                const fadeEnd = bannerHeight * 0.7; // Fade out completely by 70% of the banner height
+
+                if (scrollY <= fadeStart) {
+                    mainSliderGallery.style.opacity = 1;
+                } else if (scrollY >= fadeEnd) {
+                    mainSliderGallery.style.opacity = 0;
+                } else {
+                    // Calculate opacity: as scrollY goes from fadeStart to fadeEnd, opacity goes from 1 to 0
+                    const opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+                    mainSliderGallery.style.opacity = opacity;
+                }
+            }
+
+
             window.addEventListener('scroll', updateTimelineScroller);
             window.addEventListener('resize', updateTimelineScroller); // Update on resize too
             updateTimelineScroller(); // Initial call
+
+            // Add scroll listener for slider gallery opacity
+            window.addEventListener('scroll', updateSliderGalleryOpacity);
+            updateSliderGalleryOpacity(); // Initial call for opacity
         });
 
         // Typed.js initialization for the banner text
@@ -1509,13 +1523,6 @@
             function stopAutoSlide() {
                 clearInterval(slideInterval); // Clear the interval
             }
-
-            // Event listeners for manual navigation buttons (will be hidden by CSS, but good practice to remove if they existed)
-            // No manual controls for banner background slider, so these are commented out or `display: none` in CSS
-            // const prevButton = document.querySelector('.banner-header .slider-control-btn.prev');
-            // const nextButton = document.querySelector('.banner-header .slider-control-btn.next');
-            // if (prevButton) prevButton.addEventListener('click', goToPrevSlide);
-            // if (nextButton) nextButton.addEventListener('click', goToNextSlide);
 
             // Stop auto-slide on mouse enter, restart on mouse leave for the banner area
             if (sliderContainer) {
