@@ -32,7 +32,7 @@
         .banner-header {
             position: relative;
             width: 100%;
-            height: 60vh;
+            height: calc(60vh + 50px); /* Increased by 50px */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -43,21 +43,21 @@
         }
 
         .acmw-logo {
-            position: fixed; /* Changed to fixed */
+            position: fixed; /* Ensures logo stays in place during scroll */
             top: 20px;
             left: 20px;
             height: 80px; /* Adjust size as needed */
             width: auto;
-            z-index: 999; /* Ensure it's above other elements */
+            z-index: 999; /* Ensures it's above all other elements */
             mix-blend-mode: screen; /* Blends with the Vanta.js background */
-            filter: brightness(2); /* Make it brighter to stand out against dark background */
+            filter: brightness(2); /* Makes it brighter to stand out against dark background */
         }
 
         .banner-overlay-text {
             position: absolute;
             color: #fff;
             text-align: center;
-            z-index: 20;
+            z-index: 20; /* Higher z-index to be above the gallery */
             padding: 20px;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 10px;
@@ -90,7 +90,7 @@
             margin-left: 150px;
             padding: 20px;
             min-height: 100vh;
-            padding-top: 60vh;
+            padding-top: calc(60vh + 50px); /* Adjusted for increased banner height */
         }
 
         section {
@@ -104,6 +104,30 @@
         section:nth-of-type(even) {
             background-color: rgba(249, 249, 249, 0.9);
         }
+
+        #events { /* Specific override for events section background */
+            background-color: transparent; /* Remove white background for the section itself */
+            box-shadow: none; /* Remove box shadow for the section itself */
+            padding: 60px 0; /* Adjust padding if needed after removing outer shadow */
+        }
+
+        /* Styling for the new event title wrapper */
+        .event-title-wrapper {
+            background-color: rgba(255, 255, 255, 0.9); /* White background for the title tile */
+            padding: 20px 40px; /* Padding inside the title tile */
+            margin: 0 auto 30px auto; /* Centered with bottom margin */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: fit-content; /* Make width fit content */
+            text-align: center; /* Center the title */
+        }
+
+        .event-title-wrapper h2 {
+            border-bottom: none; /* Remove border from H2 inside this wrapper */
+            margin-bottom: 0; /* Adjust margin for H2 inside wrapper */
+            padding-bottom: 0; /* Adjust padding for H2 inside wrapper */
+        }
+
 
         h2 {
             font-family: 'Playfair Display', serif;
@@ -215,18 +239,30 @@
             background: linear-gradient(to right, #1ABC9C, #0056b3); /* Green and Blue combination */
             color: #fff;
             text-align: center;
-            padding: 40px 20px;
-            margin-left: 150px;
+            padding: 40px 0; /* Adjusted padding-left/right will be on wrapper */
+            margin-left: 0; /* Make footer span full width */
             border-top: 5px solid #16A085; /* Darker green border */
             z-index: 1;
             position: relative;
             box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            display: flex; /* Still flex for its own internal structure */
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: center; /* Center footer content by default if no wrapper padding */
+            align-items: flex-start;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* New wrapper for footer content to push it right */
+        .footer-content-wrapper {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-around; /* Distribute columns */
             align-items: flex-start;
             gap: 30px;
-            font-family: 'Montserrat', sans-serif;
+            width: calc(100% - 150px); /* Account for nav width */
+            margin-left: 150px; /* Push content to the right of the nav */
+            padding-right: 20px; /* Re-add some right padding */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .footer-column {
@@ -298,60 +334,38 @@
             font-size: 0.9em;
         }
 
-        /* --- Image Slider Styles --- */
-        .slider-container {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            height: 400px;
-            margin: 40px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        /* --- Image Slider Styles (Moved to banner background) --- */
+        .banner-header .slider-container {
+            position: absolute; /* Position relative to banner-header */
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width of the banner */
+            height: 100%; /* Full height of the banner */
+            margin: 0; /* Remove auto margins */
+            border-radius: 0; /* No rounded corners for background */
+            box-shadow: none; /* No shadow as it's a background */
+            z-index: 1; /* Changed: Between vanta-bg (-1) and banner-overlay-text (20) */
+            overflow: hidden; /* Ensure images don't overflow */
         }
 
-        .slider-wrapper {
+        .banner-header .slider-wrapper {
             display: flex;
-            width: 100%;
+            width: calc(100% * 22); /* Total 22 slides (20 original + 2 clones) */
             height: 100%;
             transition: transform 0.5s ease-in-out;
         }
 
-        .slider-wrapper img {
-            width: 100%;
+        .banner-header .slider-wrapper img {
+            width: calc(100% / 22); /* Each image takes 1/22th of the wrapper's total width */
             height: 100%;
             object-fit: cover;
             flex-shrink: 0;
         }
-
-        .slider-control-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 1.5em;
-            z-index: 10;
-            border-radius: 50%;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+        
+        /* Hide slider controls when used as background in banner */
+        .banner-header .slider-control-btn {
+            display: none;
         }
-
-        .slider-control-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .slider-control-btn.prev {
-            left: 10px;
-        }
-
-        .slider-control-btn.next {
-            right: 10px;
-        }
-
 
         @media (max-width: 768px) {
             .main-content {
@@ -360,7 +374,14 @@
             }
 
             .main-footer {
+                margin-left: 0; /* Ensure footer is full width on mobile */
+                padding: 40px 20px; /* Restore horizontal padding for mobile */
+            }
+
+            .footer-content-wrapper { /* Adjust for mobile layout */
                 margin-left: 0;
+                width: 100%;
+                padding-right: 0;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
@@ -428,13 +449,8 @@
                 margin-left: 60px;
             }
 
-            .slider-container {
-                height: 250px;
-                margin: 20px auto;
-            }
-            .slider-control-btn {
-                padding: 10px;
-                font-size: 1.2em;
+            .banner-header .slider-container { /* Adjustments for slider when it's in the banner on mobile */
+                height: 100%; /* Take full height of banner */
             }
 
             /* Members section responsive adjustments */
@@ -478,12 +494,12 @@
             transition: height 0.1s linear; /* Smooth transition for scroller movement */
         }
 
+        /* Base section animation state */
         .timeline .section {
             padding: 0;
             position: relative;
             margin-bottom: 40px;
             opacity: 0;
-            transform: translateY(30px) scale(0.98);
             transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                         transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: flex;
@@ -493,19 +509,22 @@
             clear: both;
         }
 
-        .timeline .section.show {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        /* Odd sections (left side) */
+        /* Initial state for odd sections (left) */
         .timeline .section:nth-of-type(odd) {
             justify-content: flex-start;
+            transform: translateX(-50px) scale(0.98); /* Start off-left */
         }
 
-        /* Even sections (right side) */
+        /* Initial state for even sections (right) */
         .timeline .section:nth-of-type(even) {
             justify-content: flex-end;
+            transform: translateX(50px) scale(0.98); /* Start off-right */
+        }
+
+        /* Final state when visible */
+        .timeline .section.show {
+            opacity: 1;
+            transform: translateX(0) scale(1); /* Animate to original position */
         }
 
         /* Base card style */
@@ -780,6 +799,40 @@
     <div id="vanta-bg"></div>
 
     <header class="banner-header">
+        <!-- Image Slider positioned as background in banner -->
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <!-- Cloned last image (for infinite loop) -->
+                <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+20" alt="Gallery Image 20 (clone)">
+                <!-- Actual 20 images -->
+                <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1">
+                <img src="https://placehold.co/700x400/6699cc/FFFFFF?text=ACM-W+Gallery+2" alt="Gallery Image 2">
+                <img src="https://placehold.co/700x400/cc6699/FFFFFF?text=ACM-W+Gallery+3" alt="Gallery Image 3">
+                <img src="https://placehold.co/700x400/99cc66/FFFFFF?text=ACM-W+Gallery+4" alt="Gallery Image 4">
+                <img src="https://placehold.co/700x400/cc9966/FFFFFF?text=ACM-W+Gallery+5" alt="Gallery Image 5">
+                <img src="https://placehold.co/700x400/66cc99/FFFFFF?text=ACM-W+Gallery+6" alt="Gallery Image 6">
+                <img src="https://placehold.co/700x400/99cc99/FFFFFF?text=ACM-W+Gallery+7" alt="Gallery Image 7">
+                <img src="https://placehold.co/700x400/cc6666/FFFFFF?text=ACM-W+Gallery+8" alt="Gallery Image 8">
+                <img src="https://placehold.co/700x400/6666cc/FFFFFF?text=ACM-W+Gallery+9" alt="Gallery Image 9">
+                <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+10" alt="Gallery Image 10">
+                <img src="https://placehold.co/700x400/556B2F/FFFFFF?text=ACM-W+Gallery+11" alt="Gallery Image 11">
+                <img src="https://placehold.co/700x400/8B0000/FFFFFF?text=ACM-W+Gallery+12" alt="Gallery Image 12">
+                <img src="https://placehold.co/700x400/4B0082/FFFFFF?text=ACM-W+Gallery+13" alt="Gallery Image 13">
+                <img src="https://placehold.co/700x400/D2691E/FFFFFF?text=ACM-W+Gallery+14" alt="Gallery Image 14">
+                <img src="https://placehold.co/700x400/2F4F4F/FFFFFF?text=ACM-W+Gallery+15" alt="Gallery Image 15">
+                <img src="https://placehold.co/700x400/008080/FFFFFF?text=ACM-W+Gallery+16" alt="Gallery Image 16">
+                <img src="https://placehold.co/700x400/778899/FFFFFF?text=ACM-W+Gallery+17" alt="Gallery Image 17">
+                <img src="https://placehold.co/700x400/4682B4/FFFFFF?text=ACM-W+Gallery+18" alt="Gallery Image 18">
+                <img src="https://placehold.co/700x400/DEB887/FFFFFF?text=ACM-W+Gallery+19" alt="Gallery Image 19">
+                <img src="https://placehold.co/700x400/8A2BE2/FFFFFF?text=ACM-W+Gallery+20" alt="Gallery Image 20">
+                <!-- Cloned first image (for infinite loop) -->
+                <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1 (clone)">
+            </div>
+            <!-- Slider controls are hidden when used as background in banner via CSS -->
+            <button class="slider-control-btn prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-control-btn next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
         <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/000000/FFFFFF?text=ACM-W';" alt="ACM-W Logo" class="acmw-logo">
         <div class="banner-overlay-text">
             <h1><span id="typed-output"></span></h1>
@@ -798,8 +851,8 @@
             <li><a href="#events">Events</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#members">Our Team</a></li> <!-- New nav link -->
-            <li><a href="#alumni">Connect with our Alumni</a></li>
+            <li><a href="#alumni">Our Team & Alumni</a></li> <!-- Combined nav link -->
+            <!-- Gallery link removed as it's now part of the banner -->
             <li><a href="#about-acmw">About ACM-W</a></li>
             <li><a href="#become-member">Become a member</a></li>
             <li><a href="#contact-us">Contact us Now!!</a></li>
@@ -815,7 +868,9 @@
         </section>
 
         <section id="events">
-            <h2>Events</h2>
+            <div class="event-title-wrapper"> <!-- New white tile for the title -->
+                <h2>Events</h2>
+            </div>
             <div class="timeline">
                 <div class="line">
                     <div class="scroller-indicator"></div>
@@ -998,13 +1053,18 @@
             </blockquote>
         </section>
 
-        <section id="members">
-            <h2>Our Team</h2>
+        <section id="alumni">
+            <h2>Connect with our Alumni</h2>
+            <p>Our alumni network is a valuable resource for current members. Connect with successful professionals who started their journey with ACM-W and gain insights, advice, and potential career opportunities.</p>
+            <p>We regularly organize alumni networking events and a dedicated mentorship program to facilitate connections. Join our alumni community today!</p>
+            <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Join Alumni Network</button>
+            
+            <h2 style="margin-top: 60px;">Our Team</h2> <!-- Now part of Alumni section -->
             <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
             <div class="members-grid">
                 <div class="member-card color-1">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Dr. Suganya">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Dr. Suganya">
                     </div>
                     <h3>Dr. Suganya</h3>
                     <p>Faculty Coordinator</p>
@@ -1015,7 +1075,7 @@
                 </div>
                 <div class="member-card color-2">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Bharathi">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Bharathi">
                     </div>
                     <h3>Bharathi</h3>
                     <p>Chairperson</p>
@@ -1026,7 +1086,7 @@
                 </div>
                 <div class="member-card color-3">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Shibani">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Shibani">
                     </div>
                     <h3>Shibani</h3>
                     <p>Vice-chair</p>
@@ -1048,7 +1108,7 @@
                 </div>
                 <div class="member-card color-1">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Sathvik">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Sathvik">
                     </div>
                     <h3>Sathvik</h3>
                     <p>Treasurer</p>
@@ -1059,7 +1119,7 @@
                 </div>
                 <div class="member-card color-2">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Nandhakishore">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Nandhakishore">
                     </div>
                     <h3>Nandhakishore</h3>
                     <p>Membership chair</p>
@@ -1070,7 +1130,7 @@
                 </div>
                 <div class="member-card color-3">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Manya">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Manya">
                     </div>
                     <h3>Manya</h3>
                     <p>Technical</p>
@@ -1081,7 +1141,7 @@
                 </div>
                 <div class="member-card color-4">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="CH L Sudheera">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="CH L Sudheera">
                     </div>
                     <h3>CH L Sudheera</h3>
                     <p>Design</p>
@@ -1092,7 +1152,7 @@
                 </div>
                 <div class="member-card color-1">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Hrituja">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Hrituja">
                     </div>
                     <h3>Hrituja</h3>
                     <p>Event Management</p>
@@ -1103,7 +1163,7 @@
                 </div>
                 <div class="member-card color-2">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Jahnvi">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Jahnvi">
                     </div>
                     <h3>Jahnvi</h3>
                     <p>Outreach</p>
@@ -1114,7 +1174,7 @@
                 </div>
                 <div class="member-card color-3">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Sireesha">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Sireesha">
                     </div>
                     <h3>Sireesha</h3>
                     <p>Social media</p>
@@ -1125,7 +1185,7 @@
                 </div>
                  <div class="member-card color-4">
                     <div class="member-image">
-                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Lynda">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Lynda">
                     </div>
                     <h3>Lynda</h3>
                     <p>Finance & Awards</p>
@@ -1137,39 +1197,10 @@
             </div>
         </section>
 
-        <section id="alumni">
-            <h2>Connect with our Alumni</h2>
-            <p>Our alumni network is a valuable resource for current members. Connect with successful professionals who started their journey with ACM-W and gain insights, advice, and potential career opportunities.</p>
-            <p>We regularly organize alumni networking events and a dedicated mentorship program to facilitate connections. Join our alumni community today!</p>
-            <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Join Alumni Network</button>
-        </section>
-
         <section id="about-acmw">
             <h2>About ACM-W</h2>
             <p>ACM-W stands for Association for Computing Machinery's Council on Women in Computing. We are a global organization that supports, celebrates, and advocates internationally for the full engagement of women in all aspects of the computing field.</p>
             <p>Our local chapter focuses on fostering a vibrant community, providing educational resources, career development opportunities, and promoting diversity and inclusion within the tech industry. We strive to be a supportive hub for all women in computing.</p>
-            <div class="slider-container">
-                <div class="slider-wrapper">
-                    <!-- Cloned last image (for infinite loop) -->
-                    <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+10" alt="Gallery Image 10 (clone)">
-                    <!-- Actual 10 images -->
-                    <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1">
-                    <img src="https://placehold.co/700x400/6699cc/FFFFFF?text=ACM-W+Gallery+2" alt="Gallery Image 2">
-                    <img src="https://placehold.co/700x400/cc6699/FFFFFF?text=ACM-W+Gallery+3" alt="Gallery Image 3">
-                    <img src="https://placehold.co/700x400/99cc66/FFFFFF?text=ACM-W+Gallery+4" alt="Gallery Image 4">
-                    <img src="https://placehold.co/700x400/cc9966/FFFFFF?text=ACM-W+Gallery+5" alt="Gallery Image 5">
-                    <img src="https://placehold.co/700x400/66cc99/FFFFFF?text=ACM-W+Gallery+6" alt="Gallery Image 6">
-                    <img src="https://placehold.co/700x400/99cc99/FFFFFF?text=ACM-W+Gallery+7" alt="Gallery Image 7">
-                    <img src="https://placehold.co/700x400/cc6666/FFFFFF?text=ACM-W+Gallery+8" alt="Gallery Image 8">
-                    <img src="https://placehold.co/700x400/6666cc/FFFFFF?text=ACM-W+Gallery+9" alt="Gallery Image 9">
-                    <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+10" alt="Gallery Image 10">
-                    <!-- Cloned first image (for infinite loop) -->
-                    <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1 (clone)">
-                </div>
-                <button class="slider-control-btn prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-control-btn next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <p style="text-align: center; margin-top: 30px;">Explore our moments and community through these images!</p>
         </section>
 
         <section id="become-member">
@@ -1209,33 +1240,35 @@
     </div>
 
     <footer class="main-footer">
-        <div class="footer-column">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="#welcome">Home</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#sponsors">Sponsors</a></li>
-                <li><a href="#alumni">Alumni</a></li>
-                <li><a href="#about-acmw">About Us</a></li>
-            </ul>
-        </div>
-        <div class="footer-column footer-info">
-            <h4>Contact Us</h4>
-            <p><i class="fas fa-map-marker-alt"></i> VIT Chennai, India</p>
-            <p><i class="fas fa-envelope"></i> info@acmw.org</p>
-            <p><i class="fas fa-phone"></i> +123-456-7890</p>
-        </div>
-        <div class="footer-column">
-            <h4>Follow Us</h4>
-            <div class="footer-social-icons">
-                <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://twitter.com/your_acmw" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="https://facebook.com/your_acmw" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <div class="footer-content-wrapper">
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#welcome">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#sponsors">Sponsors</a></li>
+                    <li><a href="#alumni">Alumni</a></li>
+                    <li><a href="#about-acmw">About Us</a></li>
+                </ul>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 ACM-W. All rights reserved. | Empowering Women in Computing</p>
+            <div class="footer-column footer-info">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt"></i> VIT Chennai, India</p>
+                <p><i class="fas fa-envelope"></i> info@acmw.org</p>
+                <p><i class="fas fa-phone"></i> +123-456-7890</p>
+            </div>
+            <div class="footer-column">
+                <h4>Follow Us</h4>
+                <div class="footer-social-icons">
+                    <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com/your_acmw" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com/your_acmw" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ACM-W. All rights reserved. | Empowering Women in Computing</p>
+            </div>
         </div>
     </footer>
 
@@ -1263,15 +1296,18 @@
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll("section[id]");
             const navLinks = document.querySelectorAll(".floating-nav ul li a");
-            const bannerHeight = window.innerHeight * 0.6;
+            const bannerHeight = window.innerHeight * 0.6; // Base banner height
 
             function highlightNavLink() {
                 let current = "";
+                // If scroll position is very high, no section is active
                 if (window.pageYOffset < bannerHeight * 0.9) {
                     current = "";
                 } else {
+                    // Iterate backwards to find the topmost section currently in view
                     for (let i = sections.length - 1; i >= 0; i--) {
                         const section = sections[i];
+                        // Check if the section's top is within the upper third of the viewport
                         if (section.offsetTop <= window.pageYOffset + (window.innerHeight / 3)) {
                             current = section.getAttribute("id");
                             break;
@@ -1279,18 +1315,25 @@
                     }
                 }
 
+                // Remove active class from all links and add to the current one
                 navLinks.forEach(a => {
                     a.classList.remove("active");
-                    if (current && a.getAttribute("href").includes(current)) {
+                    // Special handling for "Our Team & Alumni" if it's the combined one
+                    if (a.getAttribute("href").includes("alumni") && (current === "alumni")) {
+                        a.classList.add("active");
+                    } else if (current && a.getAttribute("href").includes(current) && a.id !== 'gallery-nav-link') { // Exclude gallery if it's not a standalone section
                         a.classList.add("active");
                     }
                 });
             }
 
+            // Add scroll and resize event listeners
             window.addEventListener("scroll", highlightNavLink);
-            highlightNavLink();
+            window.addEventListener("resize", highlightNavLink); // Also update on resize
+            highlightNavLink(); // Initial call to set active link on page load
         });
 
+        // Chatbot button alert (placeholder)
         document.querySelector('.chatbot-button').addEventListener('click', function(e) {
             e.preventDefault();
             alert("Chatbot is not yet integrated. This button would typically open a chat window or widget!");
@@ -1384,34 +1427,38 @@
                 });
             });
 
-            // Image Slider JavaScript (Modified for infinite loop)
-            const sliderWrapper = document.querySelector('.slider-wrapper');
-            const slides = document.querySelectorAll('.slider-wrapper img');
-            const prevButton = document.querySelector('.slider-control-btn.prev');
-            const nextButton = document.querySelector('.slider-control-btn.next');
+            // Image Slider JavaScript (Modified for infinite loop and banner integration)
+            const sliderContainer = document.querySelector('.banner-header .slider-container');
+            const sliderWrapper = document.querySelector('.banner-header .slider-container .slider-wrapper');
+            const slides = document.querySelectorAll('.banner-header .slider-container .slider-wrapper img');
+            
+            // Check if sliderWrapper and slides exist before proceeding
+            if (!sliderWrapper || slides.length === 0) {
+                console.warn("Slider elements not found. Skipping slider initialization.");
+                return; // Exit if elements are missing
+            }
 
-            // The actual number of original slides is 10
-            const actualSlidesCount = 10; 
-            // Total slides including clones: [last_clone, original_1, ..., original_10, first_clone]
+            // The actual number of original slides is 20
+            const actualSlidesCount = 20; 
+            // Total slides including clones: [last_clone, original_1, ..., original_20, first_clone]
+            const totalSlidesInWrapper = slides.length; // This will be 22 (20 original + 2 clones)
             let currentIndex = 1; // Start at the first actual slide (index 1)
 
             // Function to update the slider's position based on currentIndex
             function updateSliderPosition() {
-                const slideWidth = slides[0].clientWidth;
-                sliderWrapper.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                // Translate by percentage of the slider-wrapper, where each slide is (100 / totalSlidesInWrapper)% of the wrapper's width
+                sliderWrapper.style.transform = `translateX(-${currentIndex * (100 / totalSlidesInWrapper)}%)`;
             }
 
             // Function to handle moving to the next slide
             function goToNextSlide() {
-                // Stop auto-slide temporarily to prevent multiple rapid triggers
-                stopAutoSlide(); 
-
-                // If currently on the last actual slide (index 10), transition to the first clone (index 11)
+                // We're always starting on an actual slide, moving to next.
+                // If currentIndex is already the last actual slide (index 20), we go to the first cloned slide (index 21).
                 if (currentIndex >= actualSlidesCount) {
-                    currentIndex++; // Move to the first clone
+                    currentIndex++; // Move to the first clone (index 21)
                     updateSliderPosition(); // Animate to the clone
                     
-                    // After the transition to the clone is complete, instantly snap back to the first actual slide
+                    // After the transition to the clone is complete, instantly snap back to the first actual slide (index 1)
                     setTimeout(() => {
                         sliderWrapper.style.transition = 'none'; // Disable transition for instant snap
                         currentIndex = 1; // Reset to the first actual slide
@@ -1425,23 +1472,19 @@
                     currentIndex++; // Move to the next actual slide
                     updateSliderPosition(); // Animate to the next slide
                 }
-                startAutoSlide(); // Restart auto-slide
             }
 
             // Function to handle moving to the previous slide
             function goToPrevSlide() {
-                // Stop auto-slide temporarily
-                stopAutoSlide(); 
-
-                // If currently on the first actual slide (index 1), transition to the last clone (index 0)
+                // If currentIndex is already the first actual slide (index 1), we go to the last cloned slide (index 0).
                 if (currentIndex <= 1) {
-                    currentIndex--; // Move to the last clone
+                    currentIndex--; // Move to the last clone (index 0)
                     updateSliderPosition(); // Animate to the clone
 
-                    // After the transition to the clone, instantly snap back to the last actual slide
+                    // After the transition to the clone is complete, instantly snap back to the last actual slide (index 20)
                     setTimeout(() => {
                         sliderWrapper.style.transition = 'none'; // Disable transition
-                        currentIndex = actualSlidesCount; // Reset to the last actual slide
+                        currentIndex = actualSlidesCount; // Reset to the last actual slide (index 20)
                         updateSliderPosition(); // Snap to position
                         // Re-enable transition
                         setTimeout(() => {
@@ -1452,7 +1495,6 @@
                     currentIndex--; // Move to the previous actual slide
                     updateSliderPosition(); // Animate to the previous slide
                 }
-                startAutoSlide(); // Restart auto-slide
             }
 
             let slideInterval; // Variable to hold the interval ID
@@ -1468,27 +1510,36 @@
                 clearInterval(slideInterval); // Clear the interval
             }
 
-            // Event listeners for manual navigation buttons
-            nextButton.addEventListener('click', goToNextSlide);
-            prevButton.addEventListener('click', goToPrevSlide);
+            // Event listeners for manual navigation buttons (will be hidden by CSS, but good practice to remove if they existed)
+            // No manual controls for banner background slider, so these are commented out or `display: none` in CSS
+            // const prevButton = document.querySelector('.banner-header .slider-control-btn.prev');
+            // const nextButton = document.querySelector('.banner-header .slider-control-btn.next');
+            // if (prevButton) prevButton.addEventListener('click', goToPrevSlide);
+            // if (nextButton) nextButton.addEventListener('click', goToNextSlide);
 
-            // Stop auto-slide on mouse enter, restart on mouse leave
-            sliderWrapper.closest('.slider-container').addEventListener('mouseenter', stopAutoSlide);
-            sliderWrapper.closest('.slider-container').addEventListener('mouseleave', startAutoSlide);
+            // Stop auto-slide on mouse enter, restart on mouse leave for the banner area
+            if (sliderContainer) {
+                sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+                sliderContainer.addEventListener('mouseleave', startAutoSlide);
+            }
 
             // Update slider position on window resize to ensure correct layout
             window.addEventListener('resize', () => {
-                sliderWrapper.style.transition = 'none'; // Temporarily disable transition for resize
-                updateSliderPosition();
-                // Re-enable transition after a very short delay
-                setTimeout(() => {
-                    sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
-                }, 50);
+                if (sliderWrapper) {
+                    sliderWrapper.style.transition = 'none'; // Temporarily disable transition for resize
+                    updateSliderPosition();
+                    // Re-enable transition after a very short delay
+                    setTimeout(() => {
+                        sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
+                    }, 50);
+                }
             });
 
             // Initial setup calls
-            updateSliderPosition(); // Set initial position (to the first actual slide)
-            startAutoSlide(); // Start the automatic slideshow
+            if (sliderWrapper) { // Only run if slider elements are found
+                updateSliderPosition(); // Set initial position (to the first actual slide)
+                startAutoSlide(); // Start the automatic slideshow
+            }
         });
     </script>
 </body>
