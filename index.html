@@ -42,6 +42,17 @@
             z-index: 10;
         }
 
+        .acmw-logo {
+            position: fixed; /* Changed to fixed */
+            top: 20px;
+            left: 20px;
+            height: 80px; /* Adjust size as needed */
+            width: auto;
+            z-index: 999; /* Ensure it's above other elements */
+            mix-blend-mode: screen; /* Blends with the Vanta.js background */
+            filter: brightness(2); /* Make it brighter to stand out against dark background */
+        }
+
         .banner-overlay-text {
             position: absolute;
             color: #fff;
@@ -394,17 +405,27 @@
                 justify-content: flex-end;
             }
 
-            .timeline .section .content_o,
-            .timeline .section .content_e {
-                width: calc(100% - 70px);
-                margin-left: 60px;
+            .timeline .section .card {
+                width: calc(100% - 70px); /* Adjust width for smaller screens */
+                margin-left: 60px; /* Aligns to right of line */
                 margin-right: 0;
             }
 
-            .timeline .section .content_o::after,
-            .timeline .section .content_e::after {
-                left: -30px;
+            .timeline .section:nth-of-type(odd) .card::after {
+                left: -30px; /* Move dot to left side for all cards on mobile */
                 right: auto;
+            }
+            .timeline .section:nth-of-type(even) .card::after {
+                left: -30px; /* Move dot to left side for all cards on mobile */
+                right: auto;
+            }
+            .timeline .section:nth-of-type(odd) .card {
+                margin-right: 0;
+                margin-left: 60px;
+            }
+
+            .timeline .section:nth-of-type(even) .card {
+                margin-left: 60px;
             }
 
             .slider-container {
@@ -414,6 +435,15 @@
             .slider-control-btn {
                 padding: 10px;
                 font-size: 1.2em;
+            }
+
+            /* Members section responsive adjustments */
+            .members-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .member-card {
+                max-width: 100%;
+                margin: 10px auto;
             }
         }
 
@@ -449,18 +479,18 @@
         }
 
         .timeline .section {
-            padding: 0; /* Remove padding from section, content divs handle it */
+            padding: 0;
             position: relative;
             margin-bottom: 40px;
             opacity: 0;
             transform: translateY(30px) scale(0.98);
             transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                         transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            display: flex; /* Make section a flex container */
-            align-items: center; /* Vertically align content */
+            display: flex;
+            align-items: center;
             width: 100%;
             box-sizing: border-box;
-            clear: both; /* Ensure sections don't overlap if floats are re-introduced */
+            clear: both;
         }
 
         .timeline .section.show {
@@ -470,41 +500,69 @@
 
         /* Odd sections (left side) */
         .timeline .section:nth-of-type(odd) {
-            justify-content: flex-start; /* Aligns content to the left within the section */
+            justify-content: flex-start;
         }
 
         /* Even sections (right side) */
         .timeline .section:nth-of-type(even) {
-            justify-content: flex-end; /* Aligns content to the right within the section */
+            justify-content: flex-end;
         }
 
-        /* Content blocks for odd (left) and even (right) sides */
-        .timeline .section .content_o,
-        .timeline .section .content_e {
-            background-color: #FDFEFE; /* Very light almost white */
+        /* Base card style */
+        .timeline .section .card {
             padding: 25px;
-            border-radius: 10px;
+            border-radius: 15px; /* More rounded corners like the image */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             width: calc(50% - 60px); /* Adjust width to account for the line and dots + gap */
             position: relative;
             z-index: 1;
             box-sizing: border-box;
-            border: 1px solid #E0E0E0; /* Light gray border */
+            border: 1px solid #E0E0E0;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             margin: 0; /* Remove explicit large margins from here */
         }
 
-        .timeline .section .content_o {
-            margin-right: 40px; /* Space between content_o and central line */
+        /* Specific styles for odd cards (left) */
+        .timeline .section:nth-of-type(odd) .card {
+            background-color: #50D0A5; /* Green from image */
+            margin-right: 40px; /* Space between card and central line */
+            color: #fff; /* White text for dark background */
+        }
+        .timeline .section:nth-of-type(odd) .card .card-category {
+            color: rgba(255, 255, 255, 0.7); /* Lighter category text */
+        }
+        .timeline .section:nth-of-type(odd) .card h4,
+        .timeline .section:nth-of-type(odd) .card h5,
+        .timeline .section:nth-of-type(odd) .card h6,
+        .timeline .section:nth-of-type(odd) .card p {
+            color: #fff; /* White text */
         }
 
-        .timeline .section .content_e {
-            margin-left: 40px; /* Space between content_e and central line */
+        /* Specific styles for even cards (right) */
+        .timeline .section:nth-of-type(even) .card {
+            background-color: #1D1D1D; /* Black from image */
+            margin-left: 40px; /* Space between card and central line */
+            color: #fff; /* White text for dark background */
+        }
+        .timeline .section:nth-of-type(even) .card .card-category {
+            color: rgba(255, 255, 255, 0.7); /* Lighter category text */
+        }
+        .timeline .section:nth-of-type(even) .card h4,
+        .timeline .section:nth-of-type(even) .card h5,
+        .timeline .section:nth-of-type(even) .card h6,
+        .timeline .section:nth-of-type(even) .card p {
+            color: #fff; /* White text */
+        }
+
+        /* Hover effect for tiles */
+        .timeline .section .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            border-color: #1ABC9C; /* Vibrant Teal border on hover */
         }
 
         /* Pseudo-elements for the dots */
-        .timeline .section .content_o::after,
-        .timeline .section .content_e::after {
+        .timeline .section .card::after { /* Applied to .card for dot positioning */
             content: '';
             position: absolute;
             width: 15px;
@@ -517,67 +575,204 @@
             z-index: 2;
         }
 
-        .timeline .section .content_o::after {
-            right: -30px; /* Position dot on the right of content_o */
+        /* Dot position for left cards (content_o) */
+        .timeline .section:nth-of-type(odd) .card::after {
+            right: -30px; /* Dot on the right of left card */
+            left: auto;
         }
 
-        .timeline .section .content_e::after {
-            left: -30px; /* Position dot on the left of content_e */
+        /* Dot position for right cards (content_e) */
+        .timeline .section:nth-of-type(even) .card::after {
+            left: -30px; /* Dot on the left of right card */
+            right: auto;
         }
 
-        /* Content Color Scheme */
-        .timeline h4 {
+        /* Content elements within cards */
+        .card-header {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-category {
+            /* color will be set by parent .card for light/dark text */
+        }
+
+        .card-title {
             font-family: 'Playfair Display', serif;
-            color: #2C3E50; /* Dark Navy for titles */
             font-size: 1.8em;
             margin-bottom: 5px;
+            line-height: 1.2;
+            /* color will be set by parent .card for light/dark text */
         }
 
-        .timeline h5 {
+        .card-date {
             font-family: 'Montserrat', sans-serif;
-            color: #7F8C8D; /* Muted Gray for dates */
             font-size: 1.1em;
             margin-top: 0;
             margin-bottom: 15px;
+            /* color will be set by parent .card for light/dark text */
         }
 
-        .timeline h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1em;
-            color: #16A085; /* Darker Emerald for secondary headings */
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .timeline p {
+        .card-description {
             font-size: 0.95em;
             line-height: 1.6;
-            color: #34495E; /* Darker Grayish Blue for body text */
+            margin-bottom: 20px;
+            /* color will be set by parent .card for light/dark text */
         }
 
-        /* Button Enhancements */
-        .redirect-button {
-            background-color: #1ABC9C; /* Vibrant Teal button */
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.05em;
+        .card-secondary-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            /* color will be set by parent .card for light/dark text */
+        }
+
+        .card-footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 20px;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Subtle separator */
+        }
+
+        .card-footer-text {
+            font-weight: bold;
+            font-size: 1.1em;
+            /* color will be set by parent .card for light/dark text */
+        }
+
+        .card-arrow-button {
+            background-color: rgba(255, 255, 255, 0.2); /* Subtle white background */
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px; /* Slightly rounded for the arrow button */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .card-arrow-button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateX(3px);
+        }
+
+        /* --- Members Section Styles --- */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+            gap: 30px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .member-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
-            z-index: 1;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .redirect-button:hover {
-            background-color: #16A085; /* Darker teal on hover */
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Color variations for member cards */
+        .member-card.color-1 { background-color: #50D0A5; color: #fff; } /* Green */
+        .member-card.color-2 { background-color: #1D1D1D; color: #fff; } /* Black */
+        .member-card.color-3 { background-color: #9B59B6; color: #fff; } /* Purple */
+        .member-card.color-4 { background-color: #F1C40F; color: #333; } /* Yellow */
+        .member-card.color-5 { background-color: #3498DB; color: #fff; } /* Blue */
+        .member-card.color-6 { background-color: #E74C3C; color: #fff; } /* Red */
+        .member-card.color-7 { background-color: #FF7F50; color: #fff; } /* Coral */
+        .member-card.color-8 { background-color: #8A2BE2; color: #fff; } /* BlueViolet */
+        .member-card.color-9 { background-color: #20B2AA; color: #fff; } /* LightSeaGreen */
+        .member-card.color-10 { background-color: #DAA520; color: #fff; } /* Goldenrod */
+        .member-card.color-11 { background-color: #B22222; color: #fff; } /* FireBrick */
+        .member-card.color-12 { background-color: #4682B4; color: #fff; } /* SteelBlue */
+
+
+        .member-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            line-height: 1.2;
+            color: inherit; /* Inherit color from card */
+        }
+
+        .member-card p {
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: inherit; /* Inherit color from card */
+            opacity: 0.8; /* Slightly muted for role */
+        }
+
+        .member-card .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .member-card .social-links a {
+            color: inherit; /* Inherit from card, will be white or dark depending on background */
+            font-size: 1.6em;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .member-card .social-links a:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            filter: brightness(1.2); /* Slightly brighter on hover */
+        }
+        .member-card.color-4 .social-links a {
+            color: #333; /* Darker icons for yellow card */
+        }
+        .member-card.color-4 .social-links a:hover {
+            filter: brightness(0.8);
         }
 
+        .member-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            border: 3px solid rgba(255, 255, 255, 0.5); /* White border for contrast */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            background-color: #ccc; /* Fallback background color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image covers the circular area */
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -585,6 +780,7 @@
     <div id="vanta-bg"></div>
 
     <header class="banner-header">
+        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/000000/FFFFFF?text=ACM-W';" alt="ACM-W Logo" class="acmw-logo">
         <div class="banner-overlay-text">
             <h1><span id="typed-output"></span></h1>
             <div id="typed-strings" style="display: none;">
@@ -602,6 +798,7 @@
             <li><a href="#events">Events</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#members">Our Team</a></li> <!-- New nav link -->
             <li><a href="#alumni">Connect with our Alumni</a></li>
             <li><a href="#about-acmw">About ACM-W</a></li>
             <li><a href="#become-member">Become a member</a></li>
@@ -623,94 +820,155 @@
                 <div class="line">
                     <div class="scroller-indicator"></div>
                 </div>
+                
                 <div class="section">
-                    <div class="content_o">
-                        <h4>⚡CYBERX</h4>
-                        <h5>19th and 20th May, 2023</h5>
-                        <p>Showcase your skills in cyber security and develop cutting-edge tools and technology. CyberX is an innovative hackathon organized by VIT Chennai in association with the Greater Chennai Police.</p>
-                        <button id="event1" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">⚡CYBERX</h4>
+                        <h5 class="card-date">19th and 20th May, 2023</h5>
+                        <p class="card-description">Showcase your skills in cyber security and develop cutting-edge tools and technology. CyberX is an innovative hackathon organized by VIT Chennai in association with the Greater Chennai Police.</p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event1" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_e">
-                        <h4>UI/UX CONTEST🎨</h4>
-                        <h5>7th June, 2023</h5>
-                        <p>Showcase your skills and creativity by designing unique and user-friendly interfaces and experiences for various products and applications.</p>
-                        <button id="event2" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">UI/UX CONTEST🎨</h4>
+                        <h5 class="card-date">7th June, 2023</h5>
+                        <p class="card-description">Showcase your skills and creativity by designing unique and user-friendly interfaces and experiences for various products and applications.</p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event2" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_o">
-                        <h4>🕸️WEB3 REVOLUTION</h4>
-                        <h5>15th June, 2023</h5>
-                        <p>Reshaping our digital landscape, promising decentralized, trustless systems that empower individuals. It represents a paradigm shift towards a more transparent and equitable online world.</p>
-                        <button id="event3" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">🕸️WEB3 REVOLUTION</h4>
+                        <h5 class="card-date">15th June, 2023</h5>
+                        <p class="card-description">Reshaping our digital landscape, promising decentralized, trustless systems that empower individuals. It represents a paradigm shift towards a more transparent and equitable online world.</p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event3" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_e">
-                        <h4>BE THE CHANGE🌸</h4>
-                        <h5>18th June, 2023</h5>
-                        <p>This event provides a platform for volunteers to make a difference in their community by giving back and helping to shape the future. </p>
-                        <button id="event4" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">BE THE CHANGE🌸</h4>
+                        <h5 class="card-date">18th June, 2023</h5>
+                        <p class="card-description">This event provides a platform for volunteers to make a difference in their community by giving back and helping to shape the future. </p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event4" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_o">
-                        <h4>💲WEB3 REV PT-2</h4>
-                        <h5>30th August, 2023</h5>
-                        <p>Part 2 of the Web3 revolution event continues our journey into the decentralized future, exploring new frontiers and innovative applications that harness blockchain technology for a more inclusive and more secure digital ecosystem.</p>
-                        <button id="event5" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">💲WEB3 REV PT-2</h4>
+                        <h5 class="card-date">30th August, 2023</h5>
+                        <p class="card-description">Part 2 of the Web3 revolution event continues our journey into the decentralized future, exploring new frontiers and innovative applications that harness blockchain technology for a more inclusive and more secure digital ecosystem.</p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event5" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_e">
-                        <h4>SHE CODES 👩‍💻</h4>
-                        <h5>6th October, 2023</h5>
-                        <h6>Technovit'23 ✨</h6>
-                        <p>A groundbreaking women-only coding contest hosted on HackerRank, empowering female programmers to showcase their talents and compete on a level playing field. This inspiring event fosters diversity and inclusion within the tech industry, celebrating the achievements of women in the world of coding. </p>
-                        <button id="event6" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">SHE CODES 👩‍💻</h4>
+                        <h5 class="card-date">6th October, 2023</h5>
+                        <h6 class="card-secondary-title">Technovit'23 ✨</h6>
+                        <p class="card-description">A groundbreaking women-only coding contest hosted on HackerRank, empowering female programmers to showcase their talents and compete on a level playing field. This inspiring event fosters diversity and inclusion within the tech industry, celebrating the achievements of women in the world of coding. </p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event6" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_o">
-                        <h4>🦄CREATIVITY WITH AI</h4>
-                        <h5>6th December, 2023</h5>
-                        <p>Join us for an unforgettable and creative tech journey at Hour of Code during the Computer Ed Week.</p>
-                        <button id="event7" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">🦄CREATIVITY WITH AI</h4>
+                        <h5 class="card-date">6th December, 2023</h5>
+                        <p class="card-description">Join us for an unforgettable and creative tech journey at Hour of Code during the Computer Ed Week.</p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event7" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_e">
-                        <h4>DECRYPT‍💻</h4>
-                        <h5>8 April, 2023</h5>
-                        <p>Embark on a riveting journey into the realm of cryptography with 'Decrypt,' where minds converge, challenges unfold, and encryption secrets are unveiled in a captivating online adventure!</p>
-                        <button id="event8" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">DECRYPT‍💻</h4>
+                        <h5 class="card-date">8 April, 2023</h5>
+                        <p class="card-description">Embark on a riveting journey into the realm of cryptography with 'Decrypt,' where minds converge, challenges unfold, and encryption secrets are unveiled in a captivating online adventure!</p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event8" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_o">
-                        <h4>⚡WEEKLY CODING CHALLENGE</h4>
-                        <h5>5th July, 2024</h5>
-                        <p>Calling all code warriors! Are you ready to take on our epic weekly coding challenge and prove your skills? Dive into thrilling coding adventures, tackle complex problems, and rise to the top. This is your chance to show what you're made of—are you up for the challenge?</p>
-                        <button id="event9" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">⚡WEEKLY CODING CHALLENGE</h4>
+                        <h5 class="card-date">5th July, 2024</h5>
+                        <p class="card-description">Calling all code warriors! Are you ready to take on our epic weekly coding challenge and prove your skills? Dive into thrilling coding adventures, tackle complex problems, and rise to the top. This is your chance to show what you're made of—are you up for the challenge?</p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event9" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="content_e">
-                        <h4>MASCOT MANIA👩‍💻</h4>
-                        <h5>7th July, 2024</h5>
-                        <p>Unleash your creativity with AI and design a one-of-a-kind mascot that stands out from the crowd for a chance to win exciting prizes! Let your imagination run wild as you harness the power of AI tools to create something truly unique and memorable. This is your moment to showcase your design skills and innovation—don’t miss out!</p>
-                        <button id="event10" class="redirect-button"><span>Learn more</span></button>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-category">EVENT</span>
+                        </div>
+                        <h4 class="card-title">MASCOT MANIA👩‍💻</h4>
+                        <h5 class="card-date">7th July, 2024</h5>
+                        <p class="card-description">Unleash your creativity with AI and design a one-of-a-kind mascot that stands out from the crowd for a chance to win exciting prizes! Let your imagination run wild as you harness the power of AI tools to create something truly unique and memorable. This is your moment to showcase your design skills and innovation—don’t miss out!</p>
+                        <div class="card-footer-container">
+                            <span class="card-footer-text">Learn more</span>
+                            <button id="event10" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -740,6 +998,145 @@
             </blockquote>
         </section>
 
+        <section id="members">
+            <h2>Our Team</h2>
+            <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
+            <div class="members-grid">
+                <div class="member-card color-1">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Dr. Suganya">
+                    </div>
+                    <h3>Dr. Suganya</h3>
+                    <p>Faculty Coordinator</p>
+                    <div class="social-links">
+                        <a href="https://github.com/suganya" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/suganya" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-2">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Bharathi">
+                    </div>
+                    <h3>Bharathi</h3>
+                    <p>Chairperson</p>
+                    <div class="social-links">
+                        <a href="https://github.com/bharathi" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/bharathi" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-3">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Shibani">
+                    </div>
+                    <h3>Shibani</h3>
+                    <p>Vice-chair</p>
+                    <div class="social-links">
+                        <a href="https://github.com/shibani" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/shibani" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-4">
+                    <div class="member-image">
+                        <img src="https://placehold.co/100x100/999999/CCCCCC?text=User" alt="Lakshmi Priya">
+                    </div>
+                    <h3>Lakshmi Priya</h3>
+                    <p>Secretary</p>
+                    <div class="social-links">
+                        <a href="https://github.com/lakshmipriya" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/lakshmipriya" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-1">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Sathvik">
+                    </div>
+                    <h3>Sathvik</h3>
+                    <p>Treasurer</p>
+                    <div class="social-links">
+                        <a href="https://github.com/sathvik" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sathvik" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-2">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Nandhakishore">
+                    </div>
+                    <h3>Nandhakishore</h3>
+                    <p>Membership chair</p>
+                    <div class="social-links">
+                        <a href="https://github.com/nandhakishore" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/nandhakishore" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-3">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Manya">
+                    </div>
+                    <h3>Manya</h3>
+                    <p>Technical</p>
+                    <div class="social-links">
+                        <a href="https://github.com/manya" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/manya" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-4">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="CH L Sudheera">
+                    </div>
+                    <h3>CH L Sudheera</h3>
+                    <p>Design</p>
+                    <div class="social-links">
+                        <a href="https://github.com/sudheera" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sudheera" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-1">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Hrituja">
+                    </div>
+                    <h3>Hrituja</h3>
+                    <p>Event Management</p>
+                    <div class="social-links">
+                        <a href="https://github.com/hrituja" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/hrituja" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-2">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Jahnvi">
+                    </div>
+                    <h3>Jahnvi</h3>
+                    <p>Outreach</p>
+                    <div class="social-links">
+                        <a href="https://github.com/jahnvi" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/jahnvi" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="member-card color-3">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Sireesha">
+                    </div>
+                    <h3>Sireesha</h3>
+                    <p>Social media</p>
+                    <div class="social-links">
+                        <a href="https://github.com/sireesha" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sireesha" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                 <div class="member-card color-4">
+                    <div class="member-image">
+                        <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/999999/CCCCCC?text=User';" alt="Lynda">
+                    </div>
+                    <h3>Lynda</h3>
+                    <p>Finance & Awards</p>
+                    <div class="social-links">
+                        <a href="https://github.com/lynda" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/lynda" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="alumni">
             <h2>Connect with our Alumni</h2>
             <p>Our alumni network is a valuable resource for current members. Connect with successful professionals who started their journey with ACM-W and gain insights, advice, and potential career opportunities.</p>
@@ -753,9 +1150,21 @@
             <p>Our local chapter focuses on fostering a vibrant community, providing educational resources, career development opportunities, and promoting diversity and inclusion within the tech industry. We strive to be a supportive hub for all women in computing.</p>
             <div class="slider-container">
                 <div class="slider-wrapper">
+                    <!-- Cloned last image (for infinite loop) -->
+                    <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+10" alt="Gallery Image 10 (clone)">
+                    <!-- Actual 10 images -->
                     <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1">
                     <img src="https://placehold.co/700x400/6699cc/FFFFFF?text=ACM-W+Gallery+2" alt="Gallery Image 2">
                     <img src="https://placehold.co/700x400/cc6699/FFFFFF?text=ACM-W+Gallery+3" alt="Gallery Image 3">
+                    <img src="https://placehold.co/700x400/99cc66/FFFFFF?text=ACM-W+Gallery+4" alt="Gallery Image 4">
+                    <img src="https://placehold.co/700x400/cc9966/FFFFFF?text=ACM-W+Gallery+5" alt="Gallery Image 5">
+                    <img src="https://placehold.co/700x400/66cc99/FFFFFF?text=ACM-W+Gallery+6" alt="Gallery Image 6">
+                    <img src="https://placehold.co/700x400/99cc99/FFFFFF?text=ACM-W+Gallery+7" alt="Gallery Image 7">
+                    <img src="https://placehold.co/700x400/cc6666/FFFFFF?text=ACM-W+Gallery+8" alt="Gallery Image 8">
+                    <img src="https://placehold.co/700x400/6666cc/FFFFFF?text=ACM-W+Gallery+9" alt="Gallery Image 9">
+                    <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+10" alt="Gallery Image 10">
+                    <!-- Cloned first image (for infinite loop) -->
+                    <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1 (clone)">
                 </div>
                 <button class="slider-control-btn prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
                 <button class="slider-control-btn next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
@@ -915,90 +1324,40 @@
                 observer.observe(section);
             });
 
-            const redirectButtons = document.querySelectorAll('.redirect-button');
-            redirectButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const eventId = this.id;
-                    alert(`Learn more about ${eventId}! (Redirect functionality not implemented yet)`);
-                });
-            });
-
-            // Image Slider JavaScript
-            const sliderWrapper = document.querySelector('.slider-wrapper');
-            const prevButton = document.querySelector('.slider-control-btn.prev');
-            const nextButton = document.querySelector('.slider-control-btn.next');
-            const slides = document.querySelectorAll('.slider-wrapper img');
-            let currentIndex = 0;
-            let slideInterval;
-
-            function updateSliderPosition() {
-                const slideWidth = slides[0].clientWidth;
-                sliderWrapper.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            }
-
-            function goToNextSlide() {
-                currentIndex = (currentIndex + 1) % slides.length;
-                updateSliderPosition();
-            }
-
-            function goToPrevSlide() {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                updateSliderPosition();
-            }
-
-            function startAutoSlide() {
-                slideInterval = setInterval(goToNextSlide, 3000);
-            }
-
-            function stopAutoSlide() {
-                clearInterval(slideInterval);
-            }
-
-            nextButton.addEventListener('click', () => {
-                stopAutoSlide();
-                goToNextSlide();
-                startAutoSlide();
-            });
-
-            prevButton.addEventListener('click', () => {
-                stopAutoSlide();
-                goToPrevSlide();
-                startAutoSlide();
-            });
-
-            sliderWrapper.closest('.slider-container').addEventListener('mouseenter', stopAutoSlide);
-            sliderWrapper.closest('.slider-container').addEventListener('mouseleave', startAutoSlide);
-
-            window.addEventListener('resize', updateSliderPosition);
-
-            updateSliderPosition();
-            startAutoSlide();
-
             // Timeline Scroller Logic
             function updateTimelineScroller() {
                 if (!timelineElement || !scrollerIndicator) return;
 
-                const timelineTop = timelineElement.offsetTop;
-                const timelineHeight = timelineElement.clientHeight;
+                const timelineRect = timelineElement.getBoundingClientRect();
                 const viewportHeight = window.innerHeight;
-                const scrollY = window.pageYOffset;
 
-                // Calculate progress: when the user scrolls from the top of the timeline section
-                // until the end of the timeline section is at the bottom of the viewport.
-                const scrollStart = timelineTop - viewportHeight;
-                const scrollEnd = timelineTop + timelineHeight - (viewportHeight * 0.2); // Adjust endpoint for better visual flow
+                // Calculate the scroll progress relative to the timeline element
+                // When timelineTop is at the top of the viewport, progress is 0.
+                // When timelineBottom is at the bottom of the viewport, progress is 1.
+                // Adjusted to start when timeline enters viewport and end when it leaves the bottom.
+                const scrollStart = timelineRect.top + window.pageYOffset - viewportHeight;
+                const scrollEnd = timelineRect.bottom + window.pageYOffset;
 
                 let progress = 0;
-                if (scrollY > scrollStart) {
-                    progress = (scrollY - scrollStart) / (scrollEnd - scrollStart);
+                if (window.pageYOffset > scrollStart) {
+                    progress = (window.pageYOffset - scrollStart) / (scrollEnd - scrollStart);
                 }
 
                 progress = Math.max(0, Math.min(1, progress)); // Clamp between 0 and 1
+
+                // Adjust the height of the scroller indicator based on the timeline's visible height
+                // The scroller should span the height of the visible timeline section
+                const visibleTimelineHeight = Math.min(timelineRect.bottom, viewportHeight) - Math.max(0, timelineRect.top);
+                
+                // Calculate the top position of the scroller relative to its parent line
+                // The line itself starts from the top of the timeline element
+                const scrollerTop = progress * timelineLine.clientHeight;
 
                 scrollerIndicator.style.height = `${progress * 100}%`;
             }
 
             window.addEventListener('scroll', updateTimelineScroller);
+            window.addEventListener('resize', updateTimelineScroller); // Update on resize too
             updateTimelineScroller(); // Initial call
         });
 
@@ -1016,6 +1375,120 @@
                 cursorChar: '|',
                 autoInsertCss: true,
             });
+
+            // Button functionality for event cards
+            document.querySelectorAll('.card-arrow-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const eventId = this.id;
+                    alert(`Learn more about ${eventId}! (Redirect functionality not implemented yet)`);
+                });
+            });
+
+            // Image Slider JavaScript (Modified for infinite loop)
+            const sliderWrapper = document.querySelector('.slider-wrapper');
+            const slides = document.querySelectorAll('.slider-wrapper img');
+            const prevButton = document.querySelector('.slider-control-btn.prev');
+            const nextButton = document.querySelector('.slider-control-btn.next');
+
+            // The actual number of original slides is 10
+            const actualSlidesCount = 10; 
+            // Total slides including clones: [last_clone, original_1, ..., original_10, first_clone]
+            let currentIndex = 1; // Start at the first actual slide (index 1)
+
+            // Function to update the slider's position based on currentIndex
+            function updateSliderPosition() {
+                const slideWidth = slides[0].clientWidth;
+                sliderWrapper.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            }
+
+            // Function to handle moving to the next slide
+            function goToNextSlide() {
+                // Stop auto-slide temporarily to prevent multiple rapid triggers
+                stopAutoSlide(); 
+
+                // If currently on the last actual slide (index 10), transition to the first clone (index 11)
+                if (currentIndex >= actualSlidesCount) {
+                    currentIndex++; // Move to the first clone
+                    updateSliderPosition(); // Animate to the clone
+                    
+                    // After the transition to the clone is complete, instantly snap back to the first actual slide
+                    setTimeout(() => {
+                        sliderWrapper.style.transition = 'none'; // Disable transition for instant snap
+                        currentIndex = 1; // Reset to the first actual slide
+                        updateSliderPosition(); // Snap to position
+                        // Re-enable transition after a very short delay for subsequent animations
+                        setTimeout(() => {
+                            sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
+                        }, 50); 
+                    }, 500); // Match CSS transition duration
+                } else {
+                    currentIndex++; // Move to the next actual slide
+                    updateSliderPosition(); // Animate to the next slide
+                }
+                startAutoSlide(); // Restart auto-slide
+            }
+
+            // Function to handle moving to the previous slide
+            function goToPrevSlide() {
+                // Stop auto-slide temporarily
+                stopAutoSlide(); 
+
+                // If currently on the first actual slide (index 1), transition to the last clone (index 0)
+                if (currentIndex <= 1) {
+                    currentIndex--; // Move to the last clone
+                    updateSliderPosition(); // Animate to the clone
+
+                    // After the transition to the clone, instantly snap back to the last actual slide
+                    setTimeout(() => {
+                        sliderWrapper.style.transition = 'none'; // Disable transition
+                        currentIndex = actualSlidesCount; // Reset to the last actual slide
+                        updateSliderPosition(); // Snap to position
+                        // Re-enable transition
+                        setTimeout(() => {
+                            sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
+                        }, 50);
+                    }, 500); // Match CSS transition duration
+                } else {
+                    currentIndex--; // Move to the previous actual slide
+                    updateSliderPosition(); // Animate to the previous slide
+                }
+                startAutoSlide(); // Restart auto-slide
+            }
+
+            let slideInterval; // Variable to hold the interval ID
+
+            function startAutoSlide() {
+                // Clear any existing interval to prevent multiple intervals running
+                clearInterval(slideInterval); 
+                // Set a new interval to go to the next slide every 3 seconds
+                slideInterval = setInterval(goToNextSlide, 3000); 
+            }
+
+            function stopAutoSlide() {
+                clearInterval(slideInterval); // Clear the interval
+            }
+
+            // Event listeners for manual navigation buttons
+            nextButton.addEventListener('click', goToNextSlide);
+            prevButton.addEventListener('click', goToPrevSlide);
+
+            // Stop auto-slide on mouse enter, restart on mouse leave
+            sliderWrapper.closest('.slider-container').addEventListener('mouseenter', stopAutoSlide);
+            sliderWrapper.closest('.slider-container').addEventListener('mouseleave', startAutoSlide);
+
+            // Update slider position on window resize to ensure correct layout
+            window.addEventListener('resize', () => {
+                sliderWrapper.style.transition = 'none'; // Temporarily disable transition for resize
+                updateSliderPosition();
+                // Re-enable transition after a very short delay
+                setTimeout(() => {
+                    sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
+                }, 50);
+            });
+
+            // Initial setup calls
+            updateSliderPosition(); // Set initial position (to the first actual slide)
+            startAutoSlide(); // Start the automatic slideshow
         });
     </script>
 </body>
