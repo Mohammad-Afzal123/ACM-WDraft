@@ -44,6 +44,20 @@
             z-index: 10;
         }
 
+        .banner-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1; /* Below overlay text */
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Ensures the video covers the entire space */
+            transition: opacity 0.3s ease-out; /* Smooth transition for opacity */
+        }
+
         .acmw-logo {
             position: fixed; /* Ensures logo stays in place during scroll */
             top: 20px;
@@ -59,13 +73,10 @@
             position: absolute;
             color: #fff;
             text-align: center;
-            z-index: 20; /* Higher z-index to be above the gallery */
+            z-index: 20; /* Higher z-index to be above the video */
             padding: 20px;
-            background: transparent; /* Changed to transparent */
+            background: transparent;
             border-radius: 10px;
-            backdrop-filter: none; /* Removed backdrop filter */
-            -webkit-backdrop-filter: none; /* Removed backdrop filter */
-            box-shadow: none; /* Removed box shadow */
             max-width: 80%;
         }
 
@@ -95,47 +106,58 @@
             padding-top: 40vh; /* Adjusted for smaller gap, further decreased */
         }
 
+        /* Generic section styling - transparent by default */
         section {
             padding: 60px 40px;
             margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: transparent;
             border-radius: 8px;
+            box-shadow: none;
+        }
+
+        /* Specific overrides for sections with white background */
+        #alumni {
+            background-color: #1D1D1D; /* Dark background for alumni section */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #f0f0f0; /* Light text for dark background */
+        }
+        #alumni h2 {
+            color: #1ABC9C; /* Ensure heading color stands out */
+            border-bottom-color: #1ABC9C;
+        }
+        #alumni p {
+            color: #ccc; /* Lighter text for paragraphs */
+        }
+        #alumni button {
+            background-color: #007bff; /* Ensure button contrast */
+            color: white;
+        }
+
+
+        #about-acmw, #become-member, #contact-us {
+            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        section:nth-of-type(even) {
-            background-color: rgba(249, 249, 249, 0.9);
+        /* Specific override for events section background (already transparent) */
+        #events {
+            background-color: transparent;
+            box-shadow: none;
+            padding: 60px 0;
         }
 
-        #events { /* Specific override for events section background */
-            background-color: transparent; /* Remove white background for the section itself */
-            box-shadow: none; /* Remove box shadow for the section itself */
-            padding: 60px 0; /* Adjust padding if needed after removing outer shadow */
-        }
-
-        /* Styling for the new event title wrapper */
         .event-title-wrapper {
-            /* This section is removed as per user request */
-            display: none; /* Hide if not removed directly */
+            display: none;
         }
-
-        .event-title-wrapper h2 {
-            font-family: 'Playfair Display', serif;
-            color: #1ABC9C; /* Vibrant Teal for H2 headings */
-            border-bottom: none; /* Remove border from H2 inside this wrapper */
-            margin-bottom: 0; /* Adjust margin for H2 inside wrapper */
-            padding-bottom: 0; /* Adjust padding for H2 inside wrapper */
-            font-size: 2.5em;
-        }
-
 
         h2 {
             font-family: 'Playfair Display', serif;
-            color: #1ABC9C; /* Vibrant Teal for H2 headings */
+            color: #1ABC9C;
             border-bottom: 2px solid #1ABC9C;
             padding-bottom: 10px;
             margin-bottom: 30px;
             font-size: 2.5em;
+            text-align: center;
         }
 
         .floating-nav {
@@ -187,20 +209,20 @@
         
         .floating-social-contact {
             position: fixed;
-            right: 0; /* Moved further to the right */
+            right: 0;
             bottom: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
             padding: 10px;
-            background-color: transparent; /* Already transparent */
-            box-shadow: none; /* Removed box shadow */
+            background-color: transparent;
+            box-shadow: none;
             border-radius: 8px 0 0 8px;
             z-index: 100;
         }
 
         .floating-social-contact a {
-            color: #fff; /* Solid white for icons */
+            color: #fff;
             font-size: 1.5em;
             width: 40px;
             height: 40px;
@@ -208,13 +230,13 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background-color: #333; /* Dark grey background for icons */
+            background-color: #333;
             transition: background-color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
         }
 
         .floating-social-contact a:hover {
-            background-color: #555; /* Slightly lighter grey on hover */
+            background-color: #555;
             transform: scale(1.1);
         }
 
@@ -236,33 +258,32 @@
 
         /* --- Decorative Footer Styles --- */
         .main-footer {
-            background: linear-gradient(to right, #1ABC9C, #0056b3); /* Green and Blue combination */
+            background: linear-gradient(to right, #1ABC9C, #0056b3);
             color: #fff;
             text-align: center;
-            padding: 40px 0; /* Adjusted padding-left/right will be on wrapper */
-            margin-left: 0; /* Make footer span full width */
-            border-top: 5px solid #16A085; /* Darker green border */
+            padding: 40px 0;
+            margin-left: 0;
+            border-top: 5px solid #16A085;
             z-index: 1;
             position: relative;
             box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
-            display: flex; /* Still flex for its own internal structure */
-            flex-wrap: wrap; /* Allow wrapping */
-            justify-content: center; /* Center footer content by default if no wrapper padding */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: flex-start;
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* New wrapper for footer content to push it right */
         .footer-content-wrapper {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around; /* Distribute columns */
+            justify-content: space-around;
             align-items: flex-start;
             gap: 30px;
-            width: calc(100% - 150px); /* Account for nav width */
-            margin-left: 150px; /* Push content to the right of the nav */
-            padding-right: 20px; /* Re-add some right padding */
-            box-sizing: border-box; /* Include padding in width calculation */
+            width: calc(100% - 150px);
+            margin-left: 150px;
+            padding-right: 20px;
+            box-sizing: border-box;
         }
 
         .footer-column {
@@ -334,40 +355,6 @@
             font-size: 0.9em;
         }
 
-        /* --- Image Slider Styles (Moved to banner background) --- */
-        .banner-header .slider-container {
-            position: absolute; /* Position relative to banner-header */
-            top: 0;
-            left: 0;
-            width: 100%; /* Full width of the banner */
-            height: 100%; /* Full height of the banner */
-            margin: 0; /* Remove auto margins */
-            border-radius: 0; /* No rounded corners for background */
-            box-shadow: none; /* No shadow as it's a background */
-            z-index: 1; /* Changed: Between vanta-bg (-1) and banner-overlay-text (20) */
-            overflow: hidden; /* Ensure images don't overflow */
-            transition: opacity 0.5s ease-out; /* Added fade transition */
-        }
-
-        .banner-header .slider-wrapper {
-            display: flex;
-            width: calc(100% * 22); /* Total 22 slides (20 original + 2 clones) */
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .banner-header .slider-wrapper img {
-            width: calc(100% / 22); /* Each image takes 1/22th of the wrapper's total width */
-            height: 100%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        
-        /* Hide slider controls when used as background in banner */
-        .banner-header .slider-control-btn {
-            display: none;
-        }
-
         @media (max-width: 768px) {
             .main-content {
                 margin-left: 0;
@@ -375,11 +362,11 @@
             }
 
             .main-footer {
-                margin-left: 0; /* Ensure footer is full width on mobile */
-                padding: 40px 20px; /* Restore horizontal padding for mobile */
+                margin-left: 0;
+                padding: 40px 20px;
             }
 
-            .footer-content-wrapper { /* Adjust for mobile layout */
+            .footer-content-wrapper {
                 margin-left: 0;
                 width: 100%;
                 padding-right: 0;
@@ -428,17 +415,17 @@
             }
 
             .timeline .section .card {
-                width: calc(100% - 70px); /* Adjust width for smaller screens */
-                margin-left: 60px; /* Aligns to right of line */
+                width: calc(100% - 70px);
+                margin-left: 60px;
                 margin-right: 0;
             }
 
             .timeline .section:nth-of-type(odd) .card::after {
-                left: -30px; /* Move dot to left side for all cards on mobile */
+                left: -30px;
                 right: auto;
             }
             .timeline .section:nth-of-type(even) .card::after {
-                left: -30px; /* Move dot to left side for all cards on mobile */
+                left: -30px;
                 right: auto;
             }
             .timeline .section:nth-of-type(odd) .card {
@@ -448,19 +435,6 @@
 
             .timeline .section:nth-of-type(even) .card {
                 margin-left: 60px;
-            }
-
-            .banner-header .slider-container { /* Adjustments for slider when it's in the banner on mobile */
-                height: 100%; /* Take full height of banner */
-            }
-
-            /* Members section responsive adjustments */
-            .members-grid {
-                grid-template-columns: 1fr; /* Single column on mobile */
-            }
-            .member-card {
-                max-width: 100%;
-                margin: 10px auto;
             }
         }
 
@@ -688,110 +662,512 @@
             transform: translateX(3px);
         }
 
-        /* --- Members Section Styles --- */
-        .members-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-            gap: 30px;
+        /* --- Members Section Styles (Diamond Hive Type) --- */
+        /* Container for the entire hive layout */
+        .team-hive-container {
+            display: flex;
+            flex-direction: column; /* Stack rows vertically */
+            align-items: center; /* Center the rows */
             margin-top: 40px;
-            justify-content: center;
+            padding-bottom: 50px;
+            background-color: #1D1D1D; /* Match alumni section background */
+            border-radius: 8px;
         }
 
-        .member-card {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Styles for each row in the hive */
+        .team-row {
+            display: flex;
+            justify-content: center; /* Center members within each row */
+            gap: 60px; /* Increased gap between diamonds for separation */
+        }
+
+        /* Offset for alternate rows to create the interlocking effect */
+        .team-row.offset-row {
+            margin-top: 60px; /* Increased positive margin to separate vertically */
+        }
+
+        /* Styles for individual team member diamonds */
+        .team-member {
             position: relative;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
+            width: 220px; /* Larger size for the diamond */
+            height: 220px; /* Larger size for the diamond */
+            transform: rotate(45deg); /* Rotate for diamond shape */
+            overflow: hidden; /* Hide parts outside the diamond */
+            border: 3px solid #666; /* Subtle border */
+            background-color: transparent; /* Background will be filled by image or default if no image */
+            margin: 0; /* No horizontal overlap, handled by gap */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.1s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1; /* Default stacking order */
+        }
+
+        .team-member:hover {
+            transform: rotate(45deg) scale(1.08); /* Slightly less aggressive scale for larger cards */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            z-index: 2; /* Bring hovered card to front */
+        }
+
+        /* Image inside the diamond, rotated back */
+        .team-member img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: rotate(-45deg); /* Rotate content back to normal */
+            transition: transform 0.3s ease;
+            opacity: 1; /* Always visible */
+        }
+
+        .team-member:hover img {
+            transform: scale(1.05) rotate(-45deg); /* Slight scale and rotate back on hover */
+        }
+
+        /* Overlay for text, rotated back */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for text readability */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: rotate(-45deg); /* Rotate content back to normal */
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s ease-in-out;
+            text-align: center;
+            font-size: 18px; /* Adjusted font size for larger cards */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .team-member:hover .overlay {
+            opacity: 1; /* Visible on hover */
+        }
+        
+        /* Responsive adjustments for Team Section */
+        @media (max-width: 768px) {
+            .team-member {
+                width: 160px; /* Larger diamonds on mobile */
+                height: 160px;
+                margin: 0; /* No horizontal overlap */
+            }
+            .team-row.offset-row {
+                margin-top: 40px; /* Adjusted overlap for larger diamonds */
+            }
+            .overlay {
+                font-size: 16px;
+            }
+            .team-row {
+                gap: 15px; /* Ensure gap on mobile */
+            }
+        }
+
+
+        /* --- Sponsor Gallery Styles --- */
+        #sponsors {
+            padding: 60px 40px;
+            margin-bottom: 20px;
+            background-color: transparent; /* Keep transparent */
+            border-radius: 8px;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #sponsors h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1ABC9C;
+            border-bottom: 2px solid #1ABC9C;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            width: 100%;
+            text-align: center;
+        }
+
+        .sponsor-gallery {
+            display: flex;
+            flex-wrap: nowrap; /* Keep items in a single line */
+            justify-content: flex-start; /* Align to start for proper scrolling */
+            align-items: center; /* Center for vertical alignment */
+            gap: 15px; /* Gap between cards */
+            width: 100%;
+            max-width: 1200px; /* Max width for the gallery container */
+            overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+            padding: 20px 0;
+            padding-left: 170px; /* Ensure content is not hidden by fixed nav */
+            cursor: grab; /* Indicates scrollable area */
+            scroll-snap-type: x mandatory; /* Optional: Snap to cards on scroll */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+
+        .sponsor-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+        .sponsor-gallery::-webkit-scrollbar-thumb {
+            background-color: #1ABC9C;
+            border-radius: 4px;
+        }
+        .sponsor-gallery::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        .sponsor-card {
+            flex-shrink: 0; /* Prevent cards from shrinking below their content */
+            position: relative;
+            /* Border-radius applied to all corners for a rounded box */
+            border-radius: 15px;
+            overflow: hidden; /* Important for inner content to respect border-radius */
+            border: 4px solid #31b8c4; /* Blue border */
+            transition: width 0.7s ease-in-out, height 0.7s ease-in-out, filter 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            scroll-snap-align: start; /* Snap point for scroll-snap-type, adjusted to start */
+            background-color: #1D1D1D; /* Card background color */
+            color: #fff; /* Text color for card */
+
+            /* Removed clip-path for box shape */
+            clip-path: none;
+        }
+        
+        /* Default sizing for sponsors (50% increased heights from last state) */
+        .sponsor-card:nth-child(1), .sponsor-card:nth-child(5) {
+            width: 150px;
+            height: 365.625px; /* 731.25px / 2 */
+        }
+        .sponsor-card:nth-child(2), .sponsor-card:nth-child(4) {
+            width: 180px;
+            height: 438.75px; /* 877.5px / 2 */
+        }
+        .sponsor-card:nth-child(3) {
+            width: 220px;
+            height: 511.875px; /* 1023.75px / 2 */
         }
 
-        .member-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        /* Hover effect: make all non-hovered smaller, hovered larger */
+        .sponsor-gallery:hover .sponsor-card {
+            width: 150px; /* Smaller default width when one is hovered */
+            height: 365.625px; /* Match smallest height when others are hovered */
         }
 
-        /* Color variations for member cards */
-        .member-card.color-1 { background-color: #50D0A5; color: #fff; } /* Green */
-        .member-card.color-2 { background-color: #1D1D1D; color: #fff; } /* Black */
-        .member-card.color-3 { background-color: #9B59B6; color: #fff; } /* Purple */
-        .member-card.color-4 { background-color: #F1C40F; color: #333; } /* Yellow */
-        .member-card.color-5 { background-color: #3498DB; color: #fff; } /* Blue */
-        .member-card.color-6 { background-color: #E74C3C; color: #fff; } /* Red */
-        .member-card.color-7 { background-color: #FF7F50; color: #fff; } /* Coral */
-        .member-card.color-8 { background-color: #8A2BE2; color: #fff; } /* BlueViolet */
-        .member-card.color-9 { background-color: #20B2AA; color: #fff; } /* LightSeaGreen */
-        .member-card.color-10 { background-color: #DAA520; color: #fff; } /* Goldenrod */
-        .member-card.color-11 { background-color: #B22222; color: #fff; } /* FireBrick */
-        .member-card.color-12 { background-color: #4682B4; color: #fff; } /* SteelBlue */
+        .sponsor-gallery .sponsor-card:hover {
+            width: 390px; /* Expanded width on hover (300px * 1.3 - this is fixed from previous) */
+            height: 585px; /* 1170px / 2 */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            filter: brightness(1.1);
+            z-index: 10; /* Ensure hovered card is on top */
+        }
 
+        .sponsor-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.2; /* Dimmed by default */
+            transition: opacity 0.7s ease;
+        }
 
-        .member-card h3 {
+        .sponsor-card:hover img {
+            opacity: 0.6; /* Brighter on hover */
+        }
+
+        .sponsor-card .sponsor-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg); /* No rotation for box shape */
+            color: #fff;
             font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            text-align: center;
+            white-space: nowrap; /* Prevent text wrapping */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            transition: transform 0.7s ease-in-out, opacity 0.3s ease, font-size 0.7s ease, top 0.7s ease, left 0.7s ease;
+            z-index: 2; /* Above image, below details */
+            opacity: 1; /* Always visible */
+            /* Default font size for smallest card */
             font-size: 1.8em;
-            margin-bottom: 5px;
-            line-height: 1.2;
-            color: inherit; /* Inherit color from card */
         }
 
-        .member-card p {
-            font-size: 1.1em;
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: inherit; /* Inherit color from card */
-            opacity: 0.8; /* Slightly muted for role */
+        /* Adjust font size for larger cards in default state */
+        .sponsor-card:nth-child(2) .sponsor-title,
+        .sponsor-card:nth-child(4) .sponsor-title {
+            font-size: 2.2em;
+        }
+        .sponsor-card:nth-child(3) .sponsor-title {
+            font-size: 2.5em;
+        }
+        
+        .sponsor-card:hover .sponsor-title {
+            transform: translate(-50%, -50%) rotate(0deg); /* No rotation on hover */
+            left: 50%; /* Adjust position to center vertically when straight */
+            top: 20%; /* Move up slightly on hover */
+            font-size: 3em; /* Larger on hover */
+            opacity: 0; /* Hide main title on hover to reveal details */
         }
 
-        .member-card .social-links {
+        .sponsor-card .sponsor-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            color: #fff;
+            text-align: right;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            transform: translateY(100%); /* Hidden below card by default */
+            transition: transform 0.7s ease-in-out, opacity 0.7s ease;
+            opacity: 0;
+            z-index: 3;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+            height: 100%;
+            box-sizing: border-box;
         }
 
-        .member-card .social-links a {
-            color: inherit; /* Inherit from card, will be white or dark depending on background */
-            font-size: 1.6em;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .member-card .social-links a:hover {
-            transform: translateY(-3px);
+        .sponsor-card:hover .sponsor-details {
+            transform: translateY(0);
             opacity: 1;
-            filter: brightness(1.2); /* Slightly brighter on hover */
-        }
-        .member-card.color-4 .social-links a {
-            color: #333; /* Darker icons for yellow card */
-        }
-        .member-card.color-4 .social-links a:hover {
-            filter: brightness(0.8);
         }
 
-        .member-image {
-            width: 100px;
-            height: 100px;
+        .sponsor-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .sponsor-details p {
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            max-width: 80%;
+        }
+
+        .sponsor-details a {
+            color: #1ABC9C;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .sponsor-details a:hover {
+            color: #50D0A5;
+            text-decoration: underline;
+        }
+
+        /* --- NEW Testimonial Section Styles (Google Reviews-like) --- */
+        #testimonials {
+            padding: 60px 40px;
+            margin-bottom: 20px;
+            background-color: transparent; /* Keep transparent */
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #testimonials .testimonials-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 30px;
+        }
+
+        #testimonials h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1ABC9C;
+            border-bottom: 2px solid #1ABC9C;
+            padding-bottom: 10px;
+            font-size: 2.5em;
+            text-align: center;
+            flex-grow: 1; /* Allow title to take available space */
+            margin-right: 20px;
+        }
+
+        /* Removed .review-on-google-btn styling as the button is removed */
+
+        #testimonials .review-summary {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #1ABC9C; /* Changed to green */
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        #testimonials .review-summary .stars {
+            color: #F1C40F; /* Yellow for stars */
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+        #testimonials .review-summary .stars .fa-star {
+            margin-right: 2px;
+        }
+
+        #testimonials .testimonials-slider-container {
+            width: 100%;
+            max-width: 1200px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px; /* Space for scrollbar */
+            cursor: grab;
+            scroll-snap-type: x mandatory;
+            display: flex; /* Ensure flex for horizontal layout */
+            justify-content: flex-start; /* Align items to the start */
+            gap: 20px; /* Gap between cards */
+        }
+        
+        #testimonials .testimonials-slider-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        #testimonials .testimonials-slider-container::-webkit-scrollbar-thumb {
+            background-color: #1ABC9C;
+            border-radius: 4px;
+        }
+        #testimonials .testimonials-slider-container::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+
+        #testimonials .review-card {
+            flex-shrink: 0; /* Prevent cards from shrinking */
+            width: 300px; /* Fixed width for cards */
+            background-color: #1D1D1D; /* Dark background */
+            color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            scroll-snap-align: start; /* Snap to start of card */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #testimonials .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        #testimonials .review-card .stars {
+            color: #F1C40F; /* Yellow stars */
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        #testimonials .review-card .stars .fa-star {
+            margin-right: 2px;
+        }
+
+        #testimonials .review-text {
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1; /* Allow text to take available space */
+            overflow: hidden; /* Hide overflowing text */
+            text-overflow: ellipsis; /* Add ellipsis for overflow */
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* Limit to 4 lines */
+            -webkit-box-orient: vertical;
+        }
+        
+        #testimonials .review-author-info {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+        }
+
+        #testimonials .review-author-avatar {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 20px auto;
-            border: 3px solid rgba(255, 255, 255, 0.5); /* White border for contrast */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            background-color: #ccc; /* Fallback background color */
+            background-color: #555;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            margin-right: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .member-image img {
+        #testimonials .review-author-avatar img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensure image covers the circular area */
-            display: block;
+            object-fit: cover;
+        }
+
+        #testimonials .review-author-avatar .initials {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        #testimonials .author-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #testimonials .author-name {
+            font-weight: bold;
+            font-size: 1em;
+            color: #fff;
+            text-decoration: none; /* For link */
+        }
+
+        #testimonials .review-date {
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .members-grid .member-card:nth-child(even) {
+                margin-top: 0; /* remove staggering on small screens */
+            }
+            .members-grid .member-card:nth-child(2n) {
+                margin-top: 0; /* remove staggering on small screens */
+            }
+
+            #testimonials .testimonials-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            #testimonials h2 {
+                margin-right: 0;
+            }
+            #testimonials .testimonials-slider-container {
+                justify-content: flex-start;
+                gap: 15px;
+                padding-bottom: 15px;
+            }
+            #testimonials .review-card {
+                width: 250px; /* Smaller cards on mobile */
+                padding: 15px;
+            }
+            #testimonials .review-text {
+                -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
+            }
         }
     </style>
 </head>
@@ -800,39 +1176,11 @@
     <div id="vanta-bg"></div>
 
     <header class="banner-header">
-        <!-- Image Slider positioned as background in banner -->
-        <div class="slider-container" id="main-slider-gallery">
-            <div class="slider-wrapper">
-                <!-- Cloned last image (for infinite loop) -->
-                <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+20" alt="Gallery Image 20 (clone)">
-                <!-- Actual 20 images -->
-                <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1">
-                <img src="https://placehold.co/700x400/6699cc/FFFFFF?text=ACM-W+Gallery+2" alt="Gallery Image 2">
-                <img src="https://placehold.co/700x400/cc6699/FFFFFF?text=ACM-W+Gallery+3" alt="Gallery Image 3">
-                <img src="https://placehold.co/700x400/99cc66/FFFFFF?text=ACM-W+Gallery+4" alt="Gallery Image 4">
-                <img src="https://placehold.co/700x400/cc9966/FFFFFF?text=ACM-W+Gallery+5" alt="Gallery Image 5">
-                <img src="https://placehold.co/700x400/66cc99/FFFFFF?text=ACM-W+Gallery+6" alt="Gallery Image 6">
-                <img src="https://placehold.co/700x400/99cc99/FFFFFF?text=ACM-W+Gallery+7" alt="Gallery Image 7">
-                <img src="https://placehold.co/700x400/cc6666/FFFFFF?text=ACM-W+Gallery+8" alt="Gallery Image 8">
-                <img src="https://placehold.co/700x400/6666cc/FFFFFF?text=ACM-W+Gallery+9" alt="Gallery Image 9">
-                <img src="https://placehold.co/700x400/333333/FFFFFF?text=ACM-W+Gallery+10" alt="Gallery Image 10">
-                <img src="https://placehold.co/700x400/556B2F/FFFFFF?text=ACM-W+Gallery+11" alt="Gallery Image 11">
-                <img src="https://placehold.co/700x400/8B0000/FFFFFF?text=ACM-W+Gallery+12" alt="Gallery Image 12">
-                <img src="https://placehold.co/700x400/4B0082/FFFFFF?text=ACM-W+Gallery+13" alt="Gallery Image 13">
-                <img src="https://placehold.co/700x400/D2691E/FFFFFF?text=ACM-W+Gallery+14" alt="Gallery Image 14">
-                <img src="https://placehold.co/700x400/2F4F4F/FFFFFF?text=ACM-W+Gallery+15" alt="Gallery Image 15">
-                <img src="https://placehold.co/700x400/008080/FFFFFF?text=ACM-W+Gallery+16" alt="Gallery Image 16">
-                <img src="https://placehold.co/700x400/778899/FFFFFF?text=ACM-W+Gallery+17" alt="Gallery Image 17">
-                <img src="https://placehold.co/700x400/4682B4/FFFFFF?text=ACM-W+Gallery+18" alt="Gallery Image 18">
-                <img src="https://placehold.co/700x400/DEB887/FFFFFF?text=ACM-W+Gallery+19" alt="Gallery Image 19">
-                <img src="https://placehold.co/700x400/8A2BE2/FFFFFF?text=ACM-W+Gallery+20" alt="Gallery Image 20">
-                <!-- Cloned first image (for infinite loop) -->
-                <img src="https://placehold.co/700x400/9966cc/FFFFFF?text=ACM-W+Gallery+1" alt="Gallery Image 1 (clone)">
-            </div>
-            <!-- Slider controls are hidden when used as background in banner via CSS -->
-            <button class="slider-control-btn prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-            <button class="slider-control-btn next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
-        </div>
+        <!-- Video Background -->
+        <video class="banner-video" autoplay loop muted playsinline preload="auto">
+            <source src="https://github.com/Mohammad-Afzal123/ACM-WDraft/raw/main/hero-desktop.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
         <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/000000/FFFFFF?text=ACM-W';" alt="ACM-W Logo" class="acmw-logo">
         <div class="banner-overlay-text">
@@ -848,7 +1196,7 @@
 
     <nav class="floating-nav">
         <ul>
-            <li><a href="#events">Events</a></li> <!-- Removed Welcome link -->
+            <li><a href="#events">Events</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#alumni">Our Team & Alumni</a></li>
@@ -1019,28 +1367,153 @@
             </div>
         </section>
 
-        <section id="sponsors" data-aos="fade-right">
-            <h2>Sponsors</h2>
-            <p>We are grateful for the generous support of our sponsors who help us achieve our goals. Their contributions enable us to host impactful events and provide valuable resources to our members.</p>
-            <p>If you're interested in becoming a sponsor and supporting women in computing, please contact us! We offer various sponsorship packages tailored to your needs.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px;">
-                <img src="https://placehold.co/150x80/663399/FFFFFF" alt="Sponsor A Logo">
-                <img src="https://placehold.co/150x80/336699/FFFFFF" alt="Sponsor B Logo">
-                <img src="https://placehold.co/150x80/993366/FFFFFF" alt="Sponsor C Logo">
+        <section id="sponsors" data-aos="fade-up">
+            <h2>Our Sponsors</h2>
+            <div class="sponsor-gallery">
+                <div class="sponsor-card">
+                    <img src="https://placehold.co/400x300/663399/FFFFFF?text=Sponsor+1+Logo" alt="Sponsor 1 Logo">
+                    <h3 class="sponsor-title">Sponsor 1</h3>
+                    <div class="sponsor-details">
+                        <h3>Sponsor 1 Name</h3>
+                        <p>A leading technology company supporting women in STEM.</p>
+                        <a href="#">Visit Website</a>
+                    </div>
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://placehold.co/400x300/336699/FFFFFF?text=Sponsor+2+Logo" alt="Sponsor 2 Logo">
+                    <h3 class="sponsor-title">Sponsor 2</h3>
+                    <div class="sponsor-details">
+                        <h3>Sponsor 2 Name</h3>
+                        <p>Innovators in AI, committed to fostering diverse talent.</p>
+                        <a href="#">Visit Website</a>
+                    </div>
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://placehold.co/400x300/993366/FFFFFF?text=Sponsor+3+Logo" alt="Sponsor 3 Logo">
+                    <h3 class="sponsor-title">Sponsor 3</h3>
+                    <div class="sponsor-details">
+                        <h3>Sponsor 3 Name</h3>
+                        <p>Global leaders in software solutions, empowering the next generation.</p>
+                        <a href="#">Visit Website</a>
+                    </div>
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://placehold.co/400x300/008080/FFFFFF?text=Sponsor+4+Logo" alt="Sponsor 4 Logo">
+                    <h3 class="sponsor-title">Sponsor 4</h3>
+                    <div class="sponsor-details">
+                        <h3>Sponsor 4 Name</h3>
+                        <p>Dedicated to educational initiatives and community building.</p>
+                        <a href="#">Visit Website</a>
+                    </div>
+                </div>
+                <div class="sponsor-card">
+                    <img src="https://placehold.co/400x300/FF7F50/FFFFFF?text=Sponsor+5+Logo" alt="Sponsor 5 Logo">
+                    <h3 class="sponsor-title">Sponsor 5</h3>
+                    <div class="sponsor-details">
+                        <h3>Sponsor 5 Name</h3>
+                        <p>Providing essential resources for aspiring tech professionals.</p>
+                        <a href="#">Visit Website</a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="testimonials" data-aos="fade-left">
-            <h2>Testimonials</h2>
-            <p>Hear what our members and participants have to say about their experience with ACM-W. Their success stories inspire us!</p>
-            <blockquote style="background-color: #e9f5ff; border-left: 5px solid #007bff; padding: 15px; margin: 20px 0; border-radius: 5px;">
-                <p style="font-style: italic;">"ACM-W provided me with an incredible network and mentorship opportunities that were crucial for my career growth. The support system is unmatched!"</p>
-                <footer style="text-align: right; font-weight: bold;">- Jane Doe, Software Engineer</footer>
-            </blockquote>
-            <blockquote style="background-color: #e9f5ff; border-left: 5px solid #007bff; padding: 15px; margin: 20px 0; border-radius: 5px;">
-                <p style="font-style: italic;">"The workshops incredibly insightful and have significantly improved my coding skills. I feel more confident in my abilities thanks to ACM-W."</p>
-                <footer style="text-align: right; font-weight: bold;">- Sarah Lee, Computer Science Student</footer>
-            </blockquote>
+            <div class="testimonials-header">
+                <h2>Testimonials</h2>
+                <div class="review-summary">
+                    5.0 <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> (11)
+                </div>
+                <!-- Removed the "Review us on Google" button as requested -->
+            </div>
+
+            <div class="testimonials-slider-container">
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"The workshops were incredibly insightful and have significantly improved my coding skills. I feel more confident in my abilities thanks to ACM-W. Best atmosphere and top-tier facilities! Trainers are skilled, motivating and personable."</p>
+                    <div class="review-author-info">
+                        <a href="#" target="_blank" class="review-author-link">
+                            <div class="review-author-avatar">
+                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=OS" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=OS';">
+                            </div>
+                        </a>
+                        <div class="author-details">
+                            <a href="#" target="_blank" class="author-name">Ofa Ogden</a>
+                            <span class="review-date">7 months ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"ACM-W provided me with an incredible network and mentorship opportunities that were crucial for my career growth. The support system is unmatched! Highly highly recommend! VT training is enjoyable for everyone so make sure you get..."</p>
+                    <div class="review-author-info">
+                        <a href="#" target="_blank" class="review-author-link">
+                            <div class="review-author-avatar">
+                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=JD" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=JD';">
+                            </div>
+                        </a>
+                        <div class="author-details">
+                            <a href="#" target="_blank" class="author-name">OgdenBoys_278</a>
+                            <span class="review-date">7 months ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Being part of ACM-W has opened so many doors for me. The community is welcoming, and the events are always relevant and engaging. VTT has great staff and Troy is a legend always looking out for his people and going the extra..."</p>
+                    <div class="review-author-info">
+                        <a href="#" target="_blank" class="review-author-link">
+                            <div class="review-author-avatar">
+                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=EC" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=EC';">
+                            </div>
+                        </a>
+                        <div class="author-details">
+                            <a href="#" target="_blank" class="author-name">Michael Faddoul</a>
+                            <span class="review-date">7 months ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"I highly recommend ACM-W to any woman in computing. It's a fantastic platform for learning, networking, and invaluable personal development. Vale Tudo is the best gym in Sydney. They do group training classes with multiple personal."</p>
+                    <div class="review-author-info">
+                        <a href="#" target="_blank" class="review-author-link">
+                            <div class="review-author-avatar">
+                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=JM" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=JM';">
+                            </div>
+                        </a>
+                        <div class="author-details">
+                            <a href="#" target="_blank" class="author-name">Georgia Norris</a>
+                            <span class="review-date">11 months ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Joining ACM-W was one of the best decisions I made for my academic and professional journey. The support and resources are top-notch!"</p>
+                    <div class="review-author-info">
+                        <a href="#" target="_blank" class="review-author-link">
+                            <div class="review-author-avatar">
+                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=KW" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=KW';">
+                            </div>
+                        </a>
+                        <div class="author-details">
+                            <a href="#" target="_blank" class="author-name">Kimberly White</a>
+                            <span class="review-date">5 months ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="alumni" data-aos="fade-up">
@@ -1049,139 +1522,82 @@
             <p>We regularly organize alumni networking events and a dedicated mentorship program to facilitate connections. Join our alumni community today!</p>
             <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Join Alumni Network</button>
             
-            <h2 style="margin-top: 60px;">Our Team</h2> <!-- Now part of Alumni section -->
+            <h2 style="margin-top: 60px;">Our Team</h2>
             <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
-            <div class="members-grid">
-                <div class="member-card color-1">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Dr. Suganya">
+            <div class="team-hive-container">
+                <div class="team-row">
+                    <!-- Row 1: 3 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Dr. Suganya">
+                        <div class="overlay"><strong>Dr. Suganya</strong><br/>Faculty Coordinator</div>
                     </div>
-                    <h3>Dr. Suganya</h3>
-                    <p>Faculty Coordinator</p>
-                    <div class="social-links">
-                        <a href="https://github.com/suganya" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/suganya" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Bharathi">
+                        <div class="overlay"><strong>Bharathi</strong><br/>Chairperson</div>
                     </div>
-                </div>
-                <div class="member-card color-2">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Bharathi">
-                    </div>
-                    <h3>Bharathi</h3>
-                    <p>Chairperson</p>
-                    <div class="social-links">
-                        <a href="https://github.com/bharathi" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/bharathi" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Shibani">
+                        <div class="overlay"><strong>Shibani</strong><br/>Vice-chair</div>
                     </div>
                 </div>
-                <div class="member-card color-3">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Shibani">
+                <div class="team-row offset-row">
+                    <!-- Row 2: 4 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Lakshmi Priya">
+                        <div class="overlay"><strong>Lakshmi Priya</strong><br/>Secretary</div>
                     </div>
-                    <h3>Shibani</h3>
-                    <p>Vice-chair</p>
-                    <div class="social-links">
-                        <a href="https://github.com/shibani" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/shibani" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sathvik">
+                        <div class="overlay"><strong>Sathvik</strong><br/>Treasurer</div>
                     </div>
-                </div>
-                <div class="member-card color-4">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Lakshmi Priya">
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Nandhakishore">
+                        <div class="overlay"><strong>Nandhakishore</strong><br/>Membership chair</div>
                     </div>
-                    <h3>Lakshmi Priya</h3>
-                    <p>Secretary</p>
-                    <div class="social-links">
-                        <a href="https://github.com/lakshmipriya" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/lakshmipriya" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Manya">
+                        <div class="overlay"><strong>Manya</strong><br/>Technical</div>
                     </div>
                 </div>
-                <div class="member-card color-1">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Sathvik">
+                <div class="team-row">
+                    <!-- Row 3: 3 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/76.jpg" alt="CH L Sudheera">
+                        <div class="overlay"><strong>CH L Sudheera</strong><br/>Design</div>
                     </div>
-                    <h3>Sathvik</h3>
-                    <p>Treasurer</p>
-                    <div class="social-links">
-                        <a href="https://github.com/sathvik" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/sathvik" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Hrituja">
+                        <div class="overlay"><strong>Hrituja</strong><br/>Event Management</div>
                     </div>
-                </div>
-                <div class="member-card color-2">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Nandhakishore">
-                    </div>
-                    <h3>Nandhakishore</h3>
-                    <p>Membership chair</p>
-                    <div class="social-links">
-                        <a href="https://github.com/nandhakishore" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/nandhakishore" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="Jahnvi">
+                        <div class="overlay"><strong>J Jahnvi</strong><br/>Outreach</div>
                     </div>
                 </div>
-                <div class="member-card color-3">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Manya">
+                <div class="team-row offset-row">
+                    <!-- Row 4: 3 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Sireesha">
+                        <div class="overlay"><strong>Sireesha</strong><br/>Social media</div>
                     </div>
-                    <h3>Manya</h3>
-                    <p>Technical</p>
-                    <div class="social-links">
-                        <a href="https://github.com/manya" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/manya" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/96.jpg" alt="Lynda">
+                        <div class="overlay"><strong>Lynda</strong><br/>Finance & Awards</div>
                     </div>
-                </div>
-                <div class="member-card color-4">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="CH L Sudheera">
-                    </div>
-                    <h3>CH L Sudheera</h3>
-                    <p>Design</p>
-                    <div class="social-links">
-                        <a href="https://github.com/sudheera" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/sudheera" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Robert">
+                        <div class="overlay"><strong>Robert Fox</strong><br/>ML Engineer</div>
                     </div>
                 </div>
-                <div class="member-card color-1">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Hrituja">
+                <div class="team-row">
+                    <!-- Row 5: 2 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Samantha">
+                        <div class="overlay"><strong>Samantha Ray</strong><br/>Content Strategist</div>
                     </div>
-                    <h3>Hrituja</h3>
-                    <p>Event Management</p>
-                    <div class="social-links">
-                        <a href="https://github.com/hrituja" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/hrituja" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="member-card color-2">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Jahnvi">
-                    </div>
-                    <h3>Jahnvi</h3>
-                    <p>Outreach</p>
-                    <div class="social-links">
-                        <a href="https://github.com/jahnvi" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/jahnvi" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="member-card color-3">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Sireesha">
-                    </div>
-                    <h3>Sireesha</h3>
-                    <p>Social media</p>
-                    <div class="social-links">
-                        <a href="https://github.com/sireesha" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/sireesha" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                 <div class="member-card color-4">
-                    <div class="member-image">
-                        <img src="https://placehold.co/100x100/999999/CCCCCC" alt="Lynda">
-                    </div>
-                    <h3>Lynda</h3>
-                    <p>Finance & Awards</p>
-                    <div class="social-links">
-                        <a href="https://github.com/lynda" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/lynda" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Jason">
+                        <div class="overlay"><strong>Jason Park</strong><br/>Cloud Architect</div>
                     </div>
                 </div>
             </div>
@@ -1234,7 +1650,6 @@
             <div class="footer-column">
                 <h4>Quick Links</h4>
                 <ul>
-                    <!-- Removed Home link as Welcome section is gone -->
                     <li><a href="#events">Events</a></li>
                     <li><a href="#sponsors">Sponsors</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
@@ -1272,8 +1687,8 @@
     <script>
         // Initialize AOS
         AOS.init({
-            duration: 1000, // animation duration
-            once: false, // Changed to false: animations should happen every time
+            duration: 1000,
+            once: false,
         });
 
         VANTA.NET({
@@ -1295,18 +1710,16 @@
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll("section[id]");
             const navLinks = document.querySelectorAll(".floating-nav ul li a");
-            const bannerHeight = window.innerHeight; // Use actual banner height (100vh)
+            const bannerHeader = document.querySelector('.banner-header');
+            const bannerVideo = document.querySelector('.banner-video');
 
             function highlightNavLink() {
                 let current = "";
-                // If scroll position is very high, no section is active
-                if (window.pageYOffset < bannerHeight * 0.9) {
+                if (window.pageYOffset < bannerHeader.offsetHeight * 0.9) {
                     current = "";
                 } else {
-                    // Iterate backwards to find the topmost section currently in view
                     for (let i = sections.length - 1; i >= 0; i--) {
                         const section = sections[i];
-                        // Check if the section's top is within the upper third of the viewport
                         if (section.offsetTop <= window.pageYOffset + (window.innerHeight / 3)) {
                             current = section.getAttribute("id");
                             break;
@@ -1314,10 +1727,8 @@
                     }
                 }
 
-                // Remove active class from all links and add to the current one
                 navLinks.forEach(a => {
                     a.classList.remove("active");
-                    // Special handling for "Our Team & Alumni" if it's the combined one
                     if (a.getAttribute("href").includes("alumni") && (current === "alumni")) {
                         a.classList.add("active");
                     } else if (current && a.getAttribute("href").includes(current)) {
@@ -1326,13 +1737,35 @@
                 });
             }
 
-            // Add scroll and resize event listeners
-            window.addEventListener("scroll", highlightNavLink);
-            window.addEventListener("resize", highlightNavLink); // Also update on resize
-            highlightNavLink(); // Initial call to set active link on page load
+            function handleVideoFade() {
+                const scrollPosition = window.pageYOffset;
+                const headerHeight = bannerHeader.offsetHeight;
+
+                let fadeProgress = 1 - (scrollPosition / headerHeight);
+                fadeProgress = Math.max(0, Math.min(1, fadeProgress)); // Clamp between 0 and 1
+
+                bannerVideo.style.opacity = fadeProgress;
+            }
+
+            // Combine scroll event listeners
+            window.addEventListener("scroll", () => {
+                highlightNavLink();
+                handleVideoFade();
+                updateTimelineScroller(); // Call existing timeline scroller update
+            });
+
+            window.addEventListener("resize", () => {
+                highlightNavLink();
+                handleVideoFade();
+                updateTimelineScroller(); // Call existing timeline scroller update
+            });
+
+            // Initial calls on load
+            highlightNavLink();
+            handleVideoFade();
+            updateTimelineScroller(); // Call existing timeline scroller update
         });
 
-        // Chatbot button alert (placeholder)
         document.querySelector('.chatbot-button').addEventListener('click', function(e) {
             e.preventDefault();
             alert("Chatbot is not yet integrated. This button would typically open a chat window or widget!");
@@ -1342,8 +1775,7 @@
             const timelineSections = document.querySelectorAll('.timeline .section');
             const timelineElement = document.querySelector('.timeline');
             const timelineLine = document.querySelector('.timeline .line');
-            const scrollerIndicator = timelineLine.querySelector('.scroller-indicator');
-            const mainSliderGallery = document.getElementById('main-slider-gallery');
+            const scrollerIndicator = timelineLine.querySelector('div');
 
             const observerOptions = {
                 root: null,
@@ -1366,17 +1798,12 @@
                 observer.observe(section);
             });
 
-            // Timeline Scroller Logic
             function updateTimelineScroller() {
                 if (!timelineElement || !scrollerIndicator) return;
 
                 const timelineRect = timelineElement.getBoundingClientRect();
                 const viewportHeight = window.innerHeight;
 
-                // Calculate the scroll progress relative to the timeline element
-                // When timelineTop is at the top of the viewport, progress is 0.
-                // When timelineBottom is at the bottom of the viewport, progress is 1.
-                // Adjusted to start when timeline enters viewport and end when it leaves the bottom.
                 const scrollStart = timelineRect.top + window.pageYOffset - viewportHeight;
                 const scrollEnd = timelineRect.bottom + window.pageYOffset;
 
@@ -1385,50 +1812,16 @@
                     progress = (window.pageYOffset - scrollStart) / (scrollEnd - scrollStart);
                 }
 
-                progress = Math.max(0, Math.min(1, progress)); // Clamp between 0 and 1
-
-                // Adjust the height of the scroller indicator based on the timeline's visible height
-                // The scroller should span the height of the visible timeline section
-                const visibleTimelineHeight = Math.min(timelineRect.bottom, viewportHeight) - Math.max(0, timelineRect.top);
-                
-                // Calculate the top position of the scroller relative to its parent line
-                // The line itself starts from the top of the timeline element
-                const scrollerTop = progress * timelineLine.clientHeight;
-
+                progress = Math.max(0, Math.min(1, progress));
                 scrollerIndicator.style.height = `${progress * 100}%`;
             }
 
-            // Slider Gallery Fade on Scroll Logic
-            function updateSliderGalleryOpacity() {
-                if (!mainSliderGallery) return;
-
-                const scrollY = window.scrollY;
-                const bannerHeight = document.querySelector('.banner-header').offsetHeight;
-                const fadeStart = 0; // Start fading from the very top
-                const fadeEnd = bannerHeight * 0.7; // Fade out completely by 70% of the banner height
-
-                if (scrollY <= fadeStart) {
-                    mainSliderGallery.style.opacity = 1;
-                } else if (scrollY >= fadeEnd) {
-                    mainSliderGallery.style.opacity = 0;
-                } else {
-                    // Calculate opacity: as scrollY goes from fadeStart to fadeEnd, opacity goes from 1 to 0
-                    const opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
-                    mainSliderGallery.style.opacity = opacity;
-                }
-            }
-
-
-            window.addEventListener('scroll', updateTimelineScroller);
-            window.addEventListener('resize', updateTimelineScroller); // Update on resize too
-            updateTimelineScroller(); // Initial call
-
-            // Add scroll listener for slider gallery opacity
-            window.addEventListener('scroll', updateSliderGalleryOpacity);
-            updateSliderGalleryOpacity(); // Initial call for opacity
+            // This function is now called via the main scroll listener in the DOMContentLoaded block
+            // window.addEventListener('scroll', updateTimelineScroller);
+            // window.addEventListener("resize", updateTimelineScroller);
+            // updateTimelineScroller(); // Initial call moved
         });
 
-        // Typed.js initialization for the banner text
         document.addEventListener('DOMContentLoaded', function() {
             var typed = new Typed('#typed-output', {
                 stringsElement: '#typed-strings',
@@ -1443,120 +1836,12 @@
                 autoInsertCss: true,
             });
 
-            // Button functionality for event cards
             document.querySelectorAll('.card-arrow-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const eventId = this.id;
                     alert(`Learn more about ${eventId}! (Redirect functionality not implemented yet)`);
                 });
             });
-
-            // Image Slider JavaScript (Modified for infinite loop and banner integration)
-            const sliderContainer = document.querySelector('.banner-header .slider-container');
-            const sliderWrapper = document.querySelector('.banner-header .slider-container .slider-wrapper');
-            const slides = document.querySelectorAll('.banner-header .slider-container .slider-wrapper img');
-            
-            // Check if sliderWrapper and slides exist before proceeding
-            if (!sliderWrapper || slides.length === 0) {
-                console.warn("Slider elements not found. Skipping slider initialization.");
-                return; // Exit if elements are missing
-            }
-
-            // The actual number of original slides is 20
-            const actualSlidesCount = 20; 
-            // Total slides including clones: [last_clone, original_1, ..., original_20, first_clone]
-            const totalSlidesInWrapper = slides.length; // This will be 22 (20 original + 2 clones)
-            let currentIndex = 1; // Start at the first actual slide (index 1)
-
-            // Function to update the slider's position based on currentIndex
-            function updateSliderPosition() {
-                // Translate by percentage of the slider-wrapper, where each slide is (100 / totalSlidesInWrapper)% of the wrapper's width
-                sliderWrapper.style.transform = `translateX(-${currentIndex * (100 / totalSlidesInWrapper)}%)`;
-            }
-
-            // Function to handle moving to the next slide
-            function goToNextSlide() {
-                // We're always starting on an actual slide, moving to next.
-                // If currentIndex is already the last actual slide (index 20), we go to the first cloned slide (index 21).
-                if (currentIndex >= actualSlidesCount) {
-                    currentIndex++; // Move to the first clone (index 21)
-                    updateSliderPosition(); // Animate to the clone
-                    
-                    // After the transition to the clone is complete, instantly snap back to the first actual slide (index 1)
-                    setTimeout(() => {
-                        sliderWrapper.style.transition = 'none'; // Disable transition for instant snap
-                        currentIndex = 1; // Reset to the first actual slide
-                        updateSliderPosition(); // Snap to position
-                        // Re-enable transition after a very short delay for subsequent animations
-                        setTimeout(() => {
-                            sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
-                        }, 50); 
-                    }, 500); // Match CSS transition duration
-                } else {
-                    currentIndex++; // Move to the next actual slide
-                    updateSliderPosition(); // Animate to the next slide
-                }
-            }
-
-            // Function to handle moving to the previous slide
-            function goToPrevSlide() {
-                // If currentIndex is already the first actual slide (index 1), we go to the last cloned slide (index 0).
-                if (currentIndex <= 1) {
-                    currentIndex--; // Move to the last clone (index 0)
-                    updateSliderPosition(); // Animate to the clone
-
-                    // After the transition to the clone is complete, instantly snap back to the last actual slide (index 20)
-                    setTimeout(() => {
-                        sliderWrapper.style.transition = 'none'; // Disable transition
-                        currentIndex = actualSlidesCount; // Reset to the last actual slide (index 20)
-                        updateSliderPosition(); // Snap to position
-                        // Re-enable transition
-                        setTimeout(() => {
-                            sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
-                        }, 50);
-                    }, 500); // Match CSS transition duration
-                } else {
-                    currentIndex--; // Move to the previous actual slide
-                    updateSliderPosition(); // Animate to the previous slide
-                }
-            }
-
-            let slideInterval; // Variable to hold the interval ID
-
-            function startAutoSlide() {
-                // Clear any existing interval to prevent multiple intervals running
-                clearInterval(slideInterval); 
-                // Set a new interval to go to the next slide every 3 seconds
-                slideInterval = setInterval(goToNextSlide, 3000); 
-            }
-
-            function stopAutoSlide() {
-                clearInterval(slideInterval); // Clear the interval
-            }
-
-            // Stop auto-slide on mouse enter, restart on mouse leave for the banner area
-            if (sliderContainer) {
-                sliderContainer.addEventListener('mouseenter', stopAutoSlide);
-                sliderContainer.addEventListener('mouseleave', startAutoSlide);
-            }
-
-            // Update slider position on window resize to ensure correct layout
-            window.addEventListener('resize', () => {
-                if (sliderWrapper) {
-                    sliderWrapper.style.transition = 'none'; // Temporarily disable transition for resize
-                    updateSliderPosition();
-                    // Re-enable transition after a very short delay
-                    setTimeout(() => {
-                        sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
-                    }, 50);
-                }
-            });
-
-            // Initial setup calls
-            if (sliderWrapper) { // Only run if slider elements are found
-                updateSliderPosition(); // Set initial position (to the first actual slide)
-                startAutoSlide(); // Start the automatic slideshow
-            }
         });
     </script>
 </body>
