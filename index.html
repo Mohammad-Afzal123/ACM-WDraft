@@ -120,6 +120,12 @@
             background-color: #1D1D1D; /* Dark background for alumni section */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             color: #f0f0f0; /* Light text for dark background */
+            /* NEW: Subtle diagonal pattern */
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 100%),
+                              linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 100%);
+            background-size: 40px 40px; /* Size of the pattern unit */
+            background-position: 0 0, 20px 20px; /* Offset the second gradient for a cleaner pattern */
+            background-repeat: repeat;
         }
         #alumni h2 {
             color: #1ABC9C; /* Ensure heading color stands out */
@@ -134,7 +140,7 @@
         }
 
 
-        #about-acmw, #become-member, #contact-us {
+        #become-member {
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -662,7 +668,7 @@
             transform: translateX(3px);
         }
 
-        /* --- Members Section Styles (Diamond Hive Type) --- */
+        /* --- Members Section Styles (Diamond Cards) --- */
         /* Container for the entire hive layout */
         .team-hive-container {
             display: flex;
@@ -670,7 +676,7 @@
             align-items: center; /* Center the rows */
             margin-top: 40px;
             padding-bottom: 50px;
-            background-color: #1D1D1D; /* Match alumni section background */
+            background-color: transparent; /* Match alumni section background, but pattern is added to #alumni itself */
             border-radius: 8px;
         }
 
@@ -683,7 +689,7 @@
 
         /* Offset for alternate rows to create the interlocking effect */
         .team-row.offset-row {
-            margin-top: 60px; /* Increased positive margin to separate vertically */
+            margin-top: 0; /* Changed to 0 to prevent touching */
         }
 
         /* Styles for individual team member diamonds */
@@ -699,6 +705,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.1s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             z-index: 1; /* Default stacking order */
+            border-radius: 0; /* No explicit border-radius for diamond shape */
         }
 
         .team-member:hover {
@@ -746,6 +753,31 @@
         .team-member:hover .overlay {
             opacity: 1; /* Visible on hover */
         }
+
+        /* Social icons within the overlay */
+        .overlay .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            opacity: 0; /* Hidden by default, only show when parent .team-member is hovered */
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .team-member:hover .overlay .social-icons {
+            opacity: 1; /* Visible on hover */
+        }
+
+        .overlay .social-icons a {
+            color: #fff;
+            font-size: 1.5em;
+            transform: rotate(45deg); /* Counter-rotate back to normal from diamond rotation */
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .overlay .social-icons a:hover {
+            color: #1ABC9C; /* Teal highlight on hover */
+            transform: rotate(45deg) scale(1.1); /* Slight scale and rotate back */
+        }
         
         /* Responsive adjustments for Team Section */
         @media (max-width: 768px) {
@@ -753,6 +785,11 @@
                 width: 160px; /* Larger diamonds on mobile */
                 height: 160px;
                 margin: 0; /* No horizontal overlap */
+                transform: rotate(45deg); /* Keep diamond shape on mobile */
+                border-radius: 0;
+            }
+            .team-member img, .overlay {
+                transform: rotate(-45deg); /* Keep inner content straight */
             }
             .team-row.offset-row {
                 margin-top: 40px; /* Adjusted overlap for larger diamonds */
@@ -762,6 +799,7 @@
             }
             .team-row {
                 gap: 15px; /* Ensure gap on mobile */
+                flex-direction: row; /* Keep rows horizontal on mobile, allow wrap */
             }
         }
 
@@ -799,7 +837,7 @@
             max-width: 1200px; /* Max width for the gallery container */
             overflow-x: auto; /* Enable horizontal scrolling if content overflows */
             padding: 20px 0;
-            padding-left: 170px; /* Ensure content is not hidden by fixed nav */
+            padding-left: 50px; /* Adjusted padding-left for sponsor cards to shift further left */
             cursor: grab; /* Indicates scrollable area */
             scroll-snap-type: x mandatory; /* Optional: Snap to cards on scroll */
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
@@ -839,29 +877,29 @@
             clip-path: none;
         }
         
-        /* Default sizing for sponsors (50% increased heights from last state) */
+        /* Default sizing for sponsors (made thinner) */
         .sponsor-card:nth-child(1), .sponsor-card:nth-child(5) {
-            width: 150px;
-            height: 365.625px; /* 731.25px / 2 */
+            width: 120px; /* Thinner */
+            height: 300px; /* Proportional adjustment */
         }
         .sponsor-card:nth-child(2), .sponsor-card:nth-child(4) {
-            width: 180px;
-            height: 438.75px; /* 877.5px / 2 */
+            width: 150px; /* Thinner */
+            height: 360px; /* Proportional adjustment */
         }
         .sponsor-card:nth-child(3) {
-            width: 220px;
-            height: 511.875px; /* 1023.75px / 2 */
+            width: 180px; /* Thinner */
+            height: 420px; /* Proportional adjustment */
         }
 
         /* Hover effect: make all non-hovered smaller, hovered larger */
         .sponsor-gallery:hover .sponsor-card {
-            width: 150px; /* Smaller default width when one is hovered */
-            height: 365.625px; /* Match smallest height when others are hovered */
+            width: 120px; /* Smaller default width when one is hovered */
+            height: 300px; /* Match smallest height when others are hovered */
         }
 
         .sponsor-gallery .sponsor-card:hover {
-            width: 390px; /* Expanded width on hover (300px * 1.3 - this is fixed from previous) */
-            height: 585px; /* 1170px / 2 */
+            width: 300px; /* Adjusted expanded width on hover */
+            height: 450px; /* Proportional adjustment */
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             filter: brightness(1.1);
             z-index: 10; /* Ensure hovered card is on top */
@@ -1111,12 +1149,6 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        #testimonials .review-author-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         #testimonials .review-author-avatar .initials {
             font-weight: bold;
             font-size: 1.2em;
@@ -1168,6 +1200,303 @@
             #testimonials .review-text {
                 -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
             }
+
+            /* Contact Us Section on mobile */
+            #contact-us .contact-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            #contact-us .contact-info,
+            #contact-us .contact-form {
+                width: 90%;
+            }
+
+            #contact-us .contact-info div {
+                flex-direction: row;
+                align-items: center;
+                text-align: center;
+            }
+            #contact-us .contact-info i {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+        }
+
+        /* Styles for the Contact Us Section as a whole */
+        #contact-us {
+            background-color: transparent; /* Set to transparent as requested */
+            color: #fff; /* Default text color for the section */
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            box-shadow: none; /* Removed */
+            border-radius: 0; /* Removed */
+            margin-bottom: 40px;
+        }
+
+        #contact-us h2 {
+            display: none; /* Hide the main section title as requested */
+        }
+
+        .contact-panels-container {
+            display: flex;
+            width: 98%; /* Further increased width */
+            max-width: 1300px; /* Further increased max-width */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Shadow for the overall card */
+            min-height: 175px; /* Decreased height by 30% from 250px */
+            position: relative;
+            background-color: #fff; /* Main background for the card - KEEP THIS WHITE */
+        }
+
+        /* Zig-zag shape for the left panel - now white */
+        .contact-left-panel {
+            flex: 1;
+            padding: 40px;
+            background-color: #fff; /* White background for the left panel - KEEP THIS WHITE */
+            color: #333; /* Dark text for white background */
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            position: relative;
+            padding-right: 40px; /* Reset padding to normal */
+            margin-right: 0; /* Remove margin overlap */
+            z-index: 2; /* Set to default for side panels */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-align: left;
+            /* More pronounced zig-zag effect on the right edge */
+            clip-path: polygon(
+                0 0, 95% 0, /* Straight top to 95% */
+                100% 5%, 95% 10%, /* Zig-zag points */
+                100% 15%, 95% 20%,
+                100% 25%, 95% 30%,
+                100% 35%, 95% 40%,
+                100% 45%, 95% 50%,
+                100% 55%, 95% 60%,
+                100% 65%, 95% 70%,
+                100% 75%, 95% 80%,
+                100% 85%, 95% 90%,
+                100% 95%, 95% 100%, /* Zig-zag to 95% at bottom */
+                0 100% /* Straight bottom to left */
+            );
+            border: none; /* No border for the left panel */
+        }
+
+        .contact-left-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #333; /* Dark text for white background */
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .contact-left-content p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555; /* Slightly lighter grey for text */
+        }
+
+        .contact-details-list p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            color: #555; /* Slightly lighter grey for text */
+        }
+        .contact-details-list i {
+            color: #1ABC9C; /* Teal for icons, good contrast */
+            font-size: 1.3em;
+        }
+
+        .contact-social-bottom {
+            margin-top: 40px;
+            width: 100%;
+            text-align: left;
+        }
+        .contact-social-bottom h4 {
+            font-size: 1.1em;
+            color: #333; /* Dark text for heading */
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle dark border */
+            padding-bottom: 10px;
+            width: 100%;
+        }
+        .social-icons-contact {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons-contact a {
+            color: #fff;
+            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Purple gradient for icons */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .social-icons-contact a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Removed .contact-middle-panel styles */
+
+        .contact-right-panel {
+            flex: 1;
+            padding: 40px;
+            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Deep purple to lighter purple gradient */
+            color: #fff; /* White text for dark background */
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2; /* Set to default for side panels */
+            padding-left: 40px; /* Reset padding to normal */
+            margin-left: 0; /* Remove margin overlap */
+            /* Mirrored zig-zag effect on the left edge */
+            clip-path: polygon(
+                100% 0, 100% 100%, /* Straight right edge */
+                5% 100%, 0% 95%, /* Zig-zag points mirrored and inverted */
+                5% 90%, 0% 85%,
+                5% 80%, 0% 75%,
+                5% 70%, 0% 65%,
+                5% 60%, 0% 55%,
+                5% 50%, 0% 45%,
+                5% 40%, 0% 35%,
+                5% 30%, 0% 25%,
+                5% 20%, 0% 15%,
+                5% 10%, 0% 5%,
+                5% 0 /* Zig-zag to 5% at top */
+            );
+        }
+
+        .contact-right-panel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #fff; /* White for heading on dark background */
+        }
+
+        .contact-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between form elements */
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 40px); /* Adjust for padding in box-sizing */
+            padding: 10px 20px; /* Decreased vertical padding */
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .contact-form input[type="text"]::placeholder,
+        .contact-form input[type="email"]::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #007BFF; /* Bright blue on focus */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+        }
+
+        .contact-form button[type="submit"] {
+            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Blue to Purple gradient for submit button */
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px; /* More rounded button */
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            align-self: center; /* Center the button if form is flex column */
+            margin-top: 20px;
+            width: 80%; /* Make button wider */
+            max-width: 300px;
+        }
+
+        .contact-form button[type="submit"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Responsive adjustments for Contact Us Section */
+        @media (max-width: 768px) {
+            #contact-us {
+                padding: 40px 20px;
+            }
+            .contact-panels-container {
+                flex-direction: column;
+                border-radius: 15px;
+                min-height: auto;
+                width: 100%; /* Full width on mobile */
+            }
+
+            .contact-left-panel {
+                clip-path: none; /* Remove clip-path on mobile */
+                border-radius: 15px 15px 0 0;
+                padding-right: 40px; /* Reset padding */
+                padding-bottom: 20px;
+                margin-right: 0; /* Reset margin */
+                z-index: auto; /* Reset z-index */
+            }
+            .contact-right-panel {
+                border-radius: 0 0 15px 15px;
+            }
+            /* Removed .contact-middle-panel on mobile styles */
+
+            .contact-info,
+            .contact-form {
+                width: 100%; /* Full width on mobile */
+                min-width: unset; /* Remove min-width constraint */
+                padding: 20px; /* Adjust padding for mobile */
+            }
+
+            .contact-form input[type="text"],
+            .contact-form input[type="email"],
+            .contact-form textarea {
+                width: calc(100% - 40px); /* Ensure full width even with padding */
+            }
         }
     </style>
 </head>
@@ -1198,11 +1527,10 @@
         <ul>
             <li><a href="#events">Events</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#alumni">Our Team & Alumni</a></li>
-            <li><a href="#about-acmw">About ACM-W</a></li>
             <li><a href="#become-member">Become a member</a></li>
             <li><a href="#contact-us">Contact us Now!!</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
         </ul>
     </nav>
 
@@ -1418,6 +1746,220 @@
             </div>
         </section>
 
+        <section id="alumni" data-aos="fade-up">
+            <h2>Connect with our Alumni</h2>
+            <p>Our alumni network is a valuable resource for current members. Connect with successful professionals who started their journey with ACM-W and gain insights, advice, and potential career opportunities.</p>
+            <p>We regularly organize alumni networking events and a dedicated mentorship program to facilitate connections. Join our alumni community today!</p>
+            <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Join Alumni Network</button>
+            
+            <h2 style="margin-top: 60px;">Our Team</h2>
+            <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
+            <div class="team-hive-container">
+                <div class="team-row">
+                    <!-- Row 1: 3 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Dr. Suganya">
+                        <div class="overlay"><strong>Dr. Suganya</strong><br/>Faculty Coordinator
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Bharathi">
+                        <div class="overlay"><strong>Bharathi</strong><br/>Chairperson
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Shibani">
+                        <div class="overlay"><strong>Shibani</strong><br/>Vice-chair
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-row offset-row">
+                    <!-- Row 2: 2 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Lakshmi Priya">
+                        <div class="overlay"><strong>Lakshmi Priya</strong><br/>Secretary
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sathvik">
+                        <div class="overlay"><strong>Sathvik</strong><br/>Treasurer
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-row">
+                    <!-- Row 3: 3 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Nandhakishore">
+                        <div class="overlay"><strong>Nandhakishore</strong><br/>Membership chair
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Manya">
+                        <div class="overlay"><strong>Manya</strong><br/>Technical
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/76.jpg" alt="CH L Sudheera">
+                        <div class="overlay"><strong>CH L Sudheera</strong><br/>Design
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-row offset-row">
+                    <!-- Row 4: 2 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Hrituja">
+                        <div class="overlay"><strong>Hrituja</strong><br/>Event Management
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="J Jahnvi">
+                        <div class="overlay"><strong>J Jahnvi</strong><br/>Outreach
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-row">
+                    <!-- Row 5: 3 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Sireesha">
+                        <div class="overlay"><strong>Sireesha</strong><br/>Social media
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/96.jpg" alt="Lynda">
+                        <div class="overlay"><strong>Lynda</strong><br/>Finance & Awards
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Robert">
+                        <div class="overlay"><strong>Robert Fox</strong><br/>ML Engineer
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="team-row offset-row">
+                    <!-- Row 6: 2 members -->
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Samantha">
+                        <div class="overlay"><strong>Samantha Ray</strong><br/>Content Strategist
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Jason">
+                        <div class="overlay"><strong>Jason Park</strong><br/>Cloud Architect
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="become-member" data-aos="fade-left">
+            <h2>Become a Member</h2>
+            <p>Join ACM-W today and unlock a world of opportunities! Membership offers exclusive access to events, specialized workshops, our mentorship programs, and a supportive community of like-minded individuals.</p>
+            <ul>
+                <li>Priority registration for workshops and seminars</li>
+                <li>Access to a dedicated mentorship program</li>
+                <li>Networking opportunities with industry leaders and peers</li>
+                <li>Career development resources</li>
+                <li>Discounts on special events</li>
+            </ul>
+            <button style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Learn More & Join</button>
+        </section>
+
+        <section id="contact-us" data-aos="fade-up">
+            <!-- Main section title is hidden by CSS -->
+            <div class="contact-panels-container">
+                <div class="contact-left-panel">
+                    <div class="contact-left-content">
+                        <h3>Let's Connect!</h3>
+                        <p>We're eager to hear from you. Whether you have questions, feedback, or collaboration ideas, reach out to us!</p>
+                        <div class="contact-details-list">
+                            <p><i class="fas fa-envelope"></i> info@acmw.org</p>
+                            <p><i class="fas fa-phone-alt"></i> +123-456-7890</p>
+                            <p><i class="fas fa-map-marker-alt"></i> VIT Chennai, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-social-bottom">
+                        <h4>Find Us On</h4>
+                        <div class="social-icons-contact">
+                            <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://twitter.com/your_acmw" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- The middle panel is removed as requested -->
+                <div class="contact-right-panel">
+                    <h3>Send us a Message</h3>
+                    <form action="#" method="POST" class="contact-form">
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                        <input type="email" id="email" name="email" required placeholder="Your Email Address">
+                        <input type="text" id="subject" name="subject" required placeholder="Subject of your message">
+                        <textarea id="message" name="message" rows="5" required placeholder="Your message here..."></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
         <section id="testimonials" data-aos="fade-left">
             <div class="testimonials-header">
                 <h2>Testimonials</h2>
@@ -1515,125 +2057,6 @@
                 </div>
             </div>
         </section>
-
-        <section id="alumni" data-aos="fade-up">
-            <h2>Connect with our Alumni</h2>
-            <p>Our alumni network is a valuable resource for current members. Connect with successful professionals who started their journey with ACM-W and gain insights, advice, and potential career opportunities.</p>
-            <p>We regularly organize alumni networking events and a dedicated mentorship program to facilitate connections. Join our alumni community today!</p>
-            <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Join Alumni Network</button>
-            
-            <h2 style="margin-top: 60px;">Our Team</h2>
-            <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
-            <div class="team-hive-container">
-                <div class="team-row">
-                    <!-- Row 1: 3 members -->
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Dr. Suganya">
-                        <div class="overlay"><strong>Dr. Suganya</strong><br/>Faculty Coordinator</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Bharathi">
-                        <div class="overlay"><strong>Bharathi</strong><br/>Chairperson</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Shibani">
-                        <div class="overlay"><strong>Shibani</strong><br/>Vice-chair</div>
-                    </div>
-                </div>
-                <div class="team-row offset-row">
-                    <!-- Row 2: 4 members -->
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Lakshmi Priya">
-                        <div class="overlay"><strong>Lakshmi Priya</strong><br/>Secretary</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sathvik">
-                        <div class="overlay"><strong>Sathvik</strong><br/>Treasurer</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Nandhakishore">
-                        <div class="overlay"><strong>Nandhakishore</strong><br/>Membership chair</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Manya">
-                        <div class="overlay"><strong>Manya</strong><br/>Technical</div>
-                    </div>
-                </div>
-                <div class="team-row">
-                    <!-- Row 3: 3 members -->
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/76.jpg" alt="CH L Sudheera">
-                        <div class="overlay"><strong>CH L Sudheera</strong><br/>Design</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Hrituja">
-                        <div class="overlay"><strong>Hrituja</strong><br/>Event Management</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="Jahnvi">
-                        <div class="overlay"><strong>J Jahnvi</strong><br/>Outreach</div>
-                    </div>
-                </div>
-                <div class="team-row offset-row">
-                    <!-- Row 4: 3 members -->
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Sireesha">
-                        <div class="overlay"><strong>Sireesha</strong><br/>Social media</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/96.jpg" alt="Lynda">
-                        <div class="overlay"><strong>Lynda</strong><br/>Finance & Awards</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Robert">
-                        <div class="overlay"><strong>Robert Fox</strong><br/>ML Engineer</div>
-                    </div>
-                </div>
-                <div class="team-row">
-                    <!-- Row 5: 2 members -->
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Samantha">
-                        <div class="overlay"><strong>Samantha Ray</strong><br/>Content Strategist</div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Jason">
-                        <div class="overlay"><strong>Jason Park</strong><br/>Cloud Architect</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about-acmw" data-aos="fade-right">
-            <h2>About ACM-W</h2>
-            <p>ACM-W stands for Association for Computing Machinery's Council on Women in Computing. We are a global organization that supports, celebrates, and advocates internationally for the full engagement of women in all aspects of the computing field.</p>
-            <p>Our local chapter focuses on fostering a vibrant community, providing educational resources, career development opportunities, and promoting diversity and inclusion within the tech industry. We strive to be a supportive hub for all women in computing.</p>
-        </section>
-
-        <section id="become-member" data-aos="fade-left">
-            <h2>Become a Member</h2>
-            <p>Join ACM-W today and unlock a world of opportunities! Membership offers exclusive access to events, specialized workshops, our mentorship programs, and a supportive community of like-minded individuals.</p>
-            <ul>
-                <li>Priority registration for workshops and seminars</li>
-                <li>Access to a dedicated mentorship program</li>
-                <li>Networking opportunities with industry leaders and peers</li>
-                <li>Career development resources</li>
-                <li>Discounts on special events</li>
-            </ul>
-            <button style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Learn More & Join</button>
-        </section>
-
-        <section id="contact-us" data-aos="fade-up">
-            <h2>Contact us Now!!</h2>
-            <p>Have questions, suggestions, or just want to say hello? Reach out to us! We'd love to hear from you.</p>
-            <p><strong>Email:</strong> <a href="mailto:info@acmw.org" style="color: #007bff; text-decoration: none;">info@acmw.org</a></p>
-            <p><strong>Phone:</strong> +123-456-7890</p>
-            <p>You can also find us on social media for the latest updates and direct messages:</p>
-            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
-                <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://twitter.com/your_acmw" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
-        </section>
     </main>
 
     <div class="floating-social-contact">
@@ -1654,7 +2077,8 @@
                     <li><a href="#sponsors">Sponsors</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#alumni">Alumni</a></li>
-                    <li><a href="#about-acmw">About Us</a></li>
+                    <li><a href="#become-member">Become a member</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-column footer-info">
@@ -1713,6 +2137,28 @@
             const bannerHeader = document.querySelector('.banner-header');
             const bannerVideo = document.querySelector('.banner-video');
 
+            // Define updateTimelineScroller function inside DOMContentLoaded
+            function updateTimelineScroller() {
+                const timelineElement = document.querySelector('.timeline');
+                const scrollerIndicator = document.querySelector('.timeline .line .scroller-indicator');
+
+                if (!timelineElement || !scrollerIndicator) return;
+
+                const timelineRect = timelineElement.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+
+                const scrollStart = timelineRect.top + window.pageYOffset - viewportHeight;
+                const scrollEnd = timelineRect.bottom + window.pageYOffset;
+
+                let progress = 0;
+                if (window.pageYOffset > scrollStart) {
+                    progress = (window.pageYOffset - scrollStart) / (scrollEnd - scrollStart);
+                }
+
+                progress = Math.max(0, Math.min(1, progress));
+                scrollerIndicator.style.height = `${progress * 100}%`;
+            }
+
             function highlightNavLink() {
                 let current = "";
                 if (window.pageYOffset < bannerHeader.offsetHeight * 0.9) {
@@ -1763,7 +2209,7 @@
             // Initial calls on load
             highlightNavLink();
             handleVideoFade();
-            updateTimelineScroller(); // Call existing timeline scroller update
+            updateTimelineScroller(); // Initial call moved
         });
 
         document.querySelector('.chatbot-button').addEventListener('click', function(e) {
@@ -1773,9 +2219,8 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             const timelineSections = document.querySelectorAll('.timeline .section');
-            const timelineElement = document.querySelector('.timeline');
-            const timelineLine = document.querySelector('.timeline .line');
-            const scrollerIndicator = timelineLine.querySelector('div');
+            // updateTimelineScroller definition is now inside the first DOMContentLoaded block.
+            // No need to redeclare or get elements here again, as it's handled above.
 
             const observerOptions = {
                 root: null,
@@ -1797,29 +2242,6 @@
             timelineSections.forEach(section => {
                 observer.observe(section);
             });
-
-            function updateTimelineScroller() {
-                if (!timelineElement || !scrollerIndicator) return;
-
-                const timelineRect = timelineElement.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-
-                const scrollStart = timelineRect.top + window.pageYOffset - viewportHeight;
-                const scrollEnd = timelineRect.bottom + window.pageYOffset;
-
-                let progress = 0;
-                if (window.pageYOffset > scrollStart) {
-                    progress = (window.pageYOffset - scrollStart) / (scrollEnd - scrollStart);
-                }
-
-                progress = Math.max(0, Math.min(1, progress));
-                scrollerIndicator.style.height = `${progress * 100}%`;
-            }
-
-            // This function is now called via the main scroll listener in the DOMContentLoaded block
-            // window.addEventListener('scroll', updateTimelineScroller);
-            // window.addEventListener("resize", updateTimelineScroller);
-            // updateTimelineScroller(); // Initial call moved
         });
 
         document.addEventListener('DOMContentLoaded', function() {
