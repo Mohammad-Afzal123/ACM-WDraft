@@ -58,22 +58,27 @@
             transition: opacity 0.3s ease-out; /* Smooth transition for opacity */
         }
 
+        /* Original fixed logo - now dynamically hidden/shown */
         .acmw-logo {
-            position: fixed; /* Ensures logo stays in place during scroll */
+            position: fixed; /* Ensures logo stays in place during scroll when visible */
             top: 20px;
             left: 20px;
-            height: 80px; /* Adjust size as needed */
+            height: 80px; /* Reverted to original height for the fixed logo */
             width: auto;
             z-index: 999; /* Ensures it's above all other elements */
             mix-blend-mode: screen; /* Blends with the Vanta.js background */
             filter: brightness(2); /* Makes it brighter to stand out against dark background */
+            opacity: 0; /* Start hidden */
+            visibility: hidden; /* Start hidden */
+            pointer-events: none; /* Disable interaction when hidden */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition */
         }
 
         .banner-overlay-text {
             position: absolute;
             color: #fff;
             text-align: center;
-            z-index: 20; /* Higher z-index to be above the video */
+            z-index: 20; /* Higher z-index to be above the video and new top nav */
             padding: 20px;
             background: transparent;
             border-radius: 10px;
@@ -100,10 +105,11 @@
         .main-content {
             position: relative;
             z-index: 1;
-            margin-left: 150px;
+            /* margin-left will be controlled by JS for dynamic left nav */
             padding: 20px;
             min-height: 100vh;
             padding-top: 40vh; /* Adjusted for smaller gap, further decreased */
+            transition: margin-left 0.5s ease-out; /* Smooth transition for margin */
         }
 
         /* Generic section styling - transparent by default */
@@ -166,6 +172,74 @@
             text-align: center;
         }
 
+        /* NEW: Top Header Navigation Bar */
+        .top-header-nav {
+            position: absolute;
+            top: 0; /* Align with the very top of the header */
+            left: 0;
+            width: 100%;
+            background-color: transparent; /* Made transparent as requested */
+            padding: 15px 0px; /* Changed from 15px 20px to shift left */
+            z-index: 15; /* Above video, below banner-overlay-text */
+            display: flex;
+            justify-content: space-between; /* Space out logo and links */
+            align-items: center;
+            box-shadow: none; /* Removed shadow as requested */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* For disappearing */
+        }
+
+        .top-nav-logo {
+            height: 60px; /* Made thinner for the top navigation bar */
+            width: auto;
+            opacity: 0; /* Initially hidden, controlled by JS */
+            visibility: hidden; /* Initially hidden, controlled by JS */
+            pointer-events: none; /* Initially disabled, controlled by JS */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition */
+            mix-blend-mode: screen; /* Keep blending */
+            filter: brightness(2); /* Keep brightness */
+            margin-right: 20px; /* Space between logo and nav links */
+        }
+
+        .top-nav-text-logo {
+            font-family: 'Playfair Display', serif; /* A more elegant font for the text logo */
+            font-size: 2.5em; /* Large size for prominence */
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            opacity: 0; /* Start hidden */
+            visibility: hidden; /* Start hidden */
+            pointer-events: none; /* Disable interaction when hidden */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition */
+            margin-right: 20px; /* Space between logo and nav links */
+            letter-spacing: 1px; /* Slightly increased letter spacing */
+        }
+
+
+        .top-header-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: row; /* Horizontal links */
+            gap: 30px; /* Space between links */
+        }
+
+        .top-header-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .top-header-nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #1ABC9C;
+        }
+
+
+        /* Existing Left Floating Nav - Now dynamically appears/disappears */
         .floating-nav {
             position: fixed;
             left: 0;
@@ -177,7 +251,16 @@
             padding: 15px 0;
             box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
             z-index: 100;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, visibility 0.5s ease-out; /* Add opacity/visibility transition */
+            opacity: 0; /* Start hidden */
+            visibility: hidden; /* Start hidden */
+            pointer-events: none; /* Disable interaction when hidden */
+        }
+
+        .floating-nav.active { /* This class will be toggled by JS */
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto; /* Enable interaction when visible */
         }
 
         .floating-nav ul {
@@ -365,6 +448,7 @@
             .main-content {
                 margin-left: 0;
                 padding: 10px;
+                padding-top: 100px; /* Adjust for top nav on mobile */
             }
 
             .main-footer {
@@ -441,6 +525,15 @@
 
             .timeline .section:nth-of-type(even) .card {
                 margin-left: 60px;
+            }
+
+            /* Responsive for Top Nav */
+            .top-header-nav {
+                padding: 10px 0;
+            }
+            .top-header-nav ul {
+                flex-direction: column;
+                gap: 10px;
             }
         }
 
@@ -837,7 +930,7 @@
             max-width: 1200px; /* Max width for the gallery container */
             overflow-x: auto; /* Enable horizontal scrolling if content overflows */
             padding: 20px 0;
-            padding-left: 50px; /* Adjusted padding-left for sponsor cards to shift further left */
+            padding-left: 110px; /* Adjusted padding-left to shift right and align middle card */
             cursor: grab; /* Indicates scrollable area */
             scroll-snap-type: x mandatory; /* Optional: Snap to cards on scroll */
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
@@ -1511,6 +1604,7 @@
             Your browser does not support the video tag.
         </video>
 
+        <!-- Original fixed logo - now dynamically hidden/shown -->
         <img src="image_e5bf60.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80/000000/FFFFFF?text=ACM-W';" alt="ACM-W Logo" class="acmw-logo">
         <div class="banner-overlay-text">
             <h1><span id="typed-output"></span></h1>
@@ -1521,8 +1615,23 @@
             </div>
             <p>Empowering Women in Computing</p>
         </div>
+
+        <!-- NEW: Top Header Navigation Bar -->
+        <nav class="top-header-nav">
+            <!-- New text logo inside top nav -->
+            <span class="top-nav-text-logo">acm-w</span>
+            <ul>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#sponsors">Sponsors</a></li>
+                <li><a href="#alumni">Our Team & Alumni</a></li>
+                <li><a href="#become-member">Become a member</a></li>
+                <li><a href="#contact-us">Contact us Now!!</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+            </ul>
+        </nav>
     </header>
 
+    <!-- Original Floating Nav (now initially hidden, appears on scroll) -->
     <nav class="floating-nav">
         <ul>
             <li><a href="#events">Events</a></li>
@@ -2133,11 +2242,18 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll("section[id]");
-            const navLinks = document.querySelectorAll(".floating-nav ul li a");
             const bannerHeader = document.querySelector('.banner-header');
             const bannerVideo = document.querySelector('.banner-video');
+            const topHeaderNav = document.querySelector('.top-header-nav');
+            const floatingNav = document.querySelector('.floating-nav');
+            const mainContent = document.querySelector('.main-content');
+            const topNavTextLogo = document.querySelector('.top-nav-text-logo'); // Reference the new text logo
+            const fixedAcmwLogo = document.querySelector('.acmw-logo'); // The original fixed image logo
 
-            // Define updateTimelineScroller function inside DOMContentLoaded
+            // Set initial margin for main-content
+            mainContent.style.marginLeft = '0px';
+
+            // Define updateTimelineScroller function
             function updateTimelineScroller() {
                 const timelineElement = document.querySelector('.timeline');
                 const scrollerIndicator = document.querySelector('.timeline .line .scroller-indicator');
@@ -2161,27 +2277,45 @@
 
             function highlightNavLink() {
                 let current = "";
-                if (window.pageYOffset < bannerHeader.offsetHeight * 0.9) {
-                    current = "";
+                const bannerHeight = bannerHeader.offsetHeight;
+                const thresholdForTopNav = bannerHeight - 50; // Trigger for nav switch
+
+                let navLinksToHighlight;
+
+                if (window.pageYOffset < thresholdForTopNav) {
+                    // Top nav is active
+                    navLinksToHighlight = topHeaderNav.querySelectorAll('ul li a');
+                    current = ""; // No section active when on the banner
                 } else {
+                    // Floating nav is active
+                    navLinksToHighlight = floatingNav.querySelectorAll('ul li a');
                     for (let i = sections.length - 1; i >= 0; i--) {
                         const section = sections[i];
-                        if (section.offsetTop <= window.pageYOffset + (window.innerHeight / 3)) {
+                        let sectionOffset = section.offsetTop;
+                        // Adjust offset for fixed left nav when calculating current section
+                        if (floatingNav.classList.contains('active')) {
+                            sectionOffset -= 150; // Approx margin-left value
+                        }
+
+                        if (sectionOffset <= window.pageYOffset + (window.innerHeight / 3)) {
                             current = section.getAttribute("id");
                             break;
                         }
                     }
                 }
 
-                navLinks.forEach(a => {
-                    a.classList.remove("active");
-                    if (a.getAttribute("href").includes("alumni") && (current === "alumni")) {
-                        a.classList.add("active");
-                    } else if (current && a.getAttribute("href").includes(current)) {
+                // Remove active from ALL links in both navs first
+                topHeaderNav.querySelectorAll('ul li a').forEach(a => a.classList.remove("active"));
+                floatingNav.querySelectorAll('ul li a').forEach(a => a.classList.remove("active"));
+
+                // Then apply active to links in the currently visible nav bar
+                navLinksToHighlight.forEach(a => {
+                    if (current && a.getAttribute("href").includes(current)) {
                         a.classList.add("active");
                     }
                 });
             }
+
 
             function handleVideoFade() {
                 const scrollPosition = window.pageYOffset;
@@ -2193,23 +2327,88 @@
                 bannerVideo.style.opacity = fadeProgress;
             }
 
+            // Function to handle the navigation bar's dynamic behavior
+            function handleNavTransformation() {
+                const scrollPosition = window.pageYOffset;
+                const bannerHeight = bannerHeader.offsetHeight;
+
+                // The threshold when the floating nav should become active and main content shifts
+                // This should be approximately when the main banner video is no longer visible.
+                const threshold = bannerHeight - 50; // A small buffer before the whole banner is out of view
+
+                if (scrollPosition > threshold) {
+                    // User has scrolled down, floating nav and fixed left logo should be active
+                    floatingNav.classList.add('active');
+                    mainContent.style.marginLeft = '150px';
+
+                    // Hide top nav and its text logo
+                    if (topHeaderNav) {
+                        topHeaderNav.style.opacity = '0';
+                        topHeaderNav.style.visibility = 'hidden';
+                        topHeaderNav.style.pointerEvents = 'none';
+                    }
+                    if (topNavTextLogo) { // Hide the text logo that was inside the top nav
+                        topNavTextLogo.style.opacity = '0';
+                        topNavTextLogo.style.visibility = 'hidden';
+                        topNavTextLogo.style.pointerEvents = 'none';
+                    }
+
+                    // Show the original fixed ACMW image logo (which will be positioned top-left as before)
+                    if (fixedAcmwLogo) {
+                        fixedAcmwLogo.style.opacity = '1';
+                        fixedAcmwLogo.style.visibility = 'visible';
+                        fixedAcmwLogo.style.pointerEvents = 'auto';
+                    }
+
+                } else {
+                    // User is at the top, top nav and *its* text logo should be active. Original fixed image logo should be hidden.
+                    floatingNav.classList.remove('active');
+                    mainContent.style.marginLeft = '0px';
+
+                    // Show top nav and its text logo
+                    if (topHeaderNav) {
+                        topHeaderNav.style.opacity = '1';
+                        topHeaderNav.style.visibility = 'visible';
+                        topHeaderNav.style.pointerEvents = 'auto';
+                    }
+                    if (topNavTextLogo) { // Show the text logo that is inside the top nav, make it translucent
+                        topNavTextLogo.style.opacity = '0.3'; /* Maintained opacity for translucency */
+                        topNavTextLogo.style.visibility = 'visible';
+                        topNavTextLogo.style.pointerEvents = 'auto';
+                    }
+
+                    // Hide the original fixed ACMW image logo
+                    if (fixedAcmwLogo) {
+                        fixedAcmwLogo.style.opacity = '0';
+                        fixedAcmwLogo.style.visibility = 'hidden';
+                        fixedAcmwLogo.style.pointerEvents = 'none';
+                    }
+                }
+                highlightNavLink(); // Call highlight after state change
+            }
+
+
             // Combine scroll event listeners
             window.addEventListener("scroll", () => {
-                highlightNavLink();
                 handleVideoFade();
-                updateTimelineScroller(); // Call existing timeline scroller update
+                updateTimelineScroller();
+                handleNavTransformation();
             });
 
             window.addEventListener("resize", () => {
+                // Recalculate banner height on resize and re-evaluate nav state
+                // This ensures correct threshold if content or viewport changes
+                handleNavTransformation();
                 highlightNavLink();
                 handleVideoFade();
-                updateTimelineScroller(); // Call existing timeline scroller update
+                updateTimelineScroller();
             });
 
             // Initial calls on load
+            handleNavTransformation();
             highlightNavLink();
             handleVideoFade();
-            updateTimelineScroller(); // Initial call moved
+            updateTimelineScroller();
         });
 
         document.querySelector('.chatbot-button').addEventListener('click', function(e) {
@@ -2219,9 +2418,6 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             const timelineSections = document.querySelectorAll('.timeline .section');
-            // updateTimelineScroller definition is now inside the first DOMContentLoaded block.
-            // No need to redeclare or get elements here again, as it's handled above.
-
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
