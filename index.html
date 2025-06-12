@@ -105,11 +105,10 @@
         .main-content {
             position: relative;
             z-index: 1;
-            /* margin-left will be controlled by JS for dynamic left nav */
             padding: 20px;
             min-height: 100vh;
-            padding-top: 40vh; /* Adjusted for smaller gap, further decreased */
-            transition: margin-left 0.5s ease-out; /* Smooth transition for margin */
+            padding-top: 20vh; /* Adjusted for smaller gap */
+            /* Removed margin-left as the left nav is gone */
         }
 
         /* Generic section styling - transparent by default */
@@ -119,6 +118,11 @@
             background-color: transparent;
             border-radius: 8px;
             box-shadow: none;
+            max-width: 1200px; /* Max width for content readability */
+            margin-left: auto; /* Center sections horizontally */
+            margin-right: auto; /* Center sections horizontally */
+            width: 100%; /* Ensure it takes full width up to max-width */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         /* Specific overrides for sections with white background */
@@ -155,7 +159,8 @@
         #events {
             background-color: transparent;
             box-shadow: none;
-            padding: 60px 0;
+            padding: 0px 0; /* Reduced padding for the section itself */
+            margin-top: -100px; /* Adjusted to move the timeline up further */
         }
 
         .event-title-wrapper {
@@ -179,7 +184,7 @@
             left: 0;
             width: 100%;
             background-color: transparent; /* Made transparent as requested */
-            padding: 15px 0px; /* Changed from 15px 20px to shift left */
+            padding: 15px 0px; /* Adjusted to shift content left */
             z-index: 15; /* Above video, below banner-overlay-text */
             display: flex;
             justify-content: space-between; /* Space out logo and links */
@@ -212,6 +217,7 @@
             transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition */
             margin-right: 20px; /* Space between logo and nav links */
             letter-spacing: 1px; /* Slightly increased letter spacing */
+            margin-left: 20px; /* Added to shift it left */
         }
 
 
@@ -222,6 +228,7 @@
             display: flex;
             flex-direction: row; /* Horizontal links */
             gap: 30px; /* Space between links */
+            margin-right: 20px; /* Added to shift it left */
         }
 
         .top-header-nav ul li a {
@@ -238,62 +245,103 @@
             color: #1ABC9C;
         }
 
-
-        /* Existing Left Floating Nav - Now dynamically appears/disappears */
-        .floating-nav {
+        /* NEW Hamburger Menu Button */
+        .hamburger-menu-button {
             position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 150px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 0 8px 8px 0;
-            padding: 15px 0;
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, visibility 0.5s ease-out; /* Add opacity/visibility transition */
-            opacity: 0; /* Start hidden */
-            visibility: hidden; /* Start hidden */
-            pointer-events: none; /* Disable interaction when hidden */
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1001; /* Above everything else */
+            opacity: 0; /* Initially hidden */
+            visibility: hidden; /* Initially hidden */
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.2s ease;
         }
 
-        .floating-nav.active { /* This class will be toggled by JS */
+        .hamburger-menu-button:hover {
+            transform: scale(1.1);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* NEW Full-Screen Navigation Overlay */
+        .full-screen-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95); /* Semi-transparent dark overlay */
+            z-index: 1000; /* Below hamburger button */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        .full-screen-nav-overlay.visible {
             opacity: 1;
             visibility: visible;
-            pointer-events: auto; /* Enable interaction when visible */
         }
 
-        .floating-nav ul {
+        .full-screen-nav-overlay .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .full-screen-nav-overlay .close-button:hover {
+            transform: rotate(90deg);
+            color: #1ABC9C;
+        }
+
+        .full-screen-nav-overlay ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            text-align: center;
         }
 
-        .floating-nav ul li {
-            margin: 0;
+        .full-screen-nav-overlay ul li {
+            margin-bottom: 25px; /* Increased space between links */
         }
 
-        .floating-nav ul li a {
-            display: block;
+        .full-screen-nav-overlay ul li a {
             color: #fff;
-            padding: 10px 15px;
             text-decoration: none;
-            font-size: 0.9em;
-            background-color: transparent;
-            border-radius: 0;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: none;
+            font-family: 'Playfair Display', serif; /* Elegant font for overlay links */
+            font-size: 2.5em; /* Large size for readability */
+            font-weight: bold;
+            display: block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
         }
 
-        .floating-nav ul li a:hover {
-            background-color: rgba(0, 0, 0, 0.9);
+        .full-screen-nav-overlay ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #1ABC9C;
             transform: scale(1.05);
-        }
-
-        .floating-nav ul li a.active {
-            background-color: #007bff;
-            transform: scale(1.02);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         
         .floating-social-contact {
@@ -351,7 +399,9 @@
             color: #fff;
             text-align: center;
             padding: 40px 0;
-            margin-left: 0;
+            margin-left: auto; /* Center footer */
+            margin-right: auto; /* Center footer */
+            width: 100%; /* Ensure it takes full width */
             border-top: 5px solid #16A085;
             z-index: 1;
             position: relative;
@@ -361,6 +411,7 @@
             justify-content: center;
             align-items: flex-start;
             font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box; /* Include padding in width */
         }
 
         .footer-content-wrapper {
@@ -369,9 +420,9 @@
             justify-content: space-around;
             align-items: flex-start;
             gap: 30px;
-            width: calc(100% - 150px);
-            margin-left: 150px;
-            padding-right: 20px;
+            width: 100%; /* Occupy full footer width */
+            max-width: 1200px; /* Align with main content sections */
+            padding: 0 20px; /* Add some horizontal padding */
             box-sizing: border-box;
         }
 
@@ -446,13 +497,11 @@
 
         @media (max-width: 768px) {
             .main-content {
-                margin-left: 0;
                 padding: 10px;
                 padding-top: 100px; /* Adjust for top nav on mobile */
             }
 
             .main-footer {
-                margin-left: 0;
                 padding: 40px 20px;
             }
 
@@ -923,14 +972,15 @@
         .sponsor-gallery {
             display: flex;
             flex-wrap: nowrap; /* Keep items in a single line */
-            justify-content: flex-start; /* Align to start for proper scrolling */
+            justify-content: center; /* Centered the gallery itself */
             align-items: center; /* Center for vertical alignment */
             gap: 15px; /* Gap between cards */
             width: 100%;
-            max-width: 1200px; /* Max width for the gallery container */
+            max-width: 1000px; /* Reduced max-width to help with centering */
             overflow-x: auto; /* Enable horizontal scrolling if content overflows */
             padding: 20px 0;
-            padding-left: 110px; /* Adjusted padding-left to shift right and align middle card */
+            padding-left: 0; /* Removed explicit padding-left */
+            margin: 0 auto; /* Centered the gallery itself */
             cursor: grab; /* Indicates scrollable area */
             scroll-snap-type: x mandatory; /* Optional: Snap to cards on scroll */
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
@@ -962,7 +1012,7 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            scroll-snap-align: start; /* Snap point for scroll-snap-type, adjusted to start */
+            scroll-snap-align: center; /* Changed to center for better alignment */
             background-color: #1D1D1D; /* Card background color */
             color: #fff; /* Text color for card */
 
@@ -1631,8 +1681,14 @@
         </nav>
     </header>
 
-    <!-- Original Floating Nav (now initially hidden, appears on scroll) -->
-    <nav class="floating-nav">
+    <!-- NEW Hamburger Menu Button -->
+    <button class="hamburger-menu-button" id="openNav">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- NEW Full-Screen Navigation Overlay -->
+    <div class="full-screen-nav-overlay" id="fullScreenNav">
+        <button class="close-button" id="closeNav"><i class="fas fa-times"></i></button>
         <ul>
             <li><a href="#events">Events</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
@@ -1641,11 +1697,11 @@
             <li><a href="#contact-us">Contact us Now!!</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
         </ul>
-    </nav>
+    </div>
 
     <main class="main-content">
         <section id="events" data-aos="fade-up">
-            
+            <!-- <h2>Our Events</h2> This title has been removed as per request -->
             <div class="timeline">
                 <div class="line">
                     <div class="scroller-indicator"></div>
@@ -2245,13 +2301,13 @@
             const bannerHeader = document.querySelector('.banner-header');
             const bannerVideo = document.querySelector('.banner-video');
             const topHeaderNav = document.querySelector('.top-header-nav');
-            const floatingNav = document.querySelector('.floating-nav');
-            const mainContent = document.querySelector('.main-content');
-            const topNavTextLogo = document.querySelector('.top-nav-text-logo'); // Reference the new text logo
-            const fixedAcmwLogo = document.querySelector('.acmw-logo'); // The original fixed image logo
+            const topNavTextLogo = document.querySelector('.top-nav-text-logo');
+            const fixedAcmwLogo = document.querySelector('.acmw-logo');
+            const hamburgerButton = document.getElementById('openNav');
+            const fullScreenNav = document.getElementById('fullScreenNav');
+            const closeNavButton = document.getElementById('closeNav');
+            const fullScreenNavLinks = fullScreenNav.querySelectorAll('ul li a');
 
-            // Set initial margin for main-content
-            mainContent.style.marginLeft = '0px';
 
             // Define updateTimelineScroller function
             function updateTimelineScroller() {
@@ -2276,44 +2332,28 @@
             }
 
             function highlightNavLink() {
-                let current = "";
-                const bannerHeight = bannerHeader.offsetHeight;
-                const thresholdForTopNav = bannerHeight - 50; // Trigger for nav switch
-
-                let navLinksToHighlight;
-
-                if (window.pageYOffset < thresholdForTopNav) {
-                    // Top nav is active
-                    navLinksToHighlight = topHeaderNav.querySelectorAll('ul li a');
-                    current = ""; // No section active when on the banner
-                } else {
-                    // Floating nav is active
-                    navLinksToHighlight = floatingNav.querySelectorAll('ul li a');
+                // Remove active from all top nav links
+                topHeaderNav.querySelectorAll('ul li a').forEach(a => a.classList.remove("active"));
+                
+                // Determine current section for highlighting (only if not in full-screen nav)
+                if (!fullScreenNav.classList.contains('visible')) {
+                    let currentSectionId = "";
                     for (let i = sections.length - 1; i >= 0; i--) {
                         const section = sections[i];
-                        let sectionOffset = section.offsetTop;
-                        // Adjust offset for fixed left nav when calculating current section
-                        if (floatingNav.classList.contains('active')) {
-                            sectionOffset -= 150; // Approx margin-left value
-                        }
-
-                        if (sectionOffset <= window.pageYOffset + (window.innerHeight / 3)) {
-                            current = section.getAttribute("id");
+                        if (section.offsetTop <= window.pageYOffset + (window.innerHeight / 3)) {
+                            currentSectionId = section.getAttribute("id");
                             break;
                         }
                     }
-                }
 
-                // Remove active from ALL links in both navs first
-                topHeaderNav.querySelectorAll('ul li a').forEach(a => a.classList.remove("active"));
-                floatingNav.querySelectorAll('ul li a').forEach(a => a.classList.remove("active"));
-
-                // Then apply active to links in the currently visible nav bar
-                navLinksToHighlight.forEach(a => {
-                    if (current && a.getAttribute("href").includes(current)) {
-                        a.classList.add("active");
+                    // Apply active class to the visible top nav link
+                    if (currentSectionId) {
+                        const activeLink = topHeaderNav.querySelector(`a[href="#${currentSectionId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add("active");
+                        }
                     }
-                });
+                }
             }
 
 
@@ -2332,14 +2372,13 @@
                 const scrollPosition = window.pageYOffset;
                 const bannerHeight = bannerHeader.offsetHeight;
 
-                // The threshold when the floating nav should become active and main content shifts
-                // This should be approximately when the main banner video is no longer visible.
-                const threshold = bannerHeight - 50; // A small buffer before the whole banner is out of view
+                const threshold = bannerHeight - 50;
 
                 if (scrollPosition > threshold) {
-                    // User has scrolled down, floating nav and fixed left logo should be active
-                    floatingNav.classList.add('active');
-                    mainContent.style.marginLeft = '150px';
+                    // User has scrolled down, hamburger button should be active
+                    hamburgerButton.style.opacity = '1';
+                    hamburgerButton.style.visibility = 'visible';
+                    hamburgerButton.style.pointerEvents = 'auto';
 
                     // Hide top nav and its text logo
                     if (topHeaderNav) {
@@ -2347,13 +2386,13 @@
                         topHeaderNav.style.visibility = 'hidden';
                         topHeaderNav.style.pointerEvents = 'none';
                     }
-                    if (topNavTextLogo) { // Hide the text logo that was inside the top nav
+                    if (topNavTextLogo) {
                         topNavTextLogo.style.opacity = '0';
                         topNavTextLogo.style.visibility = 'hidden';
                         topNavTextLogo.style.pointerEvents = 'none';
                     }
 
-                    // Show the original fixed ACMW image logo (which will be positioned top-left as before)
+                    // Show the original fixed ACMW image logo (top-left)
                     if (fixedAcmwLogo) {
                         fixedAcmwLogo.style.opacity = '1';
                         fixedAcmwLogo.style.visibility = 'visible';
@@ -2361,18 +2400,19 @@
                     }
 
                 } else {
-                    // User is at the top, top nav and *its* text logo should be active. Original fixed image logo should be hidden.
-                    floatingNav.classList.remove('active');
-                    mainContent.style.marginLeft = '0px';
+                    // User is at the top, top nav and its text logo should be active.
+                    hamburgerButton.style.opacity = '0';
+                    hamburgerButton.style.visibility = 'hidden';
+                    hamburgerButton.style.pointerEvents = 'none';
 
-                    // Show top nav and its text logo
+                    // Show top nav and its text logo (translucent)
                     if (topHeaderNav) {
                         topHeaderNav.style.opacity = '1';
                         topHeaderNav.style.visibility = 'visible';
                         topHeaderNav.style.pointerEvents = 'auto';
                     }
-                    if (topNavTextLogo) { // Show the text logo that is inside the top nav, make it translucent
-                        topNavTextLogo.style.opacity = '0.3'; /* Maintained opacity for translucency */
+                    if (topNavTextLogo) {
+                        topNavTextLogo.style.opacity = '0.3';
                         topNavTextLogo.style.visibility = 'visible';
                         topNavTextLogo.style.pointerEvents = 'auto';
                     }
@@ -2387,6 +2427,31 @@
                 highlightNavLink(); // Call highlight after state change
             }
 
+            // Toggle full-screen navigation
+            hamburgerButton.addEventListener('click', function() {
+                if (fullScreenNav.classList.contains('visible')) {
+                    fullScreenNav.classList.remove('visible');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                } else {
+                    fullScreenNav.classList.add('visible');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when overlay is open
+                }
+            });
+
+            // Close full-screen navigation
+            closeNavButton.addEventListener('click', function() {
+                fullScreenNav.classList.remove('visible');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            });
+
+            // Close overlay when a link is clicked
+            fullScreenNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    fullScreenNav.classList.remove('visible');
+                    document.body.style.overflow = ''; // Re-enable scrolling
+                });
+            });
+
 
             // Combine scroll event listeners
             window.addEventListener("scroll", () => {
@@ -2396,8 +2461,6 @@
             });
 
             window.addEventListener("resize", () => {
-                // Recalculate banner height on resize and re-evaluate nav state
-                // This ensures correct threshold if content or viewport changes
                 handleNavTransformation();
                 highlightNavLink();
                 handleVideoFade();
