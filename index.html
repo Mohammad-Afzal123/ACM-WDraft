@@ -1153,13 +1153,17 @@
 
         /* --- NEW Testimonial Section Styles (Google Reviews-like) --- */
         #testimonials {
-            padding: 60px 40px;
+            padding: 60px 0; /* Changed from 40px to 0 for full width */
             margin-bottom: 20px;
             background-color: transparent; /* Keep transparent */
             box-shadow: none;
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* Make full width */
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: 0;
         }
 
         #testimonials .testimonials-header {
@@ -1167,11 +1171,12 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            max-width: 1000px;
+            max-width: 100%; /* Ensure header is full width within its padding */
             margin-bottom: 30px;
         }
 
         #testimonials h2 {
+            display: none; /* Hidden as per request */
             font-family: 'Playfair Display', serif;
             color: #1ABC9C;
             border-bottom: 2px solid #1ABC9C;
@@ -1191,11 +1196,13 @@
             color: #1ABC9C; /* Changed to green */
             font-size: 1.2em;
             font-weight: bold;
+            justify-content: center; /* Center the stars */
+            width: 100%; /* Make it take full width to center effectively */
         }
 
         #testimonials .review-summary .stars {
             color: #F1C40F; /* Yellow for stars */
-            margin-left: 10px;
+            /* Removed margin-left to allow perfect centering */
             font-size: 1.2em;
         }
         #testimonials .review-summary .stars .fa-star {
@@ -1204,15 +1211,16 @@
 
         #testimonials .testimonials-slider-container {
             width: 100%;
-            max-width: 1200px;
-            overflow-x: auto;
+            max-width: 100%; /* Make full width */
+            overflow-x: hidden; /* Changed to hidden for seamless loop */
             -webkit-overflow-scrolling: touch;
             padding-bottom: 20px; /* Space for scrollbar */
             cursor: grab;
-            scroll-snap-type: x mandatory;
+            /* Removed scroll-snap-type: x mandatory; */
             display: flex; /* Ensure flex for horizontal layout */
             justify-content: flex-start; /* Align items to the start */
             gap: 20px; /* Gap between cards */
+            position: relative; /* Needed for cloning logic */
         }
         
         #testimonials .testimonials-slider-container::-webkit-scrollbar {
@@ -1240,7 +1248,7 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            scroll-snap-align: start; /* Snap to start of card */
+            /* Removed scroll-snap-align: start; */
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -1366,7 +1374,7 @@
                 margin-right: 10px;
             }
         }
-
+        
         /* Styles for the Contact Us Section as a whole */
         #contact-us {
             background-color: transparent; /* Set to transparent as requested */
@@ -1992,7 +2000,7 @@
                         </div>
                     </div>
                     <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/76.jpg" alt="CH L Sudheera">
+                        <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=Team+Member" alt="CH L Sudheera">
                         <div class="overlay"><strong>CH L Sudheera</strong><br/>Design
                             <div class="social-icons">
                                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -2127,9 +2135,9 @@
 
         <section id="testimonials" data-aos="fade-left">
             <div class="testimonials-header">
-                <h2>Testimonials</h2>
+                <!-- <h2>Testimonials</h2> This title has been removed as per request -->
                 <div class="review-summary">
-                    5.0 <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> (11)
+                    <!-- Removed the stars here as requested -->
                 </div>
                 <!-- Removed the "Review us on Google" button as requested -->
             </div>
@@ -2307,7 +2315,72 @@
             const fullScreenNav = document.getElementById('fullScreenNav');
             const closeNavButton = document.getElementById('closeNav');
             const fullScreenNavLinks = fullScreenNav.querySelectorAll('ul li a');
+            const testimonialsSlider = document.querySelector('.testimonials-slider-container');
 
+            let animationFrameId; // To store the requestAnimationFrame ID
+            let scrollSpeed = 1.0; // Increased speed for better visibility
+            let isPaused = false; // Flag to pause on hover
+            let originalContentWidth = 0; // Variable to store original content width
+
+            // Function to clone cards for infinite scroll effect
+            function setupInfiniteScroll() {
+                const initialCards = Array.from(testimonialsSlider.querySelectorAll('.review-card'));
+                if (initialCards.length === 0) return;
+
+                // Clear any existing clones to prevent issues on multiple runs (e.g., resize)
+                testimonialsSlider.innerHTML = '';
+                originalContentWidth = 0; // Reset width calculation
+
+                // Append original cards back and calculate their total width
+                initialCards.forEach(card => {
+                    testimonialsSlider.appendChild(card); // Re-append original nodes
+                    originalContentWidth += card.offsetWidth + 20; // 20px is the gap
+                });
+
+                // Append enough clones to create a seamless loop that spans at least twice the original content
+                // This ensures there's always enough content to scroll without seeing the end
+                let currentTotalWidth = originalContentWidth;
+                const containerWidth = testimonialsSlider.offsetWidth;
+                while (currentTotalWidth < containerWidth * 2) { // Ensure at least 2 full screens of content
+                    initialCards.forEach(card => {
+                        testimonialsSlider.appendChild(card.cloneNode(true));
+                        currentTotalWidth += card.offsetWidth + 20;
+                    });
+                }
+                
+                // Reset scroll position to the very beginning after cloning
+                testimonialsSlider.scrollLeft = 0;
+            }
+
+            // Function to start scrolling using requestAnimationFrame
+            function startScrolling() {
+                if (animationFrameId) cancelAnimationFrame(animationFrameId); // Clear previous animation
+
+                const scrollStep = () => {
+                    if (isPaused) {
+                        animationFrameId = requestAnimationFrame(scrollStep); // Continue requesting if paused
+                        return;
+                    }
+
+                    testimonialsSlider.scrollLeft += scrollSpeed;
+
+                    // If scroll position is beyond the original content, reset to the beginning
+                    // This creates the infinite loop effect
+                    if (testimonialsSlider.scrollLeft >= originalContentWidth) {
+                        testimonialsSlider.scrollLeft = 0;
+                    }
+                    animationFrameId = requestAnimationFrame(scrollStep);
+                };
+                animationFrameId = requestAnimationFrame(scrollStep);
+            }
+
+            // Pause on hover
+            testimonialsSlider.addEventListener('mouseenter', () => {
+                isPaused = true;
+            });
+            testimonialsSlider.addEventListener('mouseleave', () => {
+                isPaused = false;
+            });
 
             // Define updateTimelineScroller function
             function updateTimelineScroller() {
@@ -2465,6 +2538,7 @@
                 highlightNavLink();
                 handleVideoFade();
                 updateTimelineScroller();
+                setupInfiniteScroll(); // Re-setup on resize to adjust cloning
             });
 
             // Initial calls on load
@@ -2472,6 +2546,10 @@
             highlightNavLink();
             handleVideoFade();
             updateTimelineScroller();
+
+            // Initial setup and start scrolling for testimonials
+            setupInfiniteScroll();
+            startScrolling();
         });
 
         document.querySelector('.chatbot-button').addEventListener('click', function(e) {
