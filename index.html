@@ -1153,25 +1153,38 @@
 
         /* --- NEW Testimonial Section Styles (Google Reviews-like) --- */
         #testimonials {
-            padding: 60px 0; /* Changed from 40px to 0 for full width */
-            margin-bottom: 20px;
+            padding: 30px 0; /* Vertical padding reduced, no horizontal */
+            margin-bottom: 0px; /* Reduced gap as requested */
             background-color: transparent; /* Keep transparent */
             box-shadow: none;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Make full width */
-            max-width: 100%;
-            margin-left: 0;
-            margin-right: 0;
+            
+            /* Forces full viewport width, overriding parent padding */
+            width: 100vw;
+            position: relative; /* Needed for calc positioning to work relative to viewport */
+            left: 50%;
+            transform: translateX(-50%);
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+            /* Remove any potentially conflicting margin-left/right inherited from 'section' */
+            margin-left: unset !important;
+            margin-right: unset !important;
+        }
+        /* Ensure inner elements also scale to new full width */
+        #testimonials .testimonials-header,
+        #testimonials .testimonials-slider-container {
+            width: 100%; /* Occupy the full width of the parent #testimonials */
+            max-width: 1200px; /* Keep content readable within a max-width, center it */
+            padding: 0 20px; /* Add some internal padding to prevent content from touching edges */
+            box-sizing: border-box;
         }
 
         #testimonials .testimonials-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
-            max-width: 100%; /* Ensure header is full width within its padding */
+            /* No max-width here, it's applied to the direct parent now */
             margin-bottom: 30px;
         }
 
@@ -1210,8 +1223,7 @@
         }
 
         #testimonials .testimonials-slider-container {
-            width: 100%;
-            max-width: 100%; /* Make full width */
+            /* No max-width here, it's applied to the direct parent now */
             overflow-x: hidden; /* Changed to hidden for seamless loop */
             -webkit-overflow-scrolling: touch;
             padding-bottom: 20px; /* Space for scrollbar */
@@ -1379,7 +1391,7 @@
         #contact-us {
             background-color: transparent; /* Set to transparent as requested */
             color: #fff; /* Default text color for the section */
-            padding: 80px 40px;
+            padding: 40px 40px; /* Reduced top padding as requested */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1550,7 +1562,15 @@
             display: flex;
             flex-direction: column;
             gap: 20px; /* Space between form elements */
+            /* Added for animation control */
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
         }
+        .contact-form.hidden {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute; /* Take out of flow when hidden */
+        }
+
         .contact-form input[type="text"],
         .contact-form input[type="email"],
         .contact-form textarea {
@@ -1610,6 +1630,48 @@
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
             filter: brightness(1.1);
         }
+
+        /* Animation for tearing apart panels */
+        .contact-left-panel,
+        .contact-right-panel {
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        .contact-left-panel.tear-out {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        .contact-right-panel.tear-out {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        /* Thank you message overlay */
+        .contact-message-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Match right panel */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2em;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            z-index: 10; /* Above the panels */
+            border-radius: 20px; /* Match container */
+        }
+        .contact-message-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
 
         /* Responsive adjustments for Contact Us Section */
         @media (max-width: 768px) {
@@ -2100,6 +2162,11 @@
         <section id="contact-us" data-aos="fade-up">
             <!-- Main section title is hidden by CSS -->
             <div class="contact-panels-container">
+                <!-- Thank you message overlay -->
+                <div class="contact-message-overlay" id="contactMessage">
+                    Thank You! Your message has been sent.
+                </div>
+
                 <div class="contact-left-panel">
                     <div class="contact-left-content">
                         <h3>Let's Connect!</h3>
@@ -2600,6 +2667,52 @@
                     const eventId = this.id;
                     alert(`Learn more about ${eventId}! (Redirect functionality not implemented yet)`);
                 });
+            });
+
+            const contactForm = document.querySelector('.contact-form');
+            const leftPanel = document.querySelector('.contact-left-panel');
+            const rightPanel = document.querySelector('.contact-right-panel');
+            const contactMessage = document.getElementById('contactMessage');
+            
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Simple validation example (you can expand this)
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                if (!name || !email || !subject || !message) {
+                    // Using alert for now as per previous, but a custom modal would be better
+                    alert('Please fill in all fields before sending your message.');
+                    return;
+                }
+
+                // Add classes to trigger "tear apart" animation
+                leftPanel.classList.add('tear-out');
+                rightPanel.classList.add('tear-out');
+                contactForm.classList.add('hidden'); // Hide the form itself during transition
+
+                // Wait for the panels' tear-out animation to complete (0.5s)
+                setTimeout(() => {
+                    // Show thank you message
+                    contactMessage.classList.add('show'); 
+
+                    // Immediately remove tear-out classes to reset their position for when they reappear
+                    leftPanel.classList.remove('tear-out');
+                    rightPanel.classList.remove('tear-out');
+                    
+                    // Reset form fields
+                    contactForm.reset();
+
+                    // After some time, hide thank you and show the new empty form again
+                    setTimeout(() => {
+                        contactMessage.classList.remove('show'); // Hide thank you
+                        contactForm.classList.remove('hidden'); // Show the form again
+                        // Panels will reappear because tear-out classes are removed and they transition back to default
+                    }, 2000); // Display thank you for 2 seconds
+                }, 500); // Corresponds to the transition duration (0.5s) for tear-out
             });
         });
     </script>
