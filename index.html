@@ -22,6 +22,104 @@
             position: relative;
         }
 
+        /* Elements that should appear AFTER the preloader */
+        header, main, footer, .floating-social-contact, .hamburger-menu-button {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+
+
+        /* Preloader Page Styles */
+        #preload-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #1a1a1a; /* Dark background for the preloader */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999; /* Ensures it's on top of everything */
+            flex-direction: column;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+            /* Ensure preloader is visible initially */
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .loader-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* Stack circles and text vertically */
+        }
+
+        .loader-circles {
+            display: flex;
+            gap: 15px; /* Space between circles */
+            margin-bottom: 30px; /* Space above loading text */
+        }
+
+        .loader-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #1ABC9C; /* Teal color */
+            animation: circle-animation 2.0s infinite cubic-bezier(0.8, 0, 0.2, 1) forwards;
+            box-shadow: 0 0 10px rgba(26, 188, 156, 0.7);
+        }
+
+        .loader-circle:nth-child(1) { animation-delay: 0s; background-color: #1ABC9C; }
+        .loader-circle:nth-child(2) { animation-delay: 0.2s; background-color: #007BFF; }
+        .loader-circle:nth-child(3) { animation-delay: 0.4s; background-color: #E74C3C; }
+
+        @keyframes circle-animation {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(26, 188, 156, 0.7);
+            }
+            25% {
+                transform: translateY(-20px) scale(1.2) rotate(90deg);
+                opacity: 0.8;
+                box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+            }
+            50% {
+                transform: translateY(0) scale(1) rotate(180deg);
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(231, 76, 60, 0.7);
+            }
+            75% {
+                transform: translateY(-20px) scale(1.2) rotate(270deg);
+                opacity: 0.8;
+                box-shadow: 0 0 15px rgba(26, 188, 156, 0.8);
+            }
+            100% {
+                transform: translateY(0) scale(1) rotate(360deg);
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+            }
+        }
+
+        .loader-text {
+            font-size: 1.8em;
+            color: #eee;
+            margin-top: 20px;
+            animation: fade-in-out 2s infinite alternate;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+        }
+
+        @keyframes fade-in-out {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
         #vanta-bg {
             width: 100%;
             height: 100%;
@@ -33,7 +131,7 @@
 
         .banner-header {
             position: relative;
-            width: 100%;
+            width: 100%; /* Ensures it takes full width */
             height: 100vh; /* Changed to full viewport height */
             overflow: hidden;
             display: flex;
@@ -105,24 +203,27 @@
         .main-content {
             position: relative;
             z-index: 1;
-            padding: 20px;
+            padding: 20px; /* Responsive padding */
             min-height: 100vh;
             padding-top: 20vh; /* Adjusted for smaller gap */
-            /* Removed margin-left as the left nav is gone */
+            width: 100%; /* Ensures it takes full width of its parent (body) */
+            box-sizing: border-box; /* Include padding in the width calculation */
+            /* This container will naturally adapt based on its parent and its child elements */
         }
 
-        /* Generic section styling - transparent by default */
+        /* Generic section styling - now full viewport width */
         section {
-            padding: 60px 40px;
+            padding: 60px 40px; /* Consistent padding */
             margin-bottom: 20px;
             background-color: transparent;
             border-radius: 8px;
             box-shadow: none;
-            max-width: 1200px; /* Max width for content readability */
-            margin-left: auto; /* Center sections horizontally */
-            margin-right: auto; /* Center sections horizontally */
-            width: 100%; /* Ensure it takes full width up to max-width */
+            /* Removed max-width and auto margins to allow full width */
+            width: 100%; /* Ensure it takes full width of its parent */
             box-sizing: border-box; /* Include padding in width calculation */
+            /* For sections that need to truly span 100vw, like contact/testimonials,
+               explicit width: 100vw with positioning is used below.
+               This general 'section' rule now allows content to stretch more. */
         }
 
         /* Specific overrides for sections with white background */
@@ -426,9 +527,7 @@
             color: #fff;
             text-align: center;
             padding: 40px 0;
-            margin-left: auto; /* Center footer */
-            margin-right: auto; /* Center footer */
-            width: 100%; /* Ensure it takes full width */
+            width: 100%; /* Ensures it takes full width */
             border-top: 5px solid #16A085;
             z-index: 1;
             position: relative;
@@ -448,7 +547,9 @@
             align-items: flex-start;
             gap: 30px;
             width: 100%; /* Occupy full footer width */
-            max-width: 1200px; /* Align with main content sections */
+            max-width: 1200px; /* Align with main content sections, but keep responsiveness */
+            margin-left: auto; /* Center content within footer */
+            margin-right: auto; /* Center content within footer */
             padding: 0 20px; /* Add some horizontal padding */
             box-sizing: border-box;
         }
@@ -616,8 +717,8 @@
         /* --- Event Tile Specific Styles --- */
         .timeline {
             position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 1000px; /* Kept max-width for timeline content for readability */
+            margin: 0 auto; /* Centering timeline content */
             padding: 20px 0;
         }
 
@@ -1003,7 +1104,7 @@
             align-items: center; /* Center for vertical alignment */
             gap: 15px; /* Gap between cards */
             width: 100%;
-            max-width: 1000px; /* Reduced max-width to help with centering */
+            max-width: 1300px; /* Increased max-width for sponsor gallery */
             overflow-x: auto; /* Enable horizontal scrolling if content overflows */
             padding: 20px 0;
             padding-left: 0; /* Removed explicit padding-left */
@@ -1047,29 +1148,29 @@
             clip-path: none;
         }
         
-        /* Default sizing for sponsors (made thinner) */
+        /* Default sizing for sponsors (increased) */
         .sponsor-card:nth-child(1), .sponsor-card:nth-child(5) {
-            width: 120px; /* Thinner */
-            height: 300px; /* Proportional adjustment */
+            width: 160px;
+            height: 400px;
         }
         .sponsor-card:nth-child(2), .sponsor-card:nth-child(4) {
-            width: 150px; /* Thinner */
-            height: 360px; /* Proportional adjustment */
+            width: 200px;
+            height: 480px;
         }
         .sponsor-card:nth-child(3) {
-            width: 180px; /* Thinner */
-            height: 420px; /* Proportional adjustment */
+            width: 240px;
+            height: 560px;
         }
 
-        /* Hover effect: make all non-hovered smaller, hovered larger */
+        /* Hover effect: make all non-hovered smaller, hovered larger (increased) */
         .sponsor-gallery:hover .sponsor-card {
-            width: 120px; /* Smaller default width when one is hovered */
-            height: 300px; /* Match smallest height when others are hovered */
+            width: 160px; /* Match new smallest width when others are hovered */
+            height: 400px; /* Match new smallest height when others are hovered */
         }
 
         .sponsor-gallery .sponsor-card:hover {
-            width: 300px; /* Adjusted expanded width on hover */
-            height: 450px; /* Proportional adjustment */
+            width: 400px; /* Adjusted expanded width on hover */
+            height: 600px; /* Proportional adjustment */
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             filter: brightness(1.1);
             z-index: 10; /* Ensure hovered card is on top */
@@ -1443,8 +1544,8 @@
 
         .contact-panels-container {
             display: flex;
-            width: 100%; /* Now takes 100% of its parent (which is 100vw) */
-            max-width: 1300px; /* Keeps internal content from being too wide */
+            width: 96%; /* Adjusted to 96% for 2% margin on each side */
+            margin: 0 auto; /* Centering the card with auto margins */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Shadow for the overall card */
@@ -1458,7 +1559,7 @@
 
         /* Zig-zag shape for the left panel - now white */
         .contact-left-panel {
-            flex: 0.4; /* Increased width for the left panel */
+            flex: 0.45; /* Increased width for the left panel (white panel) */
             padding: 40px; /* Keep internal padding for content */
             background-color: #fff; /* White background for the left panel - KEEP THIS WHITE */
             color: #333; /* Dark text for white background */
@@ -1474,17 +1575,17 @@
             text-align: left;
             /* Adjusted clip-path to make zig-zag less pointed */
             clip-path: polygon(
-                0 0, 90% 0, /* Straight top to 90% */
-                93% 5%, 90% 10%, /* Less pointed zig-zag points */
-                93% 15%, 90% 20%,
-                93% 25%, 90% 30%,
-                93% 35%, 90% 40%,
-                93% 45%, 90% 50%,
-                93% 55%, 90% 60%,
-                93% 65%, 90% 70%,
-                93% 75%, 90% 80%,
-                93% 85%, 90% 90%,
-                93% 95%, 90% 100%, /* Less pointed zig-zag to 90% at bottom */
+                0 0, 92% 0, /* Straight top to 92% (less pointed) */
+                94% 5%, 92% 10%, /* Less pointed zig-zag points */
+                94% 15%, 92% 20%,
+                94% 25%, 92% 30%,
+                94% 35%, 92% 40%,
+                94% 45%, 92% 50%,
+                94% 55%, 92% 60%,
+                94% 65%, 92% 70%,
+                94% 75%, 92% 80%,
+                94% 85%, 92% 90%,
+                94% 95%, 92% 100%, /* Less pointed zig-zag to 92% at bottom */
                 0 100% /* Straight bottom to left */
             );
             border: none; /* No border for the left panel */
@@ -1555,7 +1656,7 @@
         /* Removed .contact-middle-panel styles */
 
         .contact-right-panel {
-            flex: 0.6; /* Decreased width for the right panel */
+            flex: 0.55; /* Decreased width for the right panel (purple panel) */
             padding: 40px; /* Keep internal padding for content */
             background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Deep purple to lighter purple gradient */
             color: #fff; /* White text for dark background */
@@ -1572,17 +1673,17 @@
             /* Adjusted clip-path to make zig-zag less pointed */
             clip-path: polygon(
                 100% 0, 100% 100%, /* Straight right edge */
-                10% 100%, 7% 95%, /* Less pointed zig-zag points mirrored and inverted, changed to start at 10% and 7% */
-                10% 90%, 7% 85%,
-                10% 80%, 7% 75%,
-                10% 70%, 7% 65%,
-                10% 60%, 7% 55%,
-                10% 50%, 7% 45%,
-                10% 40%, 7% 35%,
-                10% 30%, 7% 25%,
-                10% 20%, 7% 15%,
-                10% 10%, 7% 5%,
-                10% 0 /* Less pointed zig-zag to 10% at top */
+                8% 100%, 6% 95%, /* Less pointed zig-zag points mirrored and inverted, changed to start at 8% and 6% */
+                8% 90%, 6% 85%,
+                8% 80%, 6% 75%,
+                8% 70%, 6% 65%,
+                8% 60%, 6% 55%,
+                8% 50%, 6% 45%,
+                8% 40%, 6% 35%,
+                8% 30%, 6% 25%,
+                8% 20%, 6% 15%,
+                8% 10%, 6% 5%,
+                8% 0 /* Less pointed zig-zag to 8% at top */
             );
         }
 
@@ -1596,14 +1697,16 @@
 
         .contact-form {
             width: 100%;
-            max-width: 470px; /* Increased width of the content a little bit */
-            margin-left: auto; /* Push content to the center */
-            margin-right: auto; /* Allow auto margin on the right to center or push from left */
+            max-width: 550px; /* Increased max-width for contact form */
+            /* Align contact form content left within its container */
+            margin-left: auto; /* Pushed to the right */
+            margin-right: 0; /* Align to right */
             display: flex;
             flex-direction: column;
             gap: 20px; /* Space between form elements */
             /* Added for animation control */
             transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            text-align: right; /* Align form labels/placeholders to the right */
         }
         .contact-form.hidden {
             opacity: 0;
@@ -1659,7 +1762,7 @@
             letter-spacing: 1px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
-            align-self: center; /* Align the button to the center */
+            align-self: flex-end; /* Align the button to the right */
             margin-top: 20px;
             width: 80%; /* Make button wider */
             max-width: 300px;
@@ -1722,7 +1825,7 @@
                 flex-direction: column;
                 border-radius: 15px;
                 min-height: auto;
-                width: 100%; /* Full width on mobile */
+                width: 96%; /* Full width on mobile, with 2% margin */
             }
 
             .contact-left-panel {
@@ -1754,6 +1857,18 @@
     </style>
 </head>
 <body>
+
+    <!-- Preloader Page -->
+    <div id="preload-page">
+        <div class="loader-container">
+            <div class="loader-circles">
+                <div class="loader-circle circle-1"></div>
+                <div class="loader-circle circle-2"></div>
+                <div class="loader-circle circle-3"></div>
+            </div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
 
     <div id="vanta-bg"></div>
 
@@ -2395,6 +2510,41 @@
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Preloader Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.getElementById('preload-page');
+            const mainContentElements = document.querySelectorAll('header, main, footer, .floating-social-contact, .hamburger-menu-button');
+
+            // Set a minimum display time for the preloader
+            const minPreloadTime = 2500; // 2.5 seconds
+            let startTime = Date.now();
+
+            function hidePreloader() {
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = minPreloadTime - elapsedTime;
+
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    preloader.style.visibility = 'hidden';
+
+                    // Make main content visible
+                    mainContentElements.forEach(el => {
+                        el.style.opacity = '1';
+                        el.style.visibility = 'visible';
+                    });
+                    document.body.style.overflowX = 'hidden'; // Ensure overflow-x is off after load
+                }, Math.max(0, remainingTime)); // Wait for remaining time or immediately if already passed
+            }
+
+
+            // Ensure content is loaded before hiding preloader
+            window.addEventListener('load', () => {
+                // This ensures all assets (images, videos) are loaded.
+                hidePreloader();
+            });
+        });
+
+
         // Initialize AOS
         AOS.init({
             duration: 1000,
@@ -2653,12 +2803,6 @@
                 updateTimelineScroller();
                 setupInfiniteScroll(); // Re-setup on resize to adjust cloning
             });
-
-            // Initial calls on load
-            handleNavTransformation();
-            highlightNavLink();
-            handleVideoFade();
-            updateTimelineScroller();
 
             // Initial setup and start scrolling for testimonials
             setupInfiniteScroll();
