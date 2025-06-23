@@ -169,7 +169,7 @@
             opacity: 0; /* Start hidden */
             visibility: hidden; /* Start hidden */
             pointer-events: none; /* Disable interaction when hidden */
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-in-out; /* Smooth transition */
         }
 
         .banner-overlay-text {
@@ -203,27 +203,21 @@
         .main-content {
             position: relative;
             z-index: 1;
-            padding: 20px; /* Responsive padding */
-            min-height: 100vh;
             padding-top: 20vh; /* Adjusted for smaller gap */
             width: 100%; /* Ensures it takes full width of its parent (body) */
             box-sizing: border-box; /* Include padding in the width calculation */
-            /* This container will naturally adapt based on its parent and its child elements */
+            min-height: 100vh;
         }
 
-        /* Generic section styling - now full viewport width */
+        /* Generic section styling to ensure padding and full width */
         section {
-            padding: 60px 40px; /* Consistent padding */
+            padding: 60px 40px; /* Consistent padding for content */
             margin-bottom: 20px;
             background-color: transparent;
             border-radius: 8px;
             box-shadow: none;
-            /* Removed max-width and auto margins to allow full width */
             width: 100%; /* Ensure it takes full width of its parent */
             box-sizing: border-box; /* Include padding in width calculation */
-            /* For sections that need to truly span 100vw, like contact/testimonials,
-               explicit width: 100vw with positioning is used below.
-               This general 'section' rule now allows content to stretch more. */
         }
 
         /* Specific overrides for sections with white background */
@@ -235,6 +229,8 @@
             overflow: hidden; /* Hide overflow from video */
             padding-top: 60px; /* Re-add padding as video covers all */
             padding-bottom: 60px;
+            padding-left: 40px; /* Ensure padding for content inside */
+            padding-right: 40px; /* Ensure padding for content inside */
         }
 
         .alumni-video-background {
@@ -281,6 +277,8 @@
         #become-member {
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding-left: 40px; /* Ensure padding for content inside */
+            padding-right: 40px; /* Ensure padding for content inside */
         }
 
         /* Specific override for events section background (already transparent) */
@@ -318,7 +316,7 @@
             justify-content: space-between; /* Space out logo and links */
             align-items: center;
             box-shadow: none; /* Removed shadow as requested */
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* For disappearing */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-in-out; /* For disappearing */
         }
 
         .top-nav-logo {
@@ -327,7 +325,7 @@
             opacity: 0; /* Initially hidden, controlled by JS */
             visibility: hidden; /* Initially hidden, controlled by JS */
             pointer-events: none; /* Initially disabled, controlled by JS */
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-in-out; /* Smooth transition */
             mix-blend-mode: screen; /* Keep blending */
             filter: brightness(2); /* Keep brightness */
             margin-right: 20px; /* Space between logo and nav links */
@@ -335,16 +333,14 @@
 
         .top-nav-text-logo {
             font-family: 'Playfair Display', serif; /* A more elegant font for the text logo */
-            font-size: 2.5em; /* Large size for prominence */
+            font-size: 2.5em;
             font-weight: bold;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            opacity: 0; /* Start hidden */
-            visibility: hidden; /* Start hidden */
-            pointer-events: none; /* Disable interaction when hidden */
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition */
-            margin-right: 20px; /* Space between logo and nav links */
-            letter-spacing: 1px; /* Slightly increased letter spacing */
+            /* Removed initial opacity and visibility, controlled by JS */
+            pointer-events: auto; /* Default to auto, JS will change */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-in-out; /* Smooth transition */
+            letter-spacing: 1px;
             margin-left: 20px; /* Added to shift it left */
         }
 
@@ -393,7 +389,8 @@
             z-index: 1001; /* Above everything else */
             opacity: 0; /* Initially hidden */
             visibility: hidden; /* Initially hidden */
-            transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.2s ease;
+            pointer-events: none; /* Initially disabled */
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-in-out, transform 0.2s ease;
         }
 
         .hamburger-menu-button:hover {
@@ -416,7 +413,7 @@
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-in-out;
         }
 
         .full-screen-nav-overlay.visible {
@@ -1525,11 +1522,10 @@
             position: relative;
             box-shadow: none; /* Removed */
             border-radius: 0; /* Removed */
-            margin-bottom: 40px;
+            margin-bottom: 0; /* Set to 0 to remove any margin below the section */
 
             /* Forces full viewport width, overriding parent padding */
             width: 100vw;
-            position: relative; /* Needed for calc positioning to work relative to viewport */
             left: 50%;
             transform: translateX(-50%);
             box-sizing: border-box; /* Ensure padding is included in width calculation */
@@ -1818,17 +1814,132 @@
 
         /* Responsive adjustments for Contact Us Section */
         @media (max-width: 768px) {
-            #contact-us {
+            .main-content {
+                padding: 10px;
+                padding-top: 100px; /* Adjust for top nav on mobile */
+            }
+
+            .main-footer {
                 padding: 40px 20px;
             }
-            .contact-panels-container {
+
+            .footer-content-wrapper {
+                margin-left: 0;
+                width: 100%;
+                padding-right: 0;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-social-icons {
+                justify-content: center;
+            }
+
+            .floating-social-contact {
+                right: 10px;
+                bottom: 10px;
+                gap: 5px;
+                padding: 5px;
+                border-radius: 5px;
+            }
+
+            .floating-social-contact a {
+                font-size: 1.2em;
+                width: 35px;
+                height: 35px;
+            }
+
+            .banner-overlay-text h1 {
+                font-size: 2.5em;
+            }
+
+            .banner-overlay-text p {
+                font-size: 1em;
+            }
+
+            .timeline .line {
+                left: 20px;
+            }
+
+            .timeline .section {
+                padding: 10px;
+                justify-content: flex-end;
+            }
+
+            .timeline .section .card {
+                width: calc(100% - 70px);
+                margin-left: 60px;
+                margin-right: 0;
+            }
+
+            .timeline .section:nth-of-type(odd) .card::after {
+                left: -30px;
+                right: auto;
+            }
+            .timeline .section:nth-of-type(even) .card::after {
+                left: -30px;
+                right: auto;
+            }
+            .timeline .section:nth-of-type(odd) .card {
+                margin-right: 0;
+                margin-left: 60px;
+            }
+
+            .timeline .section:nth-of-type(even) .card {
+                margin-left: 60px;
+            }
+
+            /* Responsive for Top Nav */
+            .top-header-nav {
+                padding: 10px 0;
+            }
+            .top-header-nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .members-grid .member-card:nth-child(even) {
+                margin-top: 0; /* remove staggering on small screens */
+            }
+            .members-grid .member-card:nth-child(2n) {
+                margin-top: 0; /* remove staggering on small screens */
+            }
+
+            #testimonials .testimonials-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            #testimonials h2 {
+                margin-right: 0;
+            }
+            #testimonials .testimonials-slider-container {
+                justify-content: flex-start;
+                gap: 15px;
+                padding-bottom: 15px;
+            }
+            #testimonials .review-card {
+                width: 250px; /* Smaller cards on mobile */
+                padding: 15px;
+            }
+            #testimonials .review-text {
+                -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
+            }
+
+            /* Contact Us Section on mobile */
+            #contact-us .contact-panels-container {
                 flex-direction: column;
                 border-radius: 15px;
                 min-height: auto;
                 width: 96%; /* Full width on mobile, with 2% margin */
             }
 
-            .contact-left-panel {
+            #contact-us .contact-left-panel {
                 clip-path: none; /* Remove clip-path on mobile */
                 border-radius: 15px 15px 0 0;
                 padding-right: 40px; /* Reset padding */
@@ -1836,21 +1947,26 @@
                 margin-right: 0; /* Reset margin */
                 z-index: auto; /* Reset z-index */
             }
-            .contact-right-panel {
+            #contact-us .contact-right-panel {
+                clip-path: none; /* Remove clip-path on mobile */
                 border-radius: 0 0 15px 15px;
+                padding-left: 40px; /* Reset padding */
+                padding-top: 20px;
+                margin-left: 0; /* Reset margin */
+                z-index: auto; /* Reset z-index */
             }
             /* Removed .contact-middle-panel on mobile styles */
 
-            .contact-info,
-            .contact-form {
+            #contact-us .contact-info,
+            #contact-us .contact-form {
                 width: 100%; /* Full width on mobile */
                 min-width: unset; /* Remove min-width constraint */
                 padding: 20px; /* Adjust padding for mobile */
             }
 
-            .contact-form input[type="text"],
-            .contact-form input[type="email"],
-            .contact-form textarea {
+            #contact-us .contact-form input[type="text"],
+            #contact-us .contact-form input[type="email"],
+            #contact-us .contact-form textarea {
                 width: calc(100% - 40px); /* Ensure full width even with padding */
             }
         }
@@ -2506,7 +2622,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <!-- Typed.js CDN -->
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -2680,6 +2796,10 @@
                             currentSectionId = section.getAttribute("id");
                             break;
                         }
+                        // Fallback for when no section is in view (e.g., at the very top or bottom)
+                        if (window.pageYOffset < sections[0].offsetTop) {
+                            currentSectionId = "top"; // Or any ID for your top-most content
+                        }
                     }
 
                     // Apply active class to the visible top nav link
@@ -2708,7 +2828,7 @@
                 const scrollPosition = window.pageYOffset;
                 const bannerHeight = bannerHeader.offsetHeight;
 
-                const threshold = bannerHeight - 50;
+                const threshold = bannerHeight - 50; // Hamburger appears when scrolled past most of the banner
 
                 if (scrollPosition > threshold) {
                     // User has scrolled down, hamburger button should be active
@@ -2741,14 +2861,14 @@
                     hamburgerButton.style.visibility = 'hidden';
                     hamburgerButton.style.pointerEvents = 'none';
 
-                    // Show top nav and its text logo (translucent)
+                    // Show top nav and its text logo (fully opaque)
                     if (topHeaderNav) {
                         topHeaderNav.style.opacity = '1';
                         topHeaderNav.style.visibility = 'visible';
                         topHeaderNav.style.pointerEvents = 'auto';
                     }
                     if (topNavTextLogo) {
-                        topNavTextLogo.style.opacity = '0.3';
+                        topNavTextLogo.style.opacity = '1';
                         topNavTextLogo.style.visibility = 'visible';
                         topNavTextLogo.style.pointerEvents = 'auto';
                     }
@@ -2838,20 +2958,27 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var typed = new Typed('#typed-output', {
-                stringsElement: '#typed-strings',
-                typeSpeed: 70,
-                backSpeed: 30,
-                backDelay: 1500,
-                startDelay: 500,
-                loop: true,
-                loopCount: Infinity,
-                showCursor: true,
-                cursorChar: '|',
-                autoInsertCss: true,
-            });
+        // Moved Typed.js initialization to window.onload
+        window.onload = function() {
+            // Check if Typed is defined before initializing
+            if (typeof Typed !== 'undefined') {
+                var typed = new Typed('#typed-output', {
+                    stringsElement: '#typed-strings',
+                    typeSpeed: 70,
+                    backSpeed: 30,
+                    backDelay: 1500,
+                    startDelay: 500,
+                    loop: true,
+                    loopCount: Infinity,
+                    showCursor: true,
+                    cursorChar: '|',
+                    autoInsertCss: true,
+                });
+            } else {
+                console.error("Typed.js library is not loaded.");
+            }
 
+            // Other DOMContentLoaded functions that might depend on all resources loaded
             document.querySelectorAll('.card-arrow-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const eventId = this.id;
@@ -2904,7 +3031,7 @@
                     }, 2000); // Display thank you for 2 seconds
                 }, 500); // Corresponds to the transition duration (0.5s) for tear-out
             });
-        });
+        }; // Close window.onload
     </script>
 </body>
 </html>
