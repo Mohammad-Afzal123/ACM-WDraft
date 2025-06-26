@@ -231,6 +231,7 @@
             padding-bottom: 60px;
             padding-left: 40px; /* Ensure padding for content inside */
             padding-right: 40px; /* Ensure padding for content inside */
+            margin-bottom: 0; /* Set margin-bottom to 0 for no gap */
         }
 
         .alumni-video-background {
@@ -279,6 +280,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding-left: 40px; /* Ensure padding for content inside */
             padding-right: 40px; /* Ensure padding for content inside */
+            margin-bottom: 0; /* Set margin-bottom to 0 for no gap */
         }
 
         /* Specific override for events section background (already transparent) */
@@ -1933,42 +1935,916 @@
             }
 
             /* Contact Us Section on mobile */
-            #contact-us .contact-panels-container {
+            #contact-us .contact-content {
                 flex-direction: column;
-                border-radius: 15px;
-                min-height: auto;
-                width: 96%; /* Full width on mobile, with 2% margin */
+                align-items: center;
+                gap: 30px;
             }
-
-            #contact-us .contact-left-panel {
-                clip-path: none; /* Remove clip-path on mobile */
-                border-radius: 15px 15px 0 0;
-                padding-right: 40px; /* Reset padding */
-                padding-bottom: 20px;
-                margin-right: 0; /* Reset margin */
-                z-index: auto; /* Reset z-index */
-            }
-            #contact-us .contact-right-panel {
-                clip-path: none; /* Remove clip-path on mobile */
-                border-radius: 0 0 15px 15px;
-                padding-left: 40px; /* Reset padding */
-                padding-top: 20px;
-                margin-left: 0; /* Reset margin */
-                z-index: auto; /* Reset z-index */
-            }
-            /* Removed .contact-middle-panel on mobile styles */
 
             #contact-us .contact-info,
             #contact-us .contact-form {
-                width: 100%; /* Full width on mobile */
-                min-width: unset; /* Remove min-width constraint */
-                padding: 20px; /* Adjust padding for mobile */
+                width: 90%;
             }
 
-            #contact-us .contact-form input[type="text"],
-            #contact-us .contact-form input[type="email"],
-            #contact-us .contact-form textarea {
-                width: calc(100% - 40px); /* Ensure full width even with padding */
+            #contact-us .contact-info div {
+                flex-direction: row;
+                align-items: center;
+                text-align: center;
+            }
+            #contact-us .contact-info i {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+        }
+        
+        /* Styles for the Contact Us Section as a whole */
+        #contact-us {
+            background-color: transparent; /* Set to transparent as requested */
+            color: #fff; /* Default text color for the section */
+            padding: 40px 0; /* Reduced top padding as requested, no horizontal padding */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            box-shadow: none; /* Removed */
+            border-radius: 0; /* Removed */
+            margin-bottom: 0; /* Set to 0 to remove any margin below the section */
+
+            /* Forces full viewport width, overriding parent padding */
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+            /* Remove any potentially conflicting margin-left/right inherited from 'section' */
+            margin-left: unset !important;
+            margin-right: unset !important;
+        }
+
+        #contact-us h2 {
+            display: none; /* Hide the main section title as requested */
+        }
+
+        .contact-panels-container {
+            display: flex;
+            width: 100%; /* Adjusted to 96% for 2% margin on each side */
+            margin: 0 auto; /* Centering the card with auto margins */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Shadow for the overall card */
+            min-height: 175px; /* Decreased height by 30% from 250px */
+            position: relative;
+            background-color: #fff; /* Main background for the card - KEEP THIS WHITE */
+            /* Removed internal horizontal padding from container */
+            padding: 0; 
+            box-sizing: border-box; /* Include padding in the width calculation */
+        }
+
+        /* Zig-zag shape for the left panel - now white */
+        .contact-left-panel {
+            flex: 0.45; /* Increased width for the left panel (white panel) */
+            padding: 40px; /* Keep internal padding for content */
+            background-color: #fff; /* White background for the left panel - KEEP THIS WHITE */
+            color: #333; /* Dark text for white background */
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            position: relative;
+            margin-right: 0; /* Remove margin overlap */
+            z-index: 2; /* Set to default for side panels */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-align: left;
+            /* Adjusted clip-path to make zig-zag less pointed */
+            clip-path: polygon(
+                0 0, 92% 0, /* Straight top to 92% (less pointed) */
+                94% 5%, 92% 10%, /* Less pointed zig-zag points */
+                94% 15%, 92% 20%,
+                94% 25%, 92% 30%,
+                94% 35%, 92% 40%,
+                94% 45%, 92% 50%,
+                94% 55%, 92% 60%,
+                94% 65%, 92% 70%,
+                94% 75%, 92% 80%,
+                94% 85%, 92% 90%,
+                94% 95%, 92% 100%, /* Less pointed zig-zag to 92% at bottom */
+                0 100% /* Straight bottom to left */
+            );
+            border: none; /* No border for the left panel */
+        }
+
+        .contact-left-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #333; /* Dark text for white background */
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .contact-left-content p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555; /* Slightly lighter grey for text */
+        }
+
+        .contact-details-list p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            color: #555; /* Slightly lighter grey for text */
+        }
+        .contact-details-list i {
+            color: #1ABC9C; /* Teal for icons, good contrast */
+            font-size: 1.3em;
+        }
+
+        .contact-social-bottom {
+            margin-top: 40px;
+            width: 100%;
+            text-align: left;
+        }
+        .contact-social-bottom h4 {
+            font-size: 1.1em;
+            color: #333; /* Dark text for heading */
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle dark border */
+            padding-bottom: 10px;
+            width: 100%;
+        }
+        .social-icons-contact {
+            display: flex;
+            justify-content: flex-start; /* Align social icons to the left */
+            gap: 15px;
+        }
+        .social-icons-contact a {
+            color: #fff;
+            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Purple gradient for icons */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .social-icons-contact a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Removed .contact-middle-panel styles */
+
+        .contact-right-panel {
+            flex: 0.55; /* Decreased width for the right panel (purple panel) */
+            padding: 40px; /* Keep internal padding for content */
+            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Deep purple to lighter purple gradient */
+            color: #fff; /* White text for dark background */
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Align content to the center */
+            text-align: center; /* Align text to center */
+            position: relative;
+            z-index: 2; /* Set to default for side panels */
+            margin-left: 0; /* Remove margin overlap */
+            /* Adjusted clip-path to make zig-zag less pointed */
+            clip-path: polygon(
+                100% 0, 100% 100%, /* Straight right edge */
+                8% 100%, 6% 95%, /* Less pointed zig-zag points mirrored and inverted, changed to start at 8% and 6% */
+                8% 90%, 6% 85%,
+                8% 80%, 6% 75%,
+                8% 70%, 6% 65%,
+                8% 60%, 6% 55%,
+                8% 50%, 6% 45%,
+                8% 40%, 6% 35%,
+                8% 30%, 6% 25%,
+                8% 20%, 6% 15%,
+                8% 10%, 6% 5%,
+                8% 0 /* Less pointed zig-zag to 8% at top */
+            );
+        }
+
+        .contact-right-panel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #fff; /* White for heading on dark background */
+            align-self: center; /* Align the heading to the center */
+        }
+
+        .contact-form {
+            width: 100%;
+            max-width: 550px; /* Increased max-width for contact form */
+            /* Align contact form content left within its container */
+            margin-left: auto; /* Pushed to the right */
+            margin-right: 0; /* Align to right */
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between form elements */
+            /* Added for animation control */
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            text-align: right; /* Align form labels/placeholders to the right */
+        }
+        .contact-form.hidden {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute; /* Take out of flow when hidden */
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 40px); /* Adjust for padding in box-sizing */
+            padding: 10px 20px; /* Decreased vertical padding */
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .contact-form input[type="text"]::placeholder,
+        .contact-form input[type="email"]::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #007BFF; /* Bright blue on focus */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+        }
+
+        .contact-form button[type="submit"] {
+            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Blue to Purple gradient for submit button */
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px; /* More rounded button */
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            align-self: flex-end; /* Align the button to the right */
+            margin-top: 20px;
+            width: 80%; /* Make button wider */
+            max-width: 300px;
+        }
+
+        .contact-form button[type="submit"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Animation for tearing apart panels */
+        .contact-left-panel,
+        .contact-right-panel {
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        .contact-left-panel.tear-out {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        .contact-right-panel.tear-out {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        /* Thank you message overlay */
+        .contact-message-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Match right panel */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2em;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            z-index: 10; /* Above the panels */
+            border-radius: 20px; /* Match container */
+        }
+        .contact-message-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* Responsive adjustments for Contact Us Section */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 10px;
+                padding-top: 100px; /* Adjust for top nav on mobile */
+            }
+
+            .main-footer {
+                padding: 40px 20px;
+            }
+
+            .footer-content-wrapper {
+                margin-left: 0;
+                width: 100%;
+                padding-right: 0;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-social-icons {
+                justify-content: center;
+            }
+
+            .floating-social-contact {
+                right: 10px;
+                bottom: 10px;
+                gap: 5px;
+                padding: 5px;
+                border-radius: 5px;
+            }
+
+            .floating-social-contact a {
+                font-size: 1.2em;
+                width: 35px;
+                height: 35px;
+            }
+
+            .banner-overlay-text h1 {
+                font-size: 2.5em;
+            }
+
+            .banner-overlay-text p {
+                font-size: 1em;
+            }
+
+            .timeline .line {
+                left: 20px;
+            }
+
+            .timeline .section {
+                padding: 10px;
+                justify-content: flex-end;
+            }
+
+            .timeline .section .card {
+                width: calc(100% - 70px);
+                margin-left: 60px;
+                margin-right: 0;
+            }
+
+            .timeline .section:nth-of-type(odd) .card::after {
+                left: -30px;
+                right: auto;
+            }
+            .timeline .section:nth-of-type(even) .card::after {
+                left: -30px;
+                right: auto;
+            }
+            .timeline .section:nth-of-type(odd) .card {
+                margin-right: 0;
+                margin-left: 60px;
+            }
+
+            .timeline .section:nth-of-type(even) .card {
+                margin-left: 60px;
+            }
+
+            /* Responsive for Top Nav */
+            .top-header-nav {
+                padding: 10px 0;
+            }
+            .top-header-nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .members-grid .member-card:nth-child(even) {
+                margin-top: 0; /* remove staggering on small screens */
+            }
+            .members-grid .member-card:nth-child(2n) {
+                margin-top: 0; /* remove staggering on small screens */
+            }
+
+            #testimonials .testimonials-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            #testimonials h2 {
+                margin-right: 0;
+            }
+            #testimonials .testimonials-slider-container {
+                justify-content: flex-start;
+                gap: 15px;
+                padding-bottom: 15px;
+            }
+            #testimonials .review-card {
+                width: 250px; /* Smaller cards on mobile */
+                padding: 15px;
+            }
+            #testimonials .review-text {
+                -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
+            }
+
+            /* Contact Us Section on mobile */
+            #contact-us .contact-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            #contact-us .contact-info,
+            #contact-us .contact-form {
+                width: 90%;
+            }
+
+            #contact-us .contact-info div {
+                flex-direction: row;
+                align-items: center;
+                text-align: center;
+            }
+            #contact-us .contact-info i {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+        }
+        
+        /* Styles for the Contact Us Section as a whole */
+        #contact-us {
+            background-color: transparent; /* Set to transparent as requested */
+            color: #fff; /* Default text color for the section */
+            padding: 0px 0; /* Reduced top padding as requested, no horizontal padding */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            box-shadow: none; /* Removed */
+            border-radius: 0; /* Removed */
+            margin-bottom: 0; /* Set to 0 to remove any margin below the section */
+
+            /* Forces full viewport width, overriding parent padding */
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+            /* Remove any potentially conflicting margin-left/right inherited from 'section' */
+            margin-left: unset !important;
+            margin-right: unset !important;
+	    margin-top:0;
+        }
+
+        #contact-us h2 {
+            display: none; /* Hide the main section title as requested */
+        }
+
+        .contact-panels-container {
+            display: flex;
+            width: 100%; /* Adjusted to 96% for 2% margin on each side */
+            margin: 0 auto; /* Centering the card with auto margins */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Shadow for the overall card */
+            min-height: 175px; /* Decreased height by 30% from 250px */
+            position: relative;
+            background-color: #fff; /* Main background for the card - KEEP THIS WHITE */
+            /* Removed internal horizontal padding from container */
+            padding: 0; 
+            box-sizing: border-box; /* Include padding in the width calculation */
+        }
+
+        /* Zig-zag shape for the left panel - now white */
+        .contact-left-panel {
+            flex: 0.45; /* Increased width for the left panel (white panel) */
+            padding: 40px; /* Keep internal padding for content */
+            background-color: #fff; /* White background for the left panel - KEEP THIS WHITE */
+            color: #333; /* Dark text for white background */
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            position: relative;
+            margin-right: 0; /* Remove margin overlap */
+            z-index: 2; /* Set to default for side panels */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-align: left;
+            /* Adjusted clip-path to make zig-zag less pointed */
+            clip-path: polygon(
+                0 0, 92% 0, /* Straight top to 92% (less pointed) */
+                94% 5%, 92% 10%, /* Less pointed zig-zag points */
+                94% 15%, 92% 20%,
+                94% 25%, 92% 30%,
+                94% 35%, 92% 40%,
+                94% 45%, 92% 50%,
+                94% 55%, 92% 60%,
+                94% 65%, 92% 70%,
+                94% 75%, 92% 80%,
+                94% 85%, 92% 90%,
+                94% 95%, 92% 100%, /* Less pointed zig-zag to 92% at bottom */
+                0 100% /* Straight bottom to left */
+            );
+            border: none; /* No border for the left panel */
+        }
+
+        .contact-left-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #333; /* Dark text for white background */
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .contact-left-content p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555; /* Slightly lighter grey for text */
+        }
+
+        .contact-details-list p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            color: #555; /* Slightly lighter grey for text */
+        }
+        .contact-details-list i {
+            color: #1ABC9C; /* Teal for icons, good contrast */
+            font-size: 1.3em;
+        }
+
+        .contact-social-bottom {
+            margin-top: 40px;
+            width: 100%;
+            text-align: left;
+        }
+        .contact-social-bottom h4 {
+            font-size: 1.1em;
+            color: #333; /* Dark text for heading */
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle dark border */
+            padding-bottom: 10px;
+            width: 100%;
+        }
+        .social-icons-contact {
+            display: flex;
+            justify-content: flex-start; /* Align social icons to the left */
+            gap: 15px;
+        }
+        .social-icons-contact a {
+            color: #fff;
+            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Purple gradient for icons */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .social-icons-contact a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Removed .contact-middle-panel styles */
+
+        .contact-right-panel {
+            flex: 0.55; /* Decreased width for the right panel (purple panel) */
+            padding: 40px; /* Keep internal padding for content */
+            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Deep purple to lighter purple gradient */
+            color: #fff; /* White text for dark background */
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Align content to the center */
+            text-align: center; /* Align text to center */
+            position: relative;
+            z-index: 2; /* Set to default for side panels */
+            margin-left: 0; /* Remove margin overlap */
+            /* Adjusted clip-path to make zig-zag less pointed */
+            clip-path: polygon(
+                100% 0, 100% 100%, /* Straight right edge */
+                8% 100%, 6% 95%, /* Less pointed zig-zag points mirrored and inverted, changed to start at 8% and 6% */
+                8% 90%, 6% 85%,
+                8% 80%, 6% 75%,
+                8% 70%, 6% 65%,
+                8% 60%, 6% 55%,
+                8% 50%, 6% 45%,
+                8% 40%, 6% 35%,
+                8% 30%, 6% 25%,
+                8% 20%, 6% 15%,
+                8% 10%, 6% 5%,
+                8% 0 /* Less pointed zig-zag to 8% at top */
+            );
+        }
+
+        .contact-right-panel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #fff; /* White for heading on dark background */
+            align-self: center; /* Align the heading to the center */
+        }
+
+        .contact-form {
+            width: 100%;
+            max-width: 550px; /* Increased max-width for contact form */
+            /* Align contact form content left within its container */
+            margin-left: auto; /* Pushed to the right */
+            margin-right: 0; /* Align to right */
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between form elements */
+            /* Added for animation control */
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            text-align: right; /* Align form labels/placeholders to the right */
+        }
+        .contact-form.hidden {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute; /* Take out of flow when hidden */
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 40px); /* Adjust for padding in box-sizing */
+            padding: 10px 20px; /* Decreased vertical padding */
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .contact-form input[type="text"]::placeholder,
+        .contact-form input[type="email"]::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #007BFF; /* Bright blue on focus */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+        }
+
+        .contact-form button[type="submit"] {
+            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Blue to Purple gradient for submit button */
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px; /* More rounded button */
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            align-self: flex-end; /* Align the button to the right */
+            margin-top: 20px;
+            width: 80%; /* Make button wider */
+            max-width: 300px;
+        }
+
+        .contact-form button[type="submit"]:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Animation for tearing apart panels */
+        .contact-left-panel,
+        .contact-right-panel {
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        .contact-left-panel.tear-out {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        .contact-right-panel.tear-out {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        /* Thank you message overlay */
+        .contact-message-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Match right panel */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2em;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            z-index: 10; /* Above the panels */
+            border-radius: 20px; /* Match container */
+        }
+        .contact-message-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* Responsive adjustments for Contact Us Section */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 10px;
+                padding-top: 100px; /* Adjust for top nav on mobile */
+            }
+
+            .main-footer {
+                padding: 40px 20px;
+            }
+
+            .footer-content-wrapper {
+                margin-left: 0;
+                width: 100%;
+                padding-right: 0;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-social-icons {
+                justify-content: center;
+            }
+
+            .floating-social-contact {
+                right: 10px;
+                bottom: 10px;
+                gap: 5px;
+                padding: 5px;
+                border-radius: 5px;
+            }
+
+            .floating-social-contact a {
+                font-size: 1.2em;
+                width: 35px;
+                height: 35px;
+            }
+
+            .banner-overlay-text h1 {
+                font-size: 2.5em;
+            }
+
+            .banner-overlay-text p {
+                font-size: 1em;
+            }
+
+            .timeline .line {
+                left: 20px;
+            }
+
+            .timeline .section {
+                padding: 10px;
+                justify-content: flex-end;
+            }
+
+            .timeline .section .card {
+                width: calc(100% - 70px);
+                margin-left: 60px;
+                margin-right: 0;
+            }
+
+            .timeline .section:nth-of-type(odd) .card::after {
+                left: -30px;
+                right: auto;
+            }
+            .timeline .section:nth-of-type(even) .card::after {
+                left: -30px;
+                right: auto;
+            }
+            .timeline .section:nth-of-type(odd) .card {
+                margin-right: 0;
+                margin-left: 60px;
+            }
+
+            .timeline .section:nth-of-type(even) .card {
+                margin-left: 60px;
+            }
+
+            /* Responsive for Top Nav */
+            .top-header-nav {
+                padding: 10px 0;
+            }
+            .top-header-nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .members-grid .member-card:nth-child(even) {
+                margin-top: 0; /* remove staggering on small screens */
+            }
+            .members-grid .member-card:nth-child(2n) {
+                margin-top: 0; /* remove staggering on small screens */
+            }
+
+            #testimonials .testimonials-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            #testimonials h2 {
+                margin-right: 0;
+            }
+            #testimonials .testimonials-slider-container {
+                justify-content: flex-start;
+                gap: 15px;
+                padding-bottom: 15px;
+            }
+            #testimonials .review-card {
+                width: 250px; /* Smaller cards on mobile */
+                padding: 15px;
+            }
+            #testimonials .review-text {
+                -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
+            }
+
+            /* Contact Us Section on mobile */
+            #contact-us .contact-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            #contact-us .contact-info,
+            #contact-us .contact-form {
+                width: 90%;
+            }
+
+            #contact-us .contact-info div {
+                flex-direction: row;
+                align-items: center;
+                text-align: center;
+            }
+            #contact-us .contact-info i {
+                margin-bottom: 0;
+                margin-right: 10px;
             }
         }
     </style>
@@ -2265,7 +3141,7 @@
             <p>We regularly organize alumni networking events and a dedicated mentorship program to facilitate connections. Join our alumni community today!</p>
             <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Join Alumni Network</button>
             
-            <h2 style="margin-top: 60px;">Our Team</h2>
+            <h2 style="margin-top: 30px;">Our Team</h2>
             <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
             <div class="team-hive-container">
                 <div class="team-row">
