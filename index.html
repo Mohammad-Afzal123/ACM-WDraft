@@ -200,6 +200,29 @@
             letter-spacing: 1px;
         }
 
+        /* New button styling for "Become a Member Now" */
+        .banner-overlay-text .member-button {
+            background-color: #1ABC9C; /* Teal background */
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px; /* Very rounded corners */
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px; /* Space above the button */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .banner-overlay-text .member-button:hover {
+            background-color: #16A085; /* Darker teal on hover */
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
+
         .main-content {
             position: relative;
             z-index: 1;
@@ -212,7 +235,7 @@
         /* Generic section styling to ensure padding and full width */
         section {
             padding: 60px 40px; /* Consistent padding for content */
-            margin-bottom: 20px;
+            margin-bottom: 0; /* Set to 0 to remove default gap between sections */
             background-color: transparent;
             border-radius: 8px;
             box-shadow: none;
@@ -220,7 +243,7 @@
             box-sizing: border-box; /* Include padding in width calculation */
         }
 
-        /* Specific overrides for sections with white background */
+        /* Specific overrides for sections with dark background */
         #alumni {
             background-color: #1D1D1D; /* Dark fallback background for alumni section */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -228,10 +251,10 @@
             position: relative; /* Needed for video positioning */
             overflow: hidden; /* Hide overflow from video */
             padding-top: 60px; /* Re-add padding as video covers all */
-            padding-bottom: 60px;
+            padding-bottom: 0px; /* MODIFIED: Removed gap from bottom of alumni section */
             padding-left: 40px; /* Ensure padding for content inside */
             padding-right: 40px; /* Ensure padding for content inside */
-            margin-bottom: 0; /* Set margin-bottom to 0 for no gap */
+            margin-bottom: 0; /* Ensure zero gap below this section */
         }
 
         .alumni-video-background {
@@ -274,14 +297,7 @@
             color: white;
         }
 
-
-        #become-member {
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding-left: 40px; /* Ensure padding for content inside */
-            padding-right: 40px; /* Ensure padding for content inside */
-            margin-bottom: 0; /* Set margin-bottom to 0 for no gap */
-        }
+        /* #become-member section is removed */
 
         /* Specific override for events section background (already transparent) */
         #events {
@@ -545,7 +561,7 @@
             justify-content: space-around;
             align-items: flex-start;
             gap: 30px;
-            width: 100%; /* Occupy full footer width */
+            width: 100%;
             max-width: 1200px; /* Align with main content sections, but keep responsiveness */
             margin-left: auto; /* Center content within footer */
             margin-right: auto; /* Center content within footer */
@@ -620,6 +636,24 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             color: #c0c0c0;
             font-size: 0.9em;
+        }
+
+        /* NEW: Show Visitors Button in Footer */
+        .footer-column .show-visitors-button {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer-column .show-visitors-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
@@ -1516,7 +1550,7 @@
         #contact-us {
             background-color: transparent; /* Set to transparent as requested */
             color: #fff; /* Default text color for the section */
-            padding: 40px 0; /* Reduced top padding as requested, no horizontal padding */
+            padding: 0px 0; /* MODIFIED: Reduced top padding to 0, no horizontal padding */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1553,6 +1587,7 @@
             /* Removed internal horizontal padding from container */
             padding: 0; 
             box-sizing: border-box; /* Include padding in the width calculation */
+            align-items: stretch; /* Make flex items stretch to fill container height */
         }
 
         /* Zig-zag shape for the left panel - now white */
@@ -1571,6 +1606,7 @@
             justify-content: space-between;
             align-items: flex-start;
             text-align: left;
+            height: 100%; /* Make panel fill height of container */
             /* Adjusted clip-path to make zig-zag less pointed */
             clip-path: polygon(
                 0 0, 92% 0, /* Straight top to 92% (less pointed) */
@@ -1669,6 +1705,7 @@
             position: relative;
             z-index: 2; /* Set to default for side panels */
             margin-left: 0; /* Remove margin overlap */
+            height: 100%; /* Make panel fill height of container */
             /* Adjusted clip-path to make zig-zag less pointed */
             clip-path: polygon(
                 100% 0, 100% 100%, /* Straight right edge */
@@ -1814,1042 +1851,190 @@
             visibility: visible;
         }
 
-
-        /* Responsive adjustments for Contact Us Section */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 10px;
-                padding-top: 100px; /* Adjust for top nav on mobile */
-            }
-
-            .main-footer {
-                padding: 40px 20px;
-            }
-
-            .footer-content-wrapper {
-                margin-left: 0;
-                width: 100%;
-                padding-right: 0;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .footer-column {
-                text-align: center;
-            }
-
-            .footer-social-icons {
-                justify-content: center;
-            }
-
-            .floating-social-contact {
-                right: 10px;
-                bottom: 10px;
-                gap: 5px;
-                padding: 5px;
-                border-radius: 5px;
-            }
-
-            .floating-social-contact a {
-                font-size: 1.2em;
-                width: 35px;
-                height: 35px;
-            }
-
-            .banner-overlay-text h1 {
-                font-size: 2.5em;
-            }
-
-            .banner-overlay-text p {
-                font-size: 1em;
-            }
-
-            .timeline .line {
-                left: 20px;
-            }
-
-            .timeline .section {
-                padding: 10px;
-                justify-content: flex-end;
-            }
-
-            .timeline .section .card {
-                width: calc(100% - 70px);
-                margin-left: 60px;
-                margin-right: 0;
-            }
-
-            .timeline .section:nth-of-type(odd) .card::after {
-                left: -30px;
-                right: auto;
-            }
-            .timeline .section:nth-of-type(even) .card::after {
-                left: -30px;
-                right: auto;
-            }
-            .timeline .section:nth-of-type(odd) .card {
-                margin-right: 0;
-                margin-left: 60px;
-            }
-
-            .timeline .section:nth-of-type(even) .card {
-                margin-left: 60px;
-            }
-
-            /* Responsive for Top Nav */
-            .top-header-nav {
-                padding: 10px 0;
-            }
-            .top-header-nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .members-grid .member-card:nth-child(even) {
-                margin-top: 0; /* remove staggering on small screens */
-            }
-            .members-grid .member-card:nth-child(2n) {
-                margin-top: 0; /* remove staggering on small screens */
-            }
-
-            #testimonials .testimonials-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            #testimonials h2 {
-                margin-right: 0;
-            }
-            #testimonials .testimonials-slider-container {
-                justify-content: flex-start;
-                gap: 15px;
-                padding-bottom: 15px;
-            }
-            #testimonials .review-card {
-                width: 250px; /* Smaller cards on mobile */
-                padding: 15px;
-            }
-            #testimonials .review-text {
-                -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
-            }
-
-            /* Contact Us Section on mobile */
-            #contact-us .contact-content {
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
-            }
-
-            #contact-us .contact-info,
-            #contact-us .contact-form {
-                width: 90%;
-            }
-
-            #contact-us .contact-info div {
-                flex-direction: row;
-                align-items: center;
-                text-align: center;
-            }
-            #contact-us .contact-info i {
-                margin-bottom: 0;
-                margin-right: 10px;
-            }
-        }
-        
-        /* Styles for the Contact Us Section as a whole */
-        #contact-us {
-            background-color: transparent; /* Set to transparent as requested */
-            color: #fff; /* Default text color for the section */
-            padding: 40px 0; /* Reduced top padding as requested, no horizontal padding */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            box-shadow: none; /* Removed */
-            border-radius: 0; /* Removed */
-            margin-bottom: 0; /* Set to 0 to remove any margin below the section */
-
-            /* Forces full viewport width, overriding parent padding */
-            width: 100vw;
+        /* Custom Message Box (replacing alert/confirm) */
+        .custom-message-box {
+            position: fixed;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            box-sizing: border-box; /* Ensure padding is included in width calculation */
-            /* Remove any potentially conflicting margin-left/right inherited from 'section' */
-            margin-left: unset !important;
-            margin-right: unset !important;
-        }
-
-        #contact-us h2 {
-            display: none; /* Hide the main section title as requested */
-        }
-
-        .contact-panels-container {
-            display: flex;
-            width: 100%; /* Adjusted to 96% for 2% margin on each side */
-            margin: 0 auto; /* Centering the card with auto margins */
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Shadow for the overall card */
-            min-height: 175px; /* Decreased height by 30% from 250px */
-            position: relative;
-            background-color: #fff; /* Main background for the card - KEEP THIS WHITE */
-            /* Removed internal horizontal padding from container */
-            padding: 0; 
-            box-sizing: border-box; /* Include padding in the width calculation */
-        }
-
-        /* Zig-zag shape for the left panel - now white */
-        .contact-left-panel {
-            flex: 0.45; /* Increased width for the left panel (white panel) */
-            padding: 40px; /* Keep internal padding for content */
-            background-color: #fff; /* White background for the left panel - KEEP THIS WHITE */
-            color: #333; /* Dark text for white background */
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-            position: relative;
-            margin-right: 0; /* Remove margin overlap */
-            z-index: 2; /* Set to default for side panels */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: flex-start;
-            text-align: left;
-            /* Adjusted clip-path to make zig-zag less pointed */
-            clip-path: polygon(
-                0 0, 92% 0, /* Straight top to 92% (less pointed) */
-                94% 5%, 92% 10%, /* Less pointed zig-zag points */
-                94% 15%, 92% 20%,
-                94% 25%, 92% 30%,
-                94% 35%, 92% 40%,
-                94% 45%, 92% 50%,
-                94% 55%, 92% 60%,
-                94% 65%, 92% 70%,
-                94% 75%, 92% 80%,
-                94% 85%, 92% 90%,
-                94% 95%, 92% 100%, /* Less pointed zig-zag to 92% at bottom */
-                0 100% /* Straight bottom to left */
-            );
-            border: none; /* No border for the left panel */
-        }
-
-        .contact-left-content h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
-            color: #333; /* Dark text for white background */
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-        .contact-left-content p {
-            font-size: 1em;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            color: #555; /* Slightly lighter grey for text */
-        }
-
-        .contact-details-list p {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            font-size: 0.95em;
-            color: #555; /* Slightly lighter grey for text */
-        }
-        .contact-details-list i {
-            color: #1ABC9C; /* Teal for icons, good contrast */
-            font-size: 1.3em;
-        }
-
-        .contact-social-bottom {
-            margin-top: 40px;
-            width: 100%;
-            text-align: left;
-        }
-        .contact-social-bottom h4 {
-            font-size: 1.1em;
-            color: #333; /* Dark text for heading */
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle dark border */
-            padding-bottom: 10px;
-            width: 100%;
-        }
-        .social-icons-contact {
-            display: flex;
-            justify-content: flex-start; /* Align social icons to the left */
-            gap: 15px;
-        }
-        .social-icons-contact a {
+            transform: translate(-50%, -50%);
+            background-color: #1D1D1D;
             color: #fff;
-            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Purple gradient for icons */
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
+            padding: 25px 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: none; /* Hidden by default */
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .social-icons-contact a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Removed .contact-middle-panel styles */
-
-        .contact-right-panel {
-            flex: 0.55; /* Decreased width for the right panel (purple panel) */
-            padding: 40px; /* Keep internal padding for content */
-            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Deep purple to lighter purple gradient */
-            color: #fff; /* White text for dark background */
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center; /* Align content to the center */
-            text-align: center; /* Align text to center */
-            position: relative;
-            z-index: 2; /* Set to default for side panels */
-            margin-left: 0; /* Remove margin overlap */
-            /* Adjusted clip-path to make zig-zag less pointed */
-            clip-path: polygon(
-                100% 0, 100% 100%, /* Straight right edge */
-                8% 100%, 6% 95%, /* Less pointed zig-zag points mirrored and inverted, changed to start at 8% and 6% */
-                8% 90%, 6% 85%,
-                8% 80%, 6% 75%,
-                8% 70%, 6% 65%,
-                8% 60%, 6% 55%,
-                8% 50%, 6% 45%,
-                8% 40%, 6% 35%,
-                8% 30%, 6% 25%,
-                8% 20%, 6% 15%,
-                8% 10%, 6% 5%,
-                8% 0 /* Less pointed zig-zag to 8% at top */
-            );
-        }
-
-        .contact-right-panel h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #fff; /* White for heading on dark background */
-            align-self: center; /* Align the heading to the center */
-        }
-
-        .contact-form {
-            width: 100%;
-            max-width: 550px; /* Increased max-width for contact form */
-            /* Align contact form content left within its container */
-            margin-left: auto; /* Pushed to the right */
-            margin-right: 0; /* Align to right */
-            display: flex;
-            flex-direction: column;
-            gap: 20px; /* Space between form elements */
-            /* Added for animation control */
-            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            text-align: right; /* Align form labels/placeholders to the right */
-        }
-        .contact-form.hidden {
-            opacity: 0;
-            visibility: hidden;
-            position: absolute; /* Take out of flow when hidden */
-        }
-
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form textarea {
-            width: calc(100% - 40px); /* Adjust for padding in box-sizing */
-            padding: 10px 20px; /* Decreased vertical padding */
-            border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border-radius: 8px;
             font-family: 'Montserrat', sans-serif;
+            max-width: 90%;
+            min-width: 300px;
+            text-align: center;
+            animation: fadeInScale 0.3s ease-out forwards;
+        }
+
+        .custom-message-box.show {
+            display: flex;
+        }
+
+        .custom-message-box h3 {
+            margin-top: 0;
+            color: #1ABC9C;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .custom-message-box p {
             font-size: 1em;
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            box-sizing: border-box;
+            margin-bottom: 25px;
+            line-height: 1.6;
         }
 
-        .contact-form input[type="text"]::placeholder,
-        .contact-form input[type="email"]::placeholder,
-        .contact-form textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .contact-form input[type="text"]:focus,
-        .contact-form input[type="email"]:focus,
-        .contact-form textarea:focus {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: #007BFF; /* Bright blue on focus */
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
-            outline: none;
-        }
-
-        .contact-form textarea {
-            min-height: 120px;
-        }
-
-        .contact-form button[type="submit"] {
-            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Blue to Purple gradient for submit button */
-            color: #fff;
-            padding: 15px 30px;
+        .custom-message-box button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 25px;
             border: none;
-            border-radius: 25px; /* More rounded button */
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
-            align-self: flex-end; /* Align the button to the right */
-            margin-top: 20px;
-            width: 80%; /* Make button wider */
-            max-width: 300px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .contact-form button[type="submit"]:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-            filter: brightness(1.1);
+        .custom-message-box button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
         }
 
-        /* Animation for tearing apart panels */
-        .contact-left-panel,
-        .contact-right-panel {
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
 
-        .contact-left-panel.tear-out {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-        .contact-right-panel.tear-out {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-
-        /* Thank you message overlay */
-        .contact-message-overlay {
-            position: absolute;
+        /* Overlay for message box */
+        .message-box-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Match right panel */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 2em;
-            font-family: 'Playfair Display', serif;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            z-index: 10; /* Above the panels */
-            border-radius: 20px; /* Match container */
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1999;
+            display: none; /* Hidden by default */
         }
-        .contact-message-overlay.show {
-            opacity: 1;
-            visibility: visible;
+        .message-box-overlay.show {
+            display: block;
         }
 
-
-        /* Responsive adjustments for Contact Us Section */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 10px;
-                padding-top: 100px; /* Adjust for top nav on mobile */
-            }
-
-            .main-footer {
-                padding: 40px 20px;
-            }
-
-            .footer-content-wrapper {
-                margin-left: 0;
-                width: 100%;
-                padding-right: 0;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .footer-column {
-                text-align: center;
-            }
-
-            .footer-social-icons {
-                justify-content: center;
-            }
-
-            .floating-social-contact {
-                right: 10px;
-                bottom: 10px;
-                gap: 5px;
-                padding: 5px;
-                border-radius: 5px;
-            }
-
-            .floating-social-contact a {
-                font-size: 1.2em;
-                width: 35px;
-                height: 35px;
-            }
-
-            .banner-overlay-text h1 {
-                font-size: 2.5em;
-            }
-
-            .banner-overlay-text p {
-                font-size: 1em;
-            }
-
-            .timeline .line {
-                left: 20px;
-            }
-
-            .timeline .section {
-                padding: 10px;
-                justify-content: flex-end;
-            }
-
-            .timeline .section .card {
-                width: calc(100% - 70px);
-                margin-left: 60px;
-                margin-right: 0;
-            }
-
-            .timeline .section:nth-of-type(odd) .card::after {
-                left: -30px;
-                right: auto;
-            }
-            .timeline .section:nth-of-type(even) .card::after {
-                left: -30px;
-                right: auto;
-            }
-            .timeline .section:nth-of-type(odd) .card {
-                margin-right: 0;
-                margin-left: 60px;
-            }
-
-            .timeline .section:nth-of-type(even) .card {
-                margin-left: 60px;
-            }
-
-            /* Responsive for Top Nav */
-            .top-header-nav {
-                padding: 10px 0;
-            }
-            .top-header-nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .members-grid .member-card:nth-child(even) {
-                margin-top: 0; /* remove staggering on small screens */
-            }
-            .members-grid .member-card:nth-child(2n) {
-                margin-top: 0; /* remove staggering on small screens */
-            }
-
-            #testimonials .testimonials-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            #testimonials h2 {
-                margin-right: 0;
-            }
-            #testimonials .testimonials-slider-container {
-                justify-content: flex-start;
-                gap: 15px;
-                padding-bottom: 15px;
-            }
-            #testimonials .review-card {
-                width: 250px; /* Smaller cards on mobile */
-                padding: 15px;
-            }
-            #testimonials .review-text {
-                -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
-            }
-
-            /* Contact Us Section on mobile */
-            #contact-us .contact-content {
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
-            }
-
-            #contact-us .contact-info,
-            #contact-us .contact-form {
-                width: 90%;
-            }
-
-            #contact-us .contact-info div {
-                flex-direction: row;
-                align-items: center;
-                text-align: center;
-            }
-            #contact-us .contact-info i {
-                margin-bottom: 0;
-                margin-right: 10px;
-            }
-        }
-        
-        /* Styles for the Contact Us Section as a whole */
-        #contact-us {
-            background-color: transparent; /* Set to transparent as requested */
-            color: #fff; /* Default text color for the section */
-            padding: 0px 0; /* Reduced top padding as requested, no horizontal padding */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            box-shadow: none; /* Removed */
-            border-radius: 0; /* Removed */
-            margin-bottom: 0; /* Set to 0 to remove any margin below the section */
-
-            /* Forces full viewport width, overriding parent padding */
-            width: 100vw;
+        /* Visitor List Modal */
+        .visitors-modal {
+            position: fixed;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            box-sizing: border-box; /* Ensure padding is included in width calculation */
-            /* Remove any potentially conflicting margin-left/right inherited from 'section' */
-            margin-left: unset !important;
-            margin-right: unset !important;
-	    margin-top:0;
-        }
-
-        #contact-us h2 {
-            display: none; /* Hide the main section title as requested */
-        }
-
-        .contact-panels-container {
-            display: flex;
-            width: 100%; /* Adjusted to 96% for 2% margin on each side */
-            margin: 0 auto; /* Centering the card with auto margins */
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Shadow for the overall card */
-            min-height: 175px; /* Decreased height by 30% from 250px */
-            position: relative;
-            background-color: #fff; /* Main background for the card - KEEP THIS WHITE */
-            /* Removed internal horizontal padding from container */
-            padding: 0; 
-            box-sizing: border-box; /* Include padding in the width calculation */
-        }
-
-        /* Zig-zag shape for the left panel - now white */
-        .contact-left-panel {
-            flex: 0.45; /* Increased width for the left panel (white panel) */
-            padding: 40px; /* Keep internal padding for content */
-            background-color: #fff; /* White background for the left panel - KEEP THIS WHITE */
-            color: #333; /* Dark text for white background */
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-            position: relative;
-            margin-right: 0; /* Remove margin overlap */
-            z-index: 2; /* Set to default for side panels */
-            display: flex;
+            transform: translate(-50%, -50%);
+            background-color: #1D1D1D; /* Dark background */
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            display: none; /* Hidden by default */
             flex-direction: column;
-            justify-content: space-between;
-            align-items: flex-start;
-            text-align: left;
-            /* Adjusted clip-path to make zig-zag less pointed */
-            clip-path: polygon(
-                0 0, 92% 0, /* Straight top to 92% (less pointed) */
-                94% 5%, 92% 10%, /* Less pointed zig-zag points */
-                94% 15%, 92% 20%,
-                94% 25%, 92% 30%,
-                94% 35%, 92% 40%,
-                94% 45%, 92% 50%,
-                94% 55%, 92% 60%,
-                94% 65%, 92% 70%,
-                94% 75%, 92% 80%,
-                94% 85%, 92% 90%,
-                94% 95%, 92% 100%, /* Less pointed zig-zag to 92% at bottom */
-                0 100% /* Straight bottom to left */
-            );
-            border: none; /* No border for the left panel */
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: fadeInScale 0.3s ease-out forwards;
         }
-
-        .contact-left-content h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
-            color: #333; /* Dark text for white background */
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-        .contact-left-content p {
-            font-size: 1em;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            color: #555; /* Slightly lighter grey for text */
-        }
-
-        .contact-details-list p {
+        .visitors-modal.show {
             display: flex;
-            align-items: center;
-            gap: 10px;
+        }
+        .visitors-modal h3 {
+            margin-top: 0;
+            color: #1ABC9C;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .visitors-modal ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .visitors-modal li {
+            background-color: #2a2a2a;
             margin-bottom: 10px;
-            font-size: 0.95em;
-            color: #555; /* Slightly lighter grey for text */
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .contact-details-list i {
-            color: #1ABC9C; /* Teal for icons, good contrast */
-            font-size: 1.3em;
+        .visitors-modal li span {
+            display: block;
+            margin-bottom: 5px;
         }
-
-        .contact-social-bottom {
-            margin-top: 40px;
-            width: 100%;
-            text-align: left;
-        }
-        .contact-social-bottom h4 {
+        .visitors-modal li .ip-address {
+            font-weight: bold;
+            color: #e1cfac; /* Matching Vanta.js line color */
             font-size: 1.1em;
-            color: #333; /* Dark text for heading */
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle dark border */
-            padding-bottom: 10px;
-            width: 100%;
         }
-        .social-icons-contact {
-            display: flex;
-            justify-content: flex-start; /* Align social icons to the left */
-            gap: 15px;
-        }
-        .social-icons-contact a {
-            color: #fff;
-            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Purple gradient for icons */
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .social-icons-contact a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Removed .contact-middle-panel styles */
-
-        .contact-right-panel {
-            flex: 0.55; /* Decreased width for the right panel (purple panel) */
-            padding: 40px; /* Keep internal padding for content */
-            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Deep purple to lighter purple gradient */
-            color: #fff; /* White text for dark background */
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center; /* Align content to the center */
-            text-align: center; /* Align text to center */
-            position: relative;
-            z-index: 2; /* Set to default for side panels */
-            margin-left: 0; /* Remove margin overlap */
-            /* Adjusted clip-path to make zig-zag less pointed */
-            clip-path: polygon(
-                100% 0, 100% 100%, /* Straight right edge */
-                8% 100%, 6% 95%, /* Less pointed zig-zag points mirrored and inverted, changed to start at 8% and 6% */
-                8% 90%, 6% 85%,
-                8% 80%, 6% 75%,
-                8% 70%, 6% 65%,
-                8% 60%, 6% 55%,
-                8% 50%, 6% 45%,
-                8% 40%, 6% 35%,
-                8% 30%, 6% 25%,
-                8% 20%, 6% 15%,
-                8% 10%, 6% 5%,
-                8% 0 /* Less pointed zig-zag to 8% at top */
-            );
-        }
-
-        .contact-right-panel h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #fff; /* White for heading on dark background */
-            align-self: center; /* Align the heading to the center */
-        }
-
-        .contact-form {
-            width: 100%;
-            max-width: 550px; /* Increased max-width for contact form */
-            /* Align contact form content left within its container */
-            margin-left: auto; /* Pushed to the right */
-            margin-right: 0; /* Align to right */
-            display: flex;
-            flex-direction: column;
-            gap: 20px; /* Space between form elements */
-            /* Added for animation control */
-            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            text-align: right; /* Align form labels/placeholders to the right */
-        }
-        .contact-form.hidden {
-            opacity: 0;
-            visibility: hidden;
-            position: absolute; /* Take out of flow when hidden */
-        }
-
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form textarea {
-            width: calc(100% - 40px); /* Adjust for padding in box-sizing */
-            padding: 10px 20px; /* Decreased vertical padding */
-            border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border-radius: 8px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1em;
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .contact-form input[type="text"]::placeholder,
-        .contact-form input[type="email"]::placeholder,
-        .contact-form textarea::placeholder {
+        .visitors-modal li .location {
+            font-size: 0.9em;
             color: rgba(255, 255, 255, 0.7);
         }
-
-        .contact-form input[type="text"]:focus,
-        .contact-form input[type="email"]:focus,
-        .contact-form textarea:focus {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: #007BFF; /* Bright blue on focus */
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
-            outline: none;
+        .visitors-modal li .timestamp {
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 5px;
         }
-
-        .contact-form textarea {
-            min-height: 120px;
-        }
-
-        .contact-form button[type="submit"] {
-            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Blue to Purple gradient for submit button */
-            color: #fff;
-            padding: 15px 30px;
+        .visitors-modal .close-button {
+            background-color: #e74c3c; /* Red close button */
+            color: white;
+            padding: 10px 20px;
             border: none;
-            border-radius: 25px; /* More rounded button */
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
-            align-self: flex-end; /* Align the button to the right */
             margin-top: 20px;
-            width: 80%; /* Make button wider */
-            max-width: 300px;
+            align-self: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .visitors-modal .close-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
         }
 
-        .contact-form button[type="submit"]:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-            filter: brightness(1.1);
-        }
-
-        /* Animation for tearing apart panels */
-        .contact-left-panel,
-        .contact-right-panel {
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-        }
-
-        .contact-left-panel.tear-out {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-        .contact-right-panel.tear-out {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-
-        /* Thank you message overlay */
-        .contact-message-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Match right panel */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 2em;
-            font-family: 'Playfair Display', serif;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            z-index: 10; /* Above the panels */
-            border-radius: 20px; /* Match container */
-        }
-        .contact-message-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-
-        /* Responsive adjustments for Contact Us Section */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 10px;
-                padding-top: 100px; /* Adjust for top nav on mobile */
-            }
-
-            .main-footer {
-                padding: 40px 20px;
-            }
-
-            .footer-content-wrapper {
-                margin-left: 0;
-                width: 100%;
-                padding-right: 0;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .footer-column {
-                text-align: center;
-            }
-
-            .footer-social-icons {
-                justify-content: center;
-            }
-
-            .floating-social-contact {
-                right: 10px;
-                bottom: 10px;
-                gap: 5px;
-                padding: 5px;
-                border-radius: 5px;
-            }
-
-            .floating-social-contact a {
-                font-size: 1.2em;
-                width: 35px;
-                height: 35px;
-            }
-
-            .banner-overlay-text h1 {
-                font-size: 2.5em;
-            }
-
-            .banner-overlay-text p {
-                font-size: 1em;
-            }
-
-            .timeline .line {
-                left: 20px;
-            }
-
-            .timeline .section {
-                padding: 10px;
-                justify-content: flex-end;
-            }
-
-            .timeline .section .card {
-                width: calc(100% - 70px);
-                margin-left: 60px;
-                margin-right: 0;
-            }
-
-            .timeline .section:nth-of-type(odd) .card::after {
-                left: -30px;
-                right: auto;
-            }
-            .timeline .section:nth-of-type(even) .card::after {
-                left: -30px;
-                right: auto;
-            }
-            .timeline .section:nth-of-type(odd) .card {
-                margin-right: 0;
-                margin-left: 60px;
-            }
-
-            .timeline .section:nth-of-type(even) .card {
-                margin-left: 60px;
-            }
-
-            /* Responsive for Top Nav */
-            .top-header-nav {
-                padding: 10px 0;
-            }
-            .top-header-nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .members-grid .member-card:nth-child(even) {
-                margin-top: 0; /* remove staggering on small screens */
-            }
-            .members-grid .member-card:nth-child(2n) {
-                margin-top: 0; /* remove staggering on small screens */
-            }
-
-            #testimonials .testimonials-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            #testimonials h2 {
-                margin-right: 0;
-            }
-            #testimonials .testimonials-slider-container {
-                justify-content: flex-start;
-                gap: 15px;
-                padding-bottom: 15px;
-            }
-            #testimonials .review-card {
-                width: 250px; /* Smaller cards on mobile */
-                padding: 15px;
-            }
-            #testimonials .review-text {
-                -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
-            }
-
-            /* Contact Us Section on mobile */
-            #contact-us .contact-content {
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
-            }
-
-            #contact-us .contact-info,
-            #contact-us .contact-form {
-                width: 90%;
-            }
-
-            #contact-us .contact-info div {
-                flex-direction: row;
-                align-items: center;
-                text-align: center;
-            }
-            #contact-us .contact-info i {
-                margin-bottom: 0;
-                margin-right: 10px;
-            }
-        }
     </style>
 </head>
 <body>
+
+    <!-- Custom Message Box HTML -->
+    <div class="message-box-overlay" id="messageBoxOverlay"></div>
+    <div class="custom-message-box" id="customMessageBox">
+        <h3 id="messageBoxTitle"></h3>
+        <p id="messageBoxContent"></p>
+        <button id="messageBoxClose">OK</button>
+    </div>
+
+    <!-- Visitor List Modal HTML -->
+    <div class="message-box-overlay" id="visitorsModalOverlay"></div>
+    <div class="visitors-modal" id="visitorsModal">
+        <h3>Recent Visitors</h3>
+        <ul id="visitorsList">
+            <!-- Visitor data will be injected here -->
+        </ul>
+        <button class="close-button" id="closeVisitorsModal">Close</button>
+    </div>
 
     <!-- Preloader Page -->
     <div id="preload-page">
@@ -2882,6 +2067,8 @@
                 <p>Join Our Community!</p>
             </div>
             <p>Empowering Women in Computing</p>
+            <!-- NEW: Become a Member Now button -->
+            <button class="member-button">Become a Member Now</button>
         </div>
 
         <!-- NEW: Top Header Navigation Bar -->
@@ -2892,7 +2079,7 @@
                 <li><a href="#events">Events</a></li>
                 <li><a href="#sponsors">Sponsors</a></li>
                 <li><a href="#alumni">Our Team & Alumni</a></li>
-                <li><a href="#become-member">Become a member</a></li>
+                <!-- Removed 'Become a member' link -->
                 <li><a href="#contact-us">Contact us Now!!</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
             </ul>
@@ -2911,7 +2098,7 @@
             <li><a href="#events">Events</a></li>
             <li><a href="#sponsors">Sponsors</a></li>
             <li><a href="#alumni">Our Team & Alumni</a></li>
-            <li><a href="#become-member">Become a member</a></li>
+            <!-- Removed 'Become a member' link -->
             <li><a href="#contact-us">Contact us Now!!</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
         </ul>
@@ -3300,18 +2487,7 @@
             </div>
         </section>
 
-        <section id="become-member" data-aos="fade-left">
-            <h2>Become a Member</h2>
-            <p>Join ACM-W today and unlock a world of opportunities! Membership offers exclusive access to events, specialized workshops, our mentorship programs, and a supportive community of like-minded individuals.</p>
-            <ul>
-                <li>Priority registration for workshops and seminars</li>
-                <li>Access to a dedicated mentorship program</li>
-                <li>Networking opportunities with industry leaders and peers</li>
-                <li>Career development resources</li>
-                <li>Discounts on special events</li>
-            </ul>
-            <button style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Learn More & Join</button>
-        </section>
+        <!-- Removed the entire #become-member section as per user request -->
 
         <section id="contact-us" data-aos="fade-up">
             <h2>Contact Us</h2> <!-- Added a main section title for clarity -->
@@ -3471,7 +2647,7 @@
                     <li><a href="#sponsors">Sponsors</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#alumni">Alumni</a></li>
-                    <li><a href="#become-member">Become a member</a></li>
+                    <!-- Removed 'Become a member' link -->
                     <li><a href="#contact-us">Contact Us</a></li>
                 </ul>
             </div>
@@ -3480,6 +2656,8 @@
                 <p><i class="fas fa-map-marker-alt"></i> VIT Chennai, India</p>
                 <p><i class="fas fa-envelope"></i> info@acmw.org</p>
                 <p><i class="fas fa-phone"></i> +123-456-7890</p>
+                <!-- NEW: Show Visitors Button -->
+                <button class="show-visitors-button" id="showVisitorsButton">Show Visitors</button>
             </div>
             <div class="footer-column">
                 <h4>Follow Us</h4>
@@ -3495,6 +2673,283 @@
             </div>
         </div>
     </footer>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        let db;
+        let auth;
+        let userId;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // Custom Message Box function (replacing alert/confirm)
+        function showMessageBox(title, message) {
+            const messageBox = document.getElementById('customMessageBox');
+            const messageBoxOverlay = document.getElementById('messageBoxOverlay');
+            const messageBoxTitle = document.getElementById('messageBoxTitle');
+            const messageBoxContent = document.getElementById('messageBoxContent');
+            const messageBoxClose = document.getElementById('messageBoxClose');
+
+            messageBoxTitle.textContent = title;
+            messageBoxContent.textContent = message;
+            messageBox.classList.add('show');
+            messageBoxOverlay.classList.add('show');
+
+            messageBoxClose.onclick = () => {
+                messageBox.classList.remove('show');
+                messageBoxOverlay.classList.remove('show');
+            };
+        }
+
+        // Initialize Firebase and Authenticate
+        async function initializeFirebase() {
+            try {
+                const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.error("Firebase config is not defined.");
+                    showMessageBox('Error', 'Firebase configuration is missing. Visitor tracking will not work.');
+                    return;
+                }
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Listen for auth state changes
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        console.log('Firebase authenticated. User ID:', userId);
+                        // Track visitor after authentication
+                        await getVisitorDataAndSave();
+                    } else {
+                        // Sign in anonymously if no authenticated user
+                        try {
+                            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                                await signInWithCustomToken(auth, __initial_auth_token);
+                            } else {
+                                await signInAnonymously(auth);
+                            }
+                        } catch (anonError) {
+                            console.error("Anonymous sign-in failed:", anonError);
+                            showMessageBox('Authentication Error', 'Failed to authenticate anonymously for visitor tracking. Please check your Firebase setup.');
+                        }
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error initializing Firebase:", error);
+                showMessageBox('Initialization Error', 'Failed to initialize Firebase. Visitor tracking will not work.');
+            }
+        }
+
+        // Function to fetch public IP and location details
+        async function fetchPublicIpAndLocation() {
+            try {
+                // Get public IP address
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const ipAddress = ipData.ip;
+
+                // Get location details using the IP address
+                const geoResponse = await fetch(`https://ip-api.com/json/${ipAddress}`);
+                const geoData = await geoResponse.json();
+
+                if (geoData.status === 'success') {
+                    return {
+                        ip: ipAddress,
+                        city: geoData.city || 'Unknown',
+                        region: geoData.regionName || 'Unknown',
+                        country: geoData.country || 'Unknown',
+                        isp: geoData.isp || 'Unknown',
+                    };
+                } else {
+                    console.warn("IP geolocation failed:", geoData.message);
+                    return { ip: ipAddress, city: 'Unknown', region: 'Unknown', country: 'Unknown', isp: 'Unknown' };
+                }
+            } catch (error) {
+                console.error("Error fetching IP or location:", error);
+                return null;
+            }
+        }
+
+        // Function to save visitor data to Firestore
+        async function getVisitorDataAndSave() {
+            if (!db || !auth || !auth.currentUser) {
+                console.warn("Firestore not ready or user not authenticated for visitor tracking.");
+                return;
+            }
+
+            const visitorId = auth.currentUser.uid;
+            const lastVisitKey = `last_visit_${visitorId}`;
+            const lastVisit = sessionStorage.getItem(lastVisitKey);
+            const now = Date.now();
+
+            // Prevent logging multiple visits within a short period (e.g., 5 minutes)
+            const FIVE_MINUTES = 5 * 60 * 1000;
+            if (lastVisit && (now - parseInt(lastVisit) < FIVE_MINUTES)) {
+                console.log("Visitor already logged recently.");
+                return;
+            }
+
+            const visitorInfo = await fetchPublicIpAndLocation();
+
+            if (visitorInfo) {
+                try {
+                    const visitorsCollectionRef = collection(db, `artifacts/${appId}/public/data/visitors`);
+                    await addDoc(visitorsCollectionRef, {
+                        userId: visitorId,
+                        ipAddress: visitorInfo.ip,
+                        city: visitorInfo.city,
+                        region: visitorInfo.region,
+                        country: visitorInfo.country,
+                        isp: visitorInfo.isp,
+                        timestamp: new Date(),
+                    });
+                    sessionStorage.setItem(lastVisitKey, now.toString());
+                    console.log("Visitor data saved to Firestore:", visitorInfo);
+                } catch (e) {
+                    console.error("Error adding visitor document:", e);
+                    showMessageBox('Error', 'Failed to save visitor data.');
+                }
+            }
+        }
+
+        // Function to display visitors in the modal
+        async function displayVisitors() {
+            if (!db || !auth.currentUser) {
+                showMessageBox('Error', 'Visitor data cannot be fetched. Please ensure you are online and Firebase is initialized.');
+                return;
+            }
+
+            const visitorsListElement = document.getElementById('visitorsList');
+            visitorsListElement.innerHTML = ''; // Clear previous entries
+            const visitorsModal = document.getElementById('visitorsModal');
+            const visitorsModalOverlay = document.getElementById('visitorsModalOverlay');
+
+            try {
+                const visitorsCollectionRef = collection(db, `artifacts/${appId}/public/data/visitors`);
+                // Get the latest 20 visitors, ordered by timestamp
+                const q = query(visitorsCollectionRef, orderBy('timestamp', 'desc'), limit(20));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    visitorsListElement.innerHTML = '<li>No visitors recorded yet.</li>';
+                } else {
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        const listItem = document.createElement('li');
+                        const timestamp = data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString() : 'N/A';
+                        listItem.innerHTML = `
+                            <span class="ip-address">IP: ${data.ipAddress || 'N/A'}</span>
+                            <span class="location">Location: ${data.city}, ${data.region}, ${data.country}</span>
+                            <span class="timestamp">Visited: ${timestamp}</span>
+                            <span style="font-size:0.7em; color:rgba(255,255,255,0.4);">User ID: ${data.userId}</span>
+                        `;
+                        visitorsListElement.appendChild(listItem);
+                    });
+                }
+            } catch (e) {
+                console.error("Error fetching visitor documents:", e);
+                visitorsListElement.innerHTML = '<li>Error loading visitors.</li>';
+                showMessageBox('Error', 'Could not load visitor data. Please try again later.');
+            } finally {
+                visitorsModal.classList.add('show');
+                visitorsModalOverlay.classList.add('show');
+            }
+        }
+
+        // Close visitors modal
+        document.getElementById('closeVisitorsModal').addEventListener('click', () => {
+            document.getElementById('visitorsModal').classList.remove('show');
+            document.getElementById('visitorsModalOverlay').classList.remove('show');
+        });
+
+        // Event listener for the "Show Visitors" button
+        document.addEventListener('DOMContentLoaded', () => {
+            const showVisitorsButton = document.getElementById('showVisitorsButton');
+            if (showVisitorsButton) {
+                showVisitorsButton.addEventListener('click', displayVisitors);
+            }
+        });
+
+        // Initialize Firebase on window load
+        window.onload = function() {
+            // Check if Typed is defined before initializing
+            if (typeof Typed !== 'undefined') {
+                var typed = new Typed('#typed-output', {
+                    stringsElement: '#typed-strings',
+                    typeSpeed: 70,
+                    backSpeed: 30,
+                    backDelay: 1500,
+                    startDelay: 500,
+                    loop: true,
+                    loopCount: Infinity,
+                    showCursor: true,
+                    cursorChar: '|',
+                    autoInsertCss: true,
+                });
+            } else {
+                console.error("Typed.js library is not loaded.");
+            }
+
+            // Initialize Firebase and start visitor tracking
+            initializeFirebase();
+
+            // Other DOMContentLoaded functions that might depend on all resources loaded
+            document.querySelectorAll('.card-arrow-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const eventId = this.id;
+                    showMessageBox('Event Details', `Learn more about ${eventId}! (Redirect functionality not implemented yet)`);
+                });
+            });
+
+            const contactForm = document.querySelector('.contact-form');
+            const leftPanel = document.querySelector('.contact-left-panel');
+            const rightPanel = document.querySelector('.contact-right-panel');
+            const contactMessage = document.getElementById('contactMessage');
+            
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Simple validation example (you can expand this)
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                if (!name || !email || !subject || !message) {
+                    showMessageBox('Validation Error', 'Please fill in all fields before sending your message.');
+                    return;
+                }
+
+                // Add classes to trigger "tear apart" animation
+                leftPanel.classList.add('tear-out');
+                rightPanel.classList.add('tear-out');
+                contactForm.classList.add('hidden'); // Hide the form itself during transition
+
+                // Wait for the panels' tear-out animation to complete (0.5s)
+                setTimeout(() => {
+                    // Show thank you message
+                    contactMessage.classList.add('show'); 
+                    
+                    // Reset form fields
+                    contactForm.reset();
+
+                    // After some time, hide thank you and show the new empty form again
+                    setTimeout(() => {
+                        contactMessage.classList.remove('show'); // Hide thank you
+                        // Immediately remove tear-out classes to reset their position for when they reappear
+                        leftPanel.classList.remove('tear-out');
+                        rightPanel.classList.remove('tear-out');
+                        contactForm.classList.remove('hidden'); // Show the form again
+                    }, 2000); // Display thank you for 2 seconds
+                }, 500); // Corresponds to the transition duration (0.5s) for tear-out
+            });
+        }; // Close window.onload
+    </script>
 
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
@@ -3528,7 +2983,7 @@
                         el.style.visibility = 'visible';
                     });
                     document.body.style.overflowX = 'hidden'; // Ensure overflow-x is off after load
-                }, Math.max(0, remainingTime)); // Wait for remaining time or immediately if already passed
+                }, Math.max(0, remainingTime));
             }
 
 
@@ -3555,7 +3010,7 @@
             minWidth: 200.00,
             scale: 1.00,
             scaleMobile: 1.00,
-            color: 0xffffff,       // Line color
+            color: 0xe1cfac,       // Changed line color to #e1cfac
             backgroundColor: 0x000000, // Set background to black
             points: 10.0,
             maxDistance: 20.0,
@@ -3810,7 +3265,7 @@
 
         document.querySelector('.chatbot-button').addEventListener('click', function(e) {
             e.preventDefault();
-            alert("Chatbot is not yet integrated. This button would typically open a chat window or widget!");
+            showMessageBox("Chatbot Info", "Chatbot is not yet integrated. This button would typically open a chat window or widget!");
         });
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -3836,81 +3291,6 @@
                 observer.observe(section);
             });
         });
-
-        // Moved Typed.js initialization to window.onload
-        window.onload = function() {
-            // Check if Typed is defined before initializing
-            if (typeof Typed !== 'undefined') {
-                var typed = new Typed('#typed-output', {
-                    stringsElement: '#typed-strings',
-                    typeSpeed: 70,
-                    backSpeed: 30,
-                    backDelay: 1500,
-                    startDelay: 500,
-                    loop: true,
-                    loopCount: Infinity,
-                    showCursor: true,
-                    cursorChar: '|',
-                    autoInsertCss: true,
-                });
-            } else {
-                console.error("Typed.js library is not loaded.");
-            }
-
-            // Other DOMContentLoaded functions that might depend on all resources loaded
-            document.querySelectorAll('.card-arrow-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const eventId = this.id;
-                    alert(`Learn more about ${eventId}! (Redirect functionality not implemented yet)`);
-                });
-            });
-
-            const contactForm = document.querySelector('.contact-form');
-            const leftPanel = document.querySelector('.contact-left-panel');
-            const rightPanel = document.querySelector('.contact-right-panel');
-            const contactMessage = document.getElementById('contactMessage');
-            
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Simple validation example (you can expand this)
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-
-                if (!name || !email || !subject || !message) {
-                    // Using alert for now as per previous, but a custom modal would be better
-                    alert('Please fill in all fields before sending your message.');
-                    return;
-                }
-
-                // Add classes to trigger "tear apart" animation
-                leftPanel.classList.add('tear-out');
-                rightPanel.classList.add('tear-out');
-                contactForm.classList.add('hidden'); // Hide the form itself during transition
-
-                // Wait for the panels' tear-out animation to complete (0.5s)
-                setTimeout(() => {
-                    // Show thank you message
-                    contactMessage.classList.add('show'); 
-
-                    // Immediately remove tear-out classes to reset their position for when they reappear
-                    leftPanel.classList.remove('tear-out');
-                    rightPanel.classList.remove('tear-out');
-                    
-                    // Reset form fields
-                    contactForm.reset();
-
-                    // After some time, hide thank you and show the new empty form again
-                    setTimeout(() => {
-                        contactMessage.classList.remove('show'); // Hide thank you
-                        contactForm.classList.remove('hidden'); // Show the form again
-                        // Panels will reappear because tear-out classes are removed and they transition back to default
-                    }, 2000); // Display thank you for 2 seconds
-                }, 500); // Corresponds to the transition duration (0.5s) for tear-out
-            });
-        }; // Close window.onload
     </script>
 </body>
 </html>
