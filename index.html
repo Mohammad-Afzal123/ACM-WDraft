@@ -8,6 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QPEYF44J5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2QPEYF44J5');
+    </script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -578,22 +587,7 @@
         }
 
         /* NEW: Show Visitors Button in Footer */
-        .footer-column .show-visitors-button {
-            background-color: #007bff; /* Blue button */
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-top: 15px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .footer-column .show-visitors-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-        }
+        /* Removed .show-visitors-button styles as the button is removed */
 
         @media (max-width: 768px) {
             .main-content {
@@ -1065,7 +1059,6 @@
             padding-bottom: 10px;
             margin-bottom: 30px;
             font-size: 2.5em;
-            width: 100%;
             text-align: center;
         }
 
@@ -1873,85 +1866,7 @@
         }
 
         /* Visitor List Modal */
-        .visitors-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #1D1D1D; /* Dark background */
-            color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            z-index: 2000;
-            display: none; /* Hidden by default */
-            flex-direction: column;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: fadeInScale 0.3s ease-out forwards;
-        }
-        .visitors-modal.show {
-            display: flex;
-        }
-        .visitors-modal h3 {
-            margin-top: 0;
-            color: #1ABC9C;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .visitors-modal ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
-        .visitors-modal li {
-            background-color: #2a2a2a;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .visitors-modal li span {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .visitors-modal li .ip-address {
-            font-weight: bold;
-            color: #e1cfac; /* Matching Vanta.js line color */
-            font-size: 1.1em;
-        }
-        .visitors-modal li .location {
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        .visitors-modal li .timestamp {
-            font-size: 0.8em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 5px;
-        }
-        .visitors-modal .close-button {
-            background-color: #e74c3c; /* Red close button */
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            margin-top: 20px;
-            align-self: center;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .visitors-modal .close-button:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-        }
+        /* Removed .visitors-modal styles as the modal is removed */
 
     </style>
 </head>
@@ -1965,15 +1880,15 @@
         <button id="messageBoxClose">OK</button>
     </div>
 
-    <!-- Visitor List Modal HTML -->
-    <div class="message-box-overlay" id="visitorsModalOverlay"></div>
-    <div class="visitors-modal" id="visitorsModal">
-        <h3>Recent Visitors</h3>
-        <ul id="visitorsList">
+    <!-- Visitor List Modal HTML (Removed) -->
+    <!-- <div class="message-box-overlay" id="visitorsModalOverlay"></div> -->
+    <!-- <div class="visitors-modal" id="visitorsModal"> -->
+    <!--     <h3>Recent Visitors</h3> -->
+    <!--     <ul id="visitorsList"> -->
             <!-- Visitor data will be injected here -->
-        </ul>
-        <button class="close-button" id="closeVisitorsModal">Close</button>
-    </div>
+    <!--     </ul> -->
+    <!--     <button class="close-button" id="closeVisitorsModal">Close</button> -->
+    <!-- </div> -->
 
     <!-- Preloader Video Page -->
     <div id="preload-video-container">
@@ -2175,7 +2090,7 @@
                         </div>
                         <h4 class="card-title">⚡WEEKLY CODING CHALLENGE</h4>
                         <h5 class="card-date">5th July, 2024</h5>
-                        <p class="card-description">Calling all code warriors! Are you ready to take on our epic weekly coding challenge and prove your skills? Dive into thrilling coding adventures, tackle complex problems, and rise to the top. This is your chance to show what you're made of—are you up for the challenge?</p>
+                        <p class="card-description">Calling all code warriors! Are you ready to take on our epic weekly coding challenge and prove your skills? Dive into thrilling coding adventures, tackle complex problems, and rise to the top. This is your chance to show what you're made of—are you up for the challenge!</p>
                         <div class="card-footer-container">
                             <span class="card-footer-text">Learn more</span>
                             <button id="event9" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
@@ -2591,8 +2506,8 @@
                 <p><i class="fas fa-map-marker-alt"></i> VIT Chennai, India</p>
                 <p><i class="fas fa-envelope"></i> info@acmw.org</p>
                 <p><i class="fas fa-phone"></i> +123-456-7890</p>
-                <!-- NEW: Show Visitors Button -->
-                <button class="show-visitors-button" id="showVisitorsButton">Show Visitors</button>
+                <!-- NEW: Show Visitors Button (Removed) -->
+                <!-- <button class="show-visitors-button" id="showVisitorsButton">Show Visitors</button> -->
             </div>
             <div class="footer-column">
                 <h4>Follow Us</h4>
@@ -2609,16 +2524,9 @@
         </div>
     </footer>
 
-    <!-- Firebase SDKs -->
+    <!-- Firebase SDKs (Removed) -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        let db;
-        let auth;
-        let userId;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        // All Firebase imports and related code have been removed.
 
         // Custom Message Box function (replacing alert/confirm)
         function showMessageBox(title, message) {
@@ -2639,178 +2547,7 @@
             };
         }
 
-        // Initialize Firebase and Authenticate
-        async function initializeFirebase() {
-            try {
-                const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-                if (Object.keys(firebaseConfig).length === 0) {
-                    console.error("Firebase config is not defined.");
-                    showMessageBox('Error', 'Firebase configuration is missing. Visitor tracking will not work.');
-                    return;
-                }
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                // Listen for auth state changes
-                onAuthStateChanged(auth, async (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        console.log('Firebase authenticated. User ID:', userId);
-                        // Track visitor after authentication
-                        await getVisitorDataAndSave();
-                    } else {
-                        // Sign in anonymously if no authenticated user
-                        try {
-                            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                                await signInWithCustomToken(auth, __initial_auth_token);
-                            } else {
-                                await signInAnonymously(auth);
-                            }
-                        } catch (anonError) {
-                            console.error("Anonymous sign-in failed:", anonError);
-                            showMessageBox('Authentication Error', 'Failed to authenticate anonymously for visitor tracking. Please check your Firebase setup.');
-                        }
-                    }
-                });
-
-            } catch (error) {
-                console.error("Error initializing Firebase:", error);
-                showMessageBox('Initialization Error', 'Failed to initialize Firebase. Visitor tracking will not work.');
-            }
-        }
-
-        // Function to fetch public IP and location details
-        async function fetchPublicIpAndLocation() {
-            try {
-                // Get public IP address
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                const ipAddress = ipData.ip;
-
-                // Get location details using the IP address
-                const geoResponse = await fetch(`https://ip-api.com/json/${ipAddress}`);
-                const geoData = await geoResponse.json();
-
-                if (geoData.status === 'success') {
-                    return {
-                        ip: ipAddress,
-                        city: geoData.city || 'Unknown',
-                        region: geoData.regionName || 'Unknown',
-                        country: geoData.country || 'Unknown',
-                        isp: geoData.isp || 'Unknown',
-                    };
-                } else {
-                    console.warn("IP geolocation failed:", geoData.message);
-                    return { ip: ipAddress, city: 'Unknown', region: 'Unknown', country: 'Unknown', isp: 'Unknown' };
-                }
-            } catch (error) {
-                console.error("Error fetching IP or location:", error);
-                return null;
-            }
-        }
-
-        // Function to save visitor data to Firestore
-        async function getVisitorDataAndSave() {
-            if (!db || !auth || !auth.currentUser) {
-                console.warn("Firestore not ready or user not authenticated for visitor tracking.");
-                return;
-            }
-
-            const visitorId = auth.currentUser.uid;
-            const lastVisitKey = `last_visit_${visitorId}`;
-            const lastVisit = sessionStorage.getItem(lastVisitKey);
-            const now = Date.now();
-
-            // Prevent logging multiple visits within a short period (e.g., 5 minutes)
-            const FIVE_MINUTES = 5 * 60 * 1000;
-            if (lastVisit && (now - parseInt(lastVisit) < FIVE_MINUTES)) {
-                console.log("Visitor already logged recently.");
-                return;
-            }
-
-            const visitorInfo = await fetchPublicIpAndLocation();
-
-            if (visitorInfo) {
-                try {
-                    const visitorsCollectionRef = collection(db, `artifacts/${appId}/public/data/visitors`);
-                    await addDoc(visitorsCollectionRef, {
-                        userId: visitorId,
-                        ipAddress: visitorInfo.ip,
-                        city: visitorInfo.city,
-                        region: visitorInfo.region,
-                        country: visitorInfo.country,
-                        isp: visitorInfo.isp,
-                        timestamp: new Date(),
-                    });
-                    sessionStorage.setItem(lastVisitKey, now.toString());
-                    console.log("Visitor data saved to Firestore:", visitorInfo);
-                } catch (e) {
-                    console.error("Error adding visitor document:", e);
-                    showMessageBox('Error', 'Failed to save visitor data.');
-                }
-            }
-        }
-
-        // Function to display visitors in the modal
-        async function displayVisitors() {
-            if (!db || !auth.currentUser) {
-                showMessageBox('Error', 'Visitor data cannot be fetched. Please ensure you are online and Firebase is initialized.');
-                return;
-            }
-
-            const visitorsListElement = document.getElementById('visitorsList');
-            visitorsListElement.innerHTML = ''; // Clear previous entries
-            const visitorsModal = document.getElementById('visitorsModal');
-            const visitorsModalOverlay = document.getElementById('visitorsModalOverlay');
-
-            try {
-                const visitorsCollectionRef = collection(db, `artifacts/${appId}/public/data/visitors`);
-                // Get the latest 20 visitors, ordered by timestamp
-                const q = query(visitorsCollectionRef, orderBy('timestamp', 'desc'), limit(20));
-                const querySnapshot = await getDocs(q);
-
-                if (querySnapshot.empty) {
-                    visitorsListElement.innerHTML = '<li>No visitors recorded yet.</li>';
-                } else {
-                    querySnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        const listItem = document.createElement('li');
-                        const timestamp = data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString() : 'N/A';
-                        listItem.innerHTML = `
-                            <span class="ip-address">IP: ${data.ipAddress || 'N/A'}</span>
-                            <span class="location">Location: ${data.city}, ${data.region}, ${data.country}</span>
-                            <span class="timestamp">Visited: ${timestamp}</span>
-                            <span style="font-size:0.7em; color:rgba(255,255,255,0.4);">User ID: ${data.userId}</span>
-                        `;
-                        visitorsListElement.appendChild(listItem);
-                    });
-                }
-            } catch (e) {
-                console.error("Error fetching visitor documents:", e);
-                visitorsListElement.innerHTML = '<li>Error loading visitors.</li>';
-                showMessageBox('Error', 'Could not load visitor data. Please try again later.');
-            } finally {
-                visitorsModal.classList.add('show');
-                visitorsModalOverlay.classList.add('show');
-            }
-        }
-
-        // Close visitors modal
-        document.getElementById('closeVisitorsModal').addEventListener('click', () => {
-            document.getElementById('visitorsModal').classList.remove('show');
-            document.getElementById('visitorsModalOverlay').classList.remove('show');
-        });
-
-        // Event listener for the "Show Visitors" button
-        document.addEventListener('DOMContentLoaded', () => {
-            const showVisitorsButton = document.getElementById('showVisitorsButton');
-            if (showVisitorsButton) {
-                showVisitorsButton.addEventListener('click', displayVisitors);
-            }
-        });
-
-        // Initialize Firebase on window load
+        // window.onload function
         window.onload = function() {
             // Check if Typed is defined before initializing
             if (typeof Typed !== 'undefined') {
@@ -2829,9 +2566,6 @@
             } else {
                 console.error("Typed.js library is not loaded.");
             }
-
-            // Initialize Firebase and start visitor tracking
-            initializeFirebase();
 
             // Other DOMContentLoaded functions that might depend on all resources loaded
             document.querySelectorAll('.card-arrow-button').forEach(button => {
@@ -3111,50 +2845,50 @@
                     // User has scrolled down, hamburger button should be active
                     hamburgerButton.style.opacity = '1';
                     hamburgerButton.style.visibility = 'visible';
-                    hamburgerButton.style.pointerEvents = 'auto';
+                    hamburgerButton.style.pointerEvents = 'auto'; // Corrected: pointer-events to pointerEvents
 
                     // Hide top nav and its text logo
                     if (topHeaderNav) {
                         topHeaderNav.style.opacity = '0';
                         topHeaderNav.style.visibility = 'hidden';
-                        topHeaderNav.style.pointerEvents = 'none';
+                        topHeaderNav.style.pointerEvents = 'none'; // Corrected: pointer-events to pointerEvents
                     }
                     if (topNavTextLogo) {
                         topNavTextLogo.style.opacity = '0';
                         topNavTextLogo.style.visibility = 'hidden';
-                        topNavTextLogo.style.pointerEvents = 'none';
+                        topNavTextLogo.style.pointerEvents = 'none'; // Corrected: pointer-events to pointerEvents
                     }
 
                     // Show the original fixed ACMW image logo (top-left)
                     if (fixedAcmwLogo) {
                         fixedAcmwLogo.style.opacity = '1';
                         fixedAcmwLogo.style.visibility = 'visible';
-                        fixedAcmwLogo.style.pointerEvents = 'auto';
+                        fixedAcmwLogo.style.pointerEvents = 'auto'; // Corrected: pointer-events to pointerEvents
                     }
 
                 } else {
                     // User is at the top, top nav and its text logo should be active.
                     hamburgerButton.style.opacity = '0';
                     hamburgerButton.style.visibility = 'hidden';
-                    hamburgerButton.style.pointerEvents = 'none';
+                    hamburgerButton.style.pointerEvents = 'none'; // Corrected: pointer-events to pointerEvents
 
                     // Show top nav and its text logo (fully opaque)
                     if (topHeaderNav) {
                         topHeaderNav.style.opacity = '1';
                         topHeaderNav.style.visibility = 'visible';
-                        topHeaderNav.style.pointerEvents = 'auto';
+                        topHeaderNav.style.pointerEvents = 'auto'; // Corrected: pointer-events to pointerEvents
                     }
                     if (topNavTextLogo) {
                         topNavTextLogo.style.opacity = '1';
                         topNavTextLogo.style.visibility = 'visible';
-                        topNavTextLogo.style.pointerEvents = 'auto';
+                        topNavTextLogo.style.pointerEvents = 'auto'; // Corrected: pointer-events to pointerEvents
                     }
 
                     // Hide the original fixed ACMW image logo
                     if (fixedAcmwLogo) {
                         fixedAcmwLogo.style.opacity = '0';
                         fixedAcmwLogo.style.visibility = 'hidden';
-                        fixedAcmwLogo.style.pointerEvents = 'none';
+                        fixedAcmwLogo.style.pointerEvents = 'none'; // Corrected: pointer-events to pointerEvents
                     }
                 }
                 highlightNavLink(); // Call highlight after state change
