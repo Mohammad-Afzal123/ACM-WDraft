@@ -59,8 +59,8 @@
         #preload-video {
             min-width: 100%;
             min-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100%; /* Changed from auto to 100% */
+            height: 100%; /* Changed from auto to 100% */
             position: absolute;
             top: 50%;
             left: 50%;
@@ -904,7 +904,7 @@
             transform: translateX(3px);
         }
 
-        /* --- Members Section Styles (Diamond Cards) --- */
+        /* --- Members Section Styles (Hexagon Cards) --- */
         /* Container for the entire hive layout */
         .team-hive-container {
             display: flex;
@@ -912,59 +912,67 @@
             align-items: center; /* Center the rows */
             margin-top: 40px;
             padding-bottom: 50px;
-            background-color: transparent; /* Match alumni section background, but pattern is added to #alumni itself */
+            background-color: transparent;
             border-radius: 8px;
+            overflow: hidden; /* Hide any overflow from negative margins */
         }
 
         /* Styles for each row in the hive */
         .team-row {
             display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line if space is limited */
             justify-content: center; /* Center members within each row */
-            gap: 60px; /* Increased gap between diamonds for separation */
+            gap: 20px; /* Gap between hexagons */
+            margin-bottom: 40px; /* Add vertical spacing between rows */
+            width: 100%; /* Ensure rows take full width to center content */
+            max-width: 1200px; /* Optional: Cap the max width of the rows */
+            box-sizing: border-box; /* Include padding/border in width calculation */
         }
 
-        /* Offset for alternate rows to create the interlocking effect */
+        /* Removed offset-row as it caused overlap */
         .team-row.offset-row {
-            margin-top: 0; /* Changed to 0 to prevent touching */
+            margin-top: 0; /* Override any previous negative margin */
         }
 
-        /* Styles for individual team member diamonds */
+        /* Styles for individual team member hexagons */
         .team-member {
             position: relative;
-            width: 220px; /* Larger size for the diamond */
-            height: 220px; /* Larger size for the diamond */
-            transform: rotate(45deg); /* Rotate for diamond shape */
-            overflow: hidden; /* Hide parts outside the diamond */
+            /* Responsive sizing for hexagons */
+            width: clamp(120px, 20vw, 250px); /* Min 120px, preferred 20vw, max 250px */
+            height: clamp(120px, 20vw, 250px); /* Keep height equal to width for aspect ratio */
+            transform: none; /* No rotation for hexagon */
+            overflow: hidden;
             border: 3px solid #666; /* Subtle border */
-            background-color: transparent; /* Background will be filled by image or default if no image */
-            margin: 0; /* No horizontal overlap, handled by gap */
+            background-color: transparent;
+            margin: 0; /* Ensure no external margins cause overlap */
             transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.1s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1; /* Default stacking order */
-            border-radius: 0; /* No explicit border-radius for diamond shape */
+            z-index: 1;
+            /* Hexagon shape using clip-path */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
 
         .team-member:hover {
-            transform: rotate(45deg) scale(1.08); /* Slightly less aggressive scale for larger cards */
+            transform: scale(1.08); /* Slight scale on hover */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             z-index: 2; /* Bring hovered card to front */
         }
 
-        /* Image inside the diamond, rotated back */
+        /* Image inside the hexagon, no rotation needed */
         .team-member img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transform: rotate(-45deg); /* Rotate content back to normal */
+            object-fit: cover; /* Ensures the image covers the entire hexagon shape */
+            transform: none; /* No rotation for content */
             transition: transform 0.3s ease;
             opacity: 1; /* Always visible */
         }
 
         .team-member:hover img {
-            transform: scale(1.05) rotate(-45deg); /* Slight scale and rotate back on hover */
+            transform: scale(1.05); /* Slight scale on hover */
         }
 
-        /* Overlay for text, rotated back */
+        /* Overlay for text, no rotation needed */
         .overlay {
             position: absolute;
             top: 0;
@@ -977,13 +985,15 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transform: rotate(-45deg); /* Rotate content back to normal */
+            transform: none; /* No rotation for content */
             opacity: 0; /* Hidden by default */
             transition: opacity 0.3s ease-in-out;
             text-align: center;
-            font-size: 18px; /* Adjusted font size for larger cards */
+            font-size: 18px; /* Adjusted font size for cards */
             padding: 10px;
             box-sizing: border-box;
+            /* Apply same clip-path to overlay to match hexagon shape */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
 
         .team-member:hover .overlay {
@@ -1006,36 +1016,35 @@
         .overlay .social-icons a {
             color: #fff;
             font-size: 1.5em;
-            transform: rotate(45deg); /* Counter-rotate back to normal from diamond rotation */
+            transform: none; /* No counter-rotation needed */
             transition: transform 0.2s ease, color 0.2s ease;
         }
 
         .overlay .social-icons a:hover {
             color: #1ABC9C; /* Teal highlight on hover */
-            transform: rotate(45deg) scale(1.1); /* Slight scale and rotate back */
+            transform: scale(1.1); /* Slight scale on hover */
         }
         
         /* Responsive adjustments for Team Section */
         @media (max-width: 768px) {
             .team-member {
-                width: 160px; /* Larger diamonds on mobile */
-                height: 160px;
-                margin: 0; /* No horizontal overlap */
-                transform: rotate(45deg); /* Keep diamond shape on mobile */
-                border-radius: 0;
+                width: 100px; /* Smaller hexagons on mobile */
+                height: 100px;
+                margin: 0;
+                transform: none; /* Keep hexagon shape on mobile */
             }
             .team-member img, .overlay {
-                transform: rotate(-45deg); /* Keep inner content straight */
-            }
-            .team-row.offset-row {
-                margin-top: 40px; /* Adjusted overlap for larger diamonds */
-            }
-            .overlay {
-                font-size: 16px;
+                transform: none; /* Keep inner content straight */
             }
             .team-row {
-                gap: 15px; /* Ensure gap on mobile */
-                flex-direction: row; /* Keep rows horizontal on mobile, allow wrap */
+                margin-bottom: 20px; /* Reduced vertical spacing on mobile */
+                gap: 10px; /* Ensure gap on mobile */
+            }
+            .overlay {
+                font-size: 12px; /* Smaller font size for overlay text on mobile */
+            }
+            .overlay strong {
+                font-size: 1.1em; /* Adjust name size */
             }
         }
 
@@ -1520,6 +1529,12 @@
             padding: 0; 
             box-sizing: border-box; /* Include padding in the width calculation */
             align-items: stretch; /* Make flex items stretch to fill container height */
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Added transition for container */
+        }
+
+        .contact-panels-container.tear-out {
+            opacity: 0;
+            transform: scale(0.8); /* Shrink slightly as it fades */
         }
 
         /* Zig-zag shape for the left panel - now white */
@@ -1745,26 +1760,27 @@
         /* Animation for tearing apart panels */
         .contact-left-panel,
         .contact-right-panel {
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            transition: transform 0.5s ease-out; /* Removed opacity from transition */
         }
 
         .contact-left-panel.tear-out {
             transform: translateX(-100%);
-            opacity: 0;
+            /* Removed opacity: 0; */
         }
         .contact-right-panel.tear-out {
             transform: translateX(100%);
-            opacity: 0;
+            /* Removed opacity: 0; */
         }
 
-        /* Thank you message overlay */
+        /* Thank you message overlay (Styles for this element are no longer needed as the element is removed) */
+        /*
         .contact-message-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Match right panel */
+            background: linear-gradient(135deg, #2C007C, #6A0DAD);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1775,13 +1791,14 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            z-index: 10; /* Above the panels */
-            border-radius: 20px; /* Match container */
+            z-index: 10;
+            border-radius: 20px;
         }
         .contact-message-overlay.show {
             opacity: 1;
             visibility: visible;
         }
+        */
 
         /* Custom Message Box (replacing alert/confirm) */
         .custom-message-box {
@@ -2168,7 +2185,7 @@
 
         <section id="alumni" data-aos="fade-up">
             <video class="alumni-video-background" autoplay loop muted playsinline preload="auto">
-                <source src="https://github.com/Mohammad-Afzal123/ACM-WDraft/raw/main/vecteezy_glowing-blue-neon-reflection-tech-tunnel-corridor-space-dj-loop_2020121%20(1).mp4" type="video/mp4">
+                <source src="https://github.com/Mohammad-Afzal123/ACM-WDraft/raw/main/vecteezy_glowing-blue-neon-reflection-tech-tunnel-corridor-space-dj-loop_2020121%20(1) (1).mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="alumni-content-overlay"></div> <!-- Overlay for text readability -->
@@ -2182,7 +2199,7 @@
             <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
             <div class="team-hive-container">
                 <div class="team-row">
-                    <!-- Row 1: 3 members -->
+                    <!-- Row 1: 4 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Dr. Suganya">
                         <div class="overlay"><strong>Dr. Suganya</strong><br/>Faculty Coordinator
@@ -2210,9 +2227,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="team-row offset-row">
-                    <!-- Row 2: 2 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Lakshmi Priya">
                         <div class="overlay"><strong>Lakshmi Priya</strong><br/>Secretary
@@ -2222,6 +2236,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="team-row">
+                    <!-- Row 2: 3 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sathvik">
                         <div class="overlay"><strong>Sathvik</strong><br/>Treasurer
@@ -2231,9 +2248,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="team-row">
-                    <!-- Row 3: 3 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Nandhakishore">
                         <div class="overlay"><strong>Nandhakishore</strong><br/>Membership chair
@@ -2252,6 +2266,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="team-row">
+                    <!-- Row 3: 3 members -->
                     <div class="team-member">
                         <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=Team+Member" alt="CH L Sudheera">
                         <div class="overlay"><strong>CH L Sudheera</strong><br/>Design
@@ -2261,9 +2278,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="team-row offset-row">
-                    <!-- Row 4: 2 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Hrituja">
                         <div class="overlay"><strong>Hrituja</strong><br/>Event Management
@@ -2284,7 +2298,7 @@
                     </div>
                 </div>
                 <div class="team-row">
-                    <!-- Row 5: 3 members -->
+                    <!-- Row 4: 4 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Sireesha">
                         <div class="overlay"><strong>Sireesha</strong><br/>Social media
@@ -2312,9 +2326,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                 <div class="team-row offset-row">
-                    <!-- Row 6: 2 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Samantha">
                         <div class="overlay"><strong>Samantha Ray</strong><br/>Content Strategist
@@ -2324,9 +2335,30 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="team-row">
+                    <!-- Row 5: 3 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Jason">
                         <div class="overlay"><strong>Jason Park</strong><br/>Cloud Architect
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/40.jpg" alt="New Member 1">
+                        <div class="overlay"><strong>New Member 1</strong><br/>Role 1
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="New Member 2">
+                        <div class="overlay"><strong>New Member 2</strong><br/>Role 2
                             <div class="social-icons">
                                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2342,10 +2374,10 @@
         <section id="contact-us" data-aos="fade-up">
             <h2>Contact Us</h2> <!-- Added a main section title for clarity -->
             <div class="contact-panels-container">
-                <!-- Thank you message overlay -->
-                <div class="contact-message-overlay" id="contactMessage">
+                <!-- Thank you message overlay (Removed) -->
+                <!-- <div class="contact-message-overlay" id="contactMessage">
                     Thank You! Your message has been sent.
-                </div>
+                </div> -->
 
                 <div class="contact-left-panel">
                     <div class="contact-left-content">
@@ -2578,7 +2610,7 @@
             const contactForm = document.querySelector('.contact-form');
             const leftPanel = document.querySelector('.contact-left-panel');
             const rightPanel = document.querySelector('.contact-right-panel');
-            const contactMessage = document.getElementById('contactMessage');
+            const contactPanelsContainer = document.querySelector('.contact-panels-container'); // Get reference to the container
             
             contactForm.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent default form submission
@@ -2598,23 +2630,21 @@
                 leftPanel.classList.add('tear-out');
                 rightPanel.classList.add('tear-out');
                 contactForm.classList.add('hidden'); // Hide the form itself during transition
+                contactPanelsContainer.classList.add('tear-out'); // Add tear-out to the container
 
                 // Wait for the panels' tear-out animation to complete (0.5s)
                 setTimeout(() => {
-                    // Show thank you message
-                    contactMessage.classList.add('show'); 
-                    
                     // Reset form fields
                     contactForm.reset();
 
                     // After some time, hide thank you and show the new empty form again
                     setTimeout(() => {
-                        contactMessage.classList.remove('show'); // Hide thank you
                         // Immediately remove tear-out classes to reset their position for when they reappear
                         leftPanel.classList.remove('tear-out');
                         rightPanel.classList.remove('tear-out');
+                        contactPanelsContainer.classList.remove('tear-out'); // Remove tear-out from container
                         contactForm.classList.remove('hidden'); // Show the form again
-                    }, 2000); // Display thank you for 2 seconds
+                    }, 2000); // Display tear-out for 2 seconds before resetting
                 }, 500); // Corresponds to the transition duration (0.5s) for tear-out
             });
         }; // Close window.onload
