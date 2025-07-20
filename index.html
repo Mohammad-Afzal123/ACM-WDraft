@@ -203,6 +203,8 @@
             padding-left: 40px; /* Ensure padding for content inside */
             padding-right: 40px; /* Ensure padding for content inside */
             margin-bottom: 0; /* Ensure zero gap below this section */
+            border: 2px solid #00BFFF; /* Neon blue border */
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.8); /* Neon blue glow */
         }
 
         .alumni-video-background {
@@ -938,8 +940,9 @@
         .team-member {
             position: relative;
             /* Responsive sizing for hexagons */
-            width: clamp(120px, 20vw, 250px); /* Min 120px, preferred 20vw, max 250px */
-            height: clamp(120px, 20vw, 250px); /* Keep height equal to width for aspect ratio */
+            /* Adjusted width to accommodate 5 members per row with gaps */
+            width: clamp(100px, 18vw, 200px); /* Smaller min/max for 5 per row, adjust vw as needed */
+            height: clamp(100px, 18vw, 200px); /* Keep height equal to width for aspect ratio */
             transform: none; /* No rotation for hexagon */
             overflow: hidden;
             border: 3px solid #666; /* Subtle border */
@@ -1529,12 +1532,14 @@
             padding: 0; 
             box-sizing: border-box; /* Include padding in the width calculation */
             align-items: stretch; /* Make flex items stretch to fill container height */
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Added transition for container */
+            /* Only transition background-color and box-shadow for the container itself */
+            transition: background-color 0.8s ease-out, box-shadow 0.8s ease-out; 
         }
 
         .contact-panels-container.tear-out {
-            opacity: 0;
-            transform: scale(0.8); /* Shrink slightly as it fades */
+            background-color: transparent; /* Make the background transparent */
+            box-shadow: none; /* Remove the shadow */
+            /* No transform, no opacity, no visibility changes for the container itself */
         }
 
         /* Zig-zag shape for the left panel - now white */
@@ -1570,6 +1575,7 @@
                 0 100% /* Straight bottom to left */
             );
             border: none; /* No border for the left panel */
+            transition: transform 0.5s ease-out; /* Keep panel slide transition */
         }
 
         .contact-left-content h3 {
@@ -1668,6 +1674,7 @@
                 8% 10%, 6% 5%,
                 8% 0 /* Less pointed zig-zag to 8% at top */
             );
+            transition: transform 0.5s ease-out; /* Keep panel slide transition */
         }
 
         .contact-right-panel h3 {
@@ -1758,18 +1765,11 @@
         }
 
         /* Animation for tearing apart panels */
-        .contact-left-panel,
-        .contact-right-panel {
-            transition: transform 0.5s ease-out; /* Removed opacity from transition */
-        }
-
         .contact-left-panel.tear-out {
             transform: translateX(-100%);
-            /* Removed opacity: 0; */
         }
         .contact-right-panel.tear-out {
             transform: translateX(100%);
-            /* Removed opacity: 0; */
         }
 
         /* Thank you message overlay (Styles for this element are no longer needed as the element is removed) */
@@ -2185,7 +2185,7 @@
 
         <section id="alumni" data-aos="fade-up">
             <video class="alumni-video-background" autoplay loop muted playsinline preload="auto">
-                <source src="https://github.com/Mohammad-Afzal123/ACM-WDraft/raw/main/vecteezy_glowing-blue-neon-reflection-tech-tunnel-corridor-space-dj-loop_2020121%20(1) (1).mp4" type="video/mp4">
+                <source src="https://github.com/Mohammad-Afzal123/ACM-WDraft/raw/main/vecteezy_glowing-blue-neon-reflection-tech-tunnel-corridor-space-dj-loop_2020121%20(1).mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="alumni-content-overlay"></div> <!-- Overlay for text readability -->
@@ -2199,7 +2199,7 @@
             <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
             <div class="team-hive-container">
                 <div class="team-row">
-                    <!-- Row 1: 4 members -->
+                    <!-- Row 1: 5 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Dr. Suganya">
                         <div class="overlay"><strong>Dr. Suganya</strong><br/>Faculty Coordinator
@@ -2236,9 +2236,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="team-row">
-                    <!-- Row 2: 3 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sathvik">
                         <div class="overlay"><strong>Sathvik</strong><br/>Treasurer
@@ -2248,6 +2245,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="team-row">
+                    <!-- Row 2: 5 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Nandhakishore">
                         <div class="overlay"><strong>Nandhakishore</strong><br/>Membership chair
@@ -2266,9 +2266,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="team-row">
-                    <!-- Row 3: 3 members -->
                     <div class="team-member">
                         <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=Team+Member" alt="CH L Sudheera">
                         <div class="overlay"><strong>CH L Sudheera</strong><br/>Design
@@ -2298,7 +2295,7 @@
                     </div>
                 </div>
                 <div class="team-row">
-                    <!-- Row 4: 4 members -->
+                    <!-- Row 3: 5 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Sireesha">
                         <div class="overlay"><strong>Sireesha</strong><br/>Social media
@@ -2335,30 +2332,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="team-row">
-                    <!-- Row 5: 3 members -->
                     <div class="team-member">
                         <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Jason">
                         <div class="overlay"><strong>Jason Park</strong><br/>Cloud Architect
-                            <div class="social-icons">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/women/40.jpg" alt="New Member 1">
-                        <div class="overlay"><strong>New Member 1</strong><br/>Role 1
-                            <div class="social-icons">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="New Member 2">
-                        <div class="overlay"><strong>New Member 2</strong><br/>Role 2
                             <div class="social-icons">
                                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2626,11 +2602,13 @@
                     return;
                 }
 
-                // Add classes to trigger "tear apart" animation
+                // Add classes to trigger "tear apart" animation for inner panels
                 leftPanel.classList.add('tear-out');
                 rightPanel.classList.add('tear-out');
                 contactForm.classList.add('hidden'); // Hide the form itself during transition
-                contactPanelsContainer.classList.add('tear-out'); // Add tear-out to the container
+                
+                // Add tear-out to the container (for background transparency and shadow removal)
+                contactPanelsContainer.classList.add('tear-out'); 
 
                 // Wait for the panels' tear-out animation to complete (0.5s)
                 setTimeout(() => {
@@ -2644,8 +2622,8 @@
                         rightPanel.classList.remove('tear-out');
                         contactPanelsContainer.classList.remove('tear-out'); // Remove tear-out from container
                         contactForm.classList.remove('hidden'); // Show the form again
-                    }, 2000); // Display tear-out for 2 seconds before resetting
-                }, 500); // Corresponds to the transition duration (0.5s) for tear-out
+                    }, 800); // Allow container background/shadow transition to complete (0.8s)
+                }, 500); // Wait for inner panels to start moving (0.5s)
             });
         }; // Close window.onload
     </script>
