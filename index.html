@@ -308,11 +308,11 @@
         /* NEW: Top Header Navigation Bar */
         .top-header-nav {
             position: absolute;
-            top: 0; /* Align with the very top of the header */
+            top: 45px; /* Adjusted to align with ACM-W logo center */
             left: 0;
             width: 100%;
             background-color: transparent; /* Made transparent as requested */
-            padding: 15px 0px; /* Adjusted to shift content left */
+            padding: 0px 0px; /* Adjusted to shift content left */
             z-index: 15; /* Above video, below banner-overlay-text */
             display: flex;
             justify-content: flex-end; /* Push links to the right */
@@ -979,22 +979,45 @@
             height: clamp(100px, 18vw, 200px); /* Keep height equal to width for aspect ratio */
             transform: none; /* No rotation for hexagon */
             overflow: hidden;
-            /* Changed border to 3px solid and added box-shadow for neon effect */
-            border: 3px solid #00BFFF; /* Neon blue border */
-            box-shadow: 0 0 15px rgba(0, 191, 255, 0.8); /* Neon blue glow */
+            /* Border and box-shadow moved to ::before pseudo-element */
+            border: none;
+            box-shadow: none;
             background-color: transparent;
             margin: 0; /* Ensure no external margins cause overlap */
-            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.1s ease;
+            transition: transform 0.3s ease, z-index 0.1s ease; /* Only transform and z-index here */
             z-index: 1;
             /* Hexagon shape using clip-path */
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
 
+        /* Pseudo-element for the hexagon border and neon glow */
+        .team-member::after { /* Changed from ::before to ::after for clarity, and to ensure it's behind */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #00BFFF; /* Neon blue color */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: -2; /* Place it behind the main content and image */
+            transform: scale(1.08); /* Make it slightly larger to act as a border */
+            box-shadow: 0 0 25px rgba(0, 191, 255, 1.5), /* Stronger neon glow */
+                        inset 0 0 10px rgba(0, 191, 255, 0.8); /* Inner glow for depth */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
         .team-member:hover {
-            transform: scale(1.08); /* Slight scale on hover */
-            box-shadow: 0 0 25px rgba(0, 191, 255, 1); /* Enhanced neon glow on hover */
+            transform: scale(1.08); /* Slight scale on hover for the entire card */
             z-index: 2; /* Bring hovered card to front */
         }
+
+        .team-member:hover::after {
+            transform: scale(1.15); /* Slightly larger border on hover */
+            box-shadow: 0 0 40px rgba(0, 191, 255, 2), /* Even stronger neon glow on hover */
+                        inset 0 0 15px rgba(0, 191, 255, 1); /* Enhanced inner glow */
+        }
+
 
         /* Image inside the hexagon, no rotation needed */
         .team-member img {
@@ -2025,7 +2048,7 @@
                         <h5 class="card-date">7/29/2025</h5>
                         <p class="card-description">Code Red is an adrenaline packed 24 hour hackathon designed to simulate real world tech pressure. Participants form teams to tackle urgent and impactful problems in record time. The challenge is to think fast, build smart, and deliver a working prototype quickly. With themes focused on rapid response and real time systems, the energy stays high. Expect chaos, caffeine, creativity, and code that works when it counts. Mentors and checkpoints help teams stay sharp and keep pushing forward. From idea to execution, every moment is a test of skill and teamwork.</p>
                         <div class="card-footer-container">
-                            <span class="card-footer-text">Learn more</span>
+                            <span class="card-footer-text">Register now</span>
                             <button id="event1" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -2036,11 +2059,11 @@
                         <div class="card-header">
                             <span class="card-category">HACKATHON</span>
                         </div>
-                        <h4 class="card-title">Hackstars</h4>
+                        <h4 class="card-title">🌟 Hackstars</h4>
                         <h5 class="card-date">8/25/2025</h5>
                         <p class="card-description">Hackstars is a unique event combining a 24-hour immersive workshop with a 48-hour hackathon. Focused on responsible AI system development, it brings ethics and innovation hand in hand. Participants learn the principles of fairness, transparency, and accountability in AI. Expert-led sessions provide real-world insights into building ethical AI applications. Over the next 48 hours, teams apply these principles to solve impactful challenges. Whether you're a developer, researcher, or design thinker, Hackstars welcomes you. It’s a journey from awareness to action in the realm of artificial intelligence. Join Hackstars to build not just smart AI but responsible AI.</p>
                         <div class="card-footer-container">
-                            <span class="card-footer-text">Learn more</span>
+                            <span class="card-footer-text">Register now</span>
                             <button id="event2" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -2051,11 +2074,11 @@
                         <div class="card-header">
                             <span class="card-category">HACKATHON</span>
                         </div>
-                        <h4 class="card-title">HackHer 2025</h4>
+                        <h4 class="card-title">👩‍💻 HackHer 2025</h4>
                         <h5 class="card-date">9/15/2025</h5>
                         <p class="card-description">HackHer 2025 is a 24-hour open-innovation hackathon welcoming diverse minds from every background. It’s a celebration of technology, creativity, and collaborative problem-solving. Whether you're a coder, designer, entrepreneur, or beginner, there's a place for you. Teams work around the clock to build impactful solutions for real-world challenges. Workshops, mentorship, and networking keep the energy flowing throughout the event. Participants push boundaries, learn by doing, and make lasting connections. With no barriers to entry, it's a space where innovation meets inclusivity.</p>
                         <div class="card-footer-container">
-                            <span class="card-footer-text">Learn more</span>
+                            <span class="card-footer-text">Register now</span>
                             <button id="event3" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -2066,11 +2089,11 @@
                         <div class="card-header">
                             <span class="card-category">HACKATHON</span>
                         </div>
-                        <h4 class="card-title">Code Olympics</h4>
+                        <h4 class="card-title">🏅 Code Olympics</h4>
                         <h5 class="card-date">10/12/2025</h5>
                         <p class="card-description">Code Olympics is a vibrant week-long event packed with diverse coding contests, tech-based tasks, and a thrilling hackathon. Organized in collaboration with multiple technical clubs at VIT Chennai, it represents the spirit of collective innovation. Each day features fresh challenges that test different aspects of coding and technical creativity. Participants can compete solo or in teams, exploring fields like AI, web, cybersecurity, and more. Workshops, quizzes, and tech games add variety to the competitive atmosphere. The event encourages collaboration, skill-building, and interdisciplinary learning.</p>
                         <div class="card-footer-container">
-                            <span class="card-footer-text">Learn more</span>
+                            <span class="card-footer-text">Register now</span>
                             <button id="event4" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -2530,7 +2553,7 @@
             document.querySelectorAll('.card-arrow-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const eventId = this.id;
-                    showMessageBox('Event Details', `Learn more about ${eventId}! (Redirect functionality not implemented yet)`);
+                    showMessageBox('Event Details', `Register for ${eventId}! (Registration functionality not implemented yet)`);
                 });
             });
 
@@ -2667,7 +2690,7 @@
             const testimonialsSlider = document.querySelector('.testimonials-slider-container');
 
             let animationFrameId; // To store the requestAnimationFrame ID
-            let scrollSpeed = 1.0; // Increased speed for better visibility
+            let scrollSpeed = 2.0; // Increased speed for faster sliding
             let isPaused = false; // Flag to pause on hover
             let originalContentWidth = 0; // Variable to store original content width
 
