@@ -213,12 +213,15 @@
             border: none;
         }
 
+        /* Removed alumni-text-content styles as the div is removed */
+        /*
         .alumni-text-content {
-            padding: 60px 40px; /* Re-add padding for alumni text content */
-            background-color: transparent; /* Changed to transparent as requested */
+            padding: 60px 40px;
+            background-color: transparent;
             position: relative;
-            z-index: 2; /* Ensure it's above any potential background elements if #alumni had them */
+            z-index: 2;
         }
+        */
 
         /* Container for the team section with video */
         .team-section-with-video {
@@ -247,7 +250,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Changed from contain to cover */
             z-index: 0; /* Behind content */
         }
 
@@ -626,97 +629,6 @@
         /* NEW: Show Visitors Button in Footer */
         /* Removed .show-visitors-button styles as the button is removed */
 
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 10px;
-                padding-top: 100px; /* Adjust for top nav on mobile */
-            }
-
-            .main-footer {
-                padding: 40px 20px;
-            }
-
-            .footer-content-wrapper {
-                margin-left: 0;
-                width: 100%;
-                padding-right: 0;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .footer-column {
-                text-align: center;
-            }
-
-            .footer-social-icons {
-                justify-content: center;
-            }
-
-            .floating-social-contact {
-                right: 10px;
-                bottom: 10px;
-                gap: 5px;
-                padding: 5px;
-                border-radius: 5px;
-            }
-
-            .floating-social-contact a {
-                font-size: 1.2em;
-                width: 35px;
-                height: 35px;
-            }
-
-            .banner-overlay-text h1 {
-                font-size: 2.5em;
-            }
-
-            .banner-overlay-text p {
-                font-size: 1em;
-            }
-
-            .timeline .line {
-                left: 20px;
-            }
-
-            .timeline .section {
-                padding: 10px;
-                justify-content: flex-end;
-            }
-
-            .timeline .section .card {
-                width: calc(100% - 70px);
-                margin-left: 60px;
-                margin-right: 0;
-            }
-
-            .timeline .section:nth-of-type(odd) .card::after {
-                left: -30px;
-                right: auto;
-            }
-            .timeline .section:nth-of-type(even) .card::after {
-                left: -30px;
-                right: auto;
-            }
-            .timeline .section:nth-of-type(odd) .card {
-                margin-right: 0;
-                margin-left: 60px;
-            }
-
-            .timeline .section:nth-of-type(even) .card {
-                margin-left: 60px;
-            }
-
-            /* Responsive for Top Nav */
-            .top-header-nav {
-                padding: 10px 0;
-            }
-            .top-header-nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
         /* --- Event Tile Specific Styles --- */
         .timeline {
             position: relative;
@@ -896,6 +808,28 @@
             line-height: 1.6;
             margin-bottom: 20px;
             /* color will be set by parent .card for light/dark text */
+            transition: max-height 0.5s ease-out; /* Smooth transition for height */
+            overflow: hidden; /* Hide overflow when truncated */
+            position: relative; /* Needed for absolute positioning of view-more-text */
+        }
+
+        /* Truncated state: 3.5 lines */
+        .card-description.truncated {
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* Set to 4 lines to ensure text + "View More" fits if needed */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            /* Removed max-height here to let line-clamp control it */
+        }
+
+        /* Expanded state */
+        .card-description.expanded {
+            max-height: 500px; /* Sufficiently large to show full text */
+            -webkit-line-clamp: unset; /* Remove line clamp when expanded */
+            display: block; /* Ensure it behaves as a block when expanded */
+            overflow: visible; /* Show full content */
         }
 
         .card-secondary-title {
@@ -941,6 +875,22 @@
             transform: translateX(3px);
         }
 
+        /* New inline "View More" text */
+        .view-more-text {
+            color: #1ABC9C; /* Teal color for the link */
+            cursor: pointer;
+            font-weight: bold;
+            /* margin-left: 5px; Removed to allow it to flow naturally after ellipsis */
+            transition: color 0.2s ease;
+            white-space: nowrap; /* Prevent "View More" from wrapping */
+            display: inline; /* Ensure it stays inline */
+        }
+
+        .view-more-text:hover {
+            color: #50D0A5; /* Lighter teal on hover */
+            text-decoration: underline;
+        }
+
         /* --- Members Section Styles (Hexagon Cards) --- */
         /* Container for the entire hive layout */
         .team-hive-container {
@@ -979,7 +929,6 @@
             height: clamp(100px, 18vw, 200px); /* Keep height equal to width for aspect ratio */
             transform: none; /* No rotation for hexagon */
             overflow: hidden;
-            /* Border and box-shadow moved to ::before pseudo-element */
             border: none;
             box-shadow: none;
             background-color: transparent;
@@ -990,15 +939,15 @@
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
 
-        /* Pseudo-element for the hexagon border and neon glow */
-        .team-member::after { /* Changed from ::before to ::after for clarity, and to ensure it's behind */
+        /* Pseudo-element for the outer glowing border (behind the member card) */
+        .team-member::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #00BFFF; /* Neon blue color */
+            background-color: #00BFFF; /* Neon blue color for the glow */
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             z-index: -2; /* Place it behind the main content and image */
             transform: scale(1.08); /* Make it slightly larger to act as a border */
@@ -1007,17 +956,18 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        /* Removed pseudo-element for the inner neon blue hexagon box */
+
         .team-member:hover {
             transform: scale(1.08); /* Slight scale on hover for the entire card */
             z-index: 2; /* Bring hovered card to front */
         }
 
         .team-member:hover::after {
-            transform: scale(1.15); /* Slightly larger border on hover */
-            box-shadow: 0 0 40px rgba(0, 191, 255, 2), /* Even stronger neon glow on hover */
+            transform: scale(1.15); /* Slightly larger outer glow on hover */
+            box-shadow: 0 0 40px rgba(0, 191, 255, 2), /* Even stronger outer neon glow on hover */
                         inset 0 0 15px rgba(0, 191, 255, 1); /* Enhanced inner glow */
         }
-
 
         /* Image inside the hexagon, no rotation needed */
         .team-member img {
@@ -1026,7 +976,8 @@
             object-fit: cover; /* Ensures the image covers the entire hexagon shape */
             transform: none; /* No rotation for content */
             transition: transform 0.3s ease;
-            opacity: 1; /* Always visible */
+            position: relative; /* Needed for z-index to work */
+            z-index: 0;
         }
 
         .team-member:hover img {
@@ -1055,6 +1006,7 @@
             box-sizing: border-box;
             /* Apply same clip-path to overlay to match hexagon shape */
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 2; /* On top of everything else in the team-member */
         }
 
         .team-member:hover .overlay {
@@ -1086,30 +1038,6 @@
             transform: scale(1.1); /* Slight scale on hover */
         }
         
-        /* Responsive adjustments for Team Section */
-        @media (max-width: 768px) {
-            .team-member {
-                width: 100px; /* Smaller hexagons on mobile */
-                height: 100px;
-                margin: 0;
-                transform: none; /* Keep hexagon shape on mobile */
-            }
-            .team-member img, .overlay {
-                transform: none; /* Keep inner content straight */
-            }
-            .team-row {
-                margin-bottom: 20px; /* Reduced vertical spacing on mobile */
-                gap: 10px; /* Ensure gap on mobile */
-            }
-            .overlay {
-                font-size: 12px; /* Smaller font size for overlay text on mobile */
-            }
-            .overlay strong {
-                font-size: 1.1em; /* Adjust name size */
-            }
-        }
-
-
         /* --- Sponsor Gallery Styles --- */
         #sponsors {
             padding: 60px 40px;
@@ -1496,59 +1424,7 @@
             color: rgba(255, 255, 255, 0.7);
         }
         
-        @media (max-width: 768px) {
-            .members-grid .member-card:nth-child(even) {
-                margin-top: 0; /* remove staggering on small screens */
-            }
-            .members-grid .member-card:nth-child(2n) {
-                margin-top: 0; /* remove staggering on small screens */
-            }
-
-            #testimonials .testimonials-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            #testimonials h2 {
-                margin-right: 0;
-            }
-            #testimonials .testimonials-slider-container {
-                justify-content: flex-start;
-                gap: 15px;
-                padding-bottom: 15px;
-            }
-            #testimonials .review-card {
-                width: 250px; /* Smaller cards on mobile */
-                padding: 15px;
-            }
-            #testimonials .review-text {
-                -webkit-line-clamp: 5; /* Allow slightly more lines on smaller screens */
-            }
-
-            /* Contact Us Section on mobile */
-            #contact-us .contact-content {
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
-            }
-
-            #contact-us .contact-info,
-            #contact-us .contact-form {
-                width: 90%;
-            }
-
-            #contact-us .contact-info div {
-                flex-direction: row;
-                align-items: center;
-                text-align: center;
-            }
-            #contact-us .contact-info i {
-                margin-bottom: 0;
-                margin-right: 10px;
-            }
-        }
-        
-        /* Styles for the Contact Us Section as a whole */
+        /* --- Contact Us Section Styles as a whole --- */
         #contact-us {
             background-color: transparent; /* Set to transparent as requested */
             color: #fff; /* Default text color for the section */
@@ -1830,33 +1706,31 @@
             transform: translateX(100%);
         }
 
-        /* Thank you message overlay (Styles for this element are no longer needed as the element is removed) */
-        /*
-        .contact-message-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2C007C, #6A0DAD);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* New style for the "Join Alumni Network" button in contact form */
+        .contact-right-panel .join-alumni-button {
+            background: linear-gradient(45deg, #1ABC9C, #50D0A5); /* Teal to lighter green gradient */
             color: #fff;
-            font-size: 2em;
-            font-family: 'Playfair Display', serif;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            z-index: 10;
-            border-radius: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            align-self: flex-end; /* Align to the right */
+            margin-top: 20px; /* Space above */
+            width: 80%;
+            max-width: 300px;
         }
-        .contact-message-overlay.show {
-            opacity: 1;
-            visibility: visible;
+
+        .contact-right-panel .join-alumni-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.1);
         }
-        */
 
         /* Custom Message Box (replacing alert/confirm) */
         .custom-message-box {
@@ -1940,9 +1814,230 @@
             display: block;
         }
 
-        /* Visitor List Modal */
-        /* Removed .visitors-modal styles as the modal is removed */
+        /* --- Mobile Specific Styles --- */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 10px;
+                padding-top: 100px; /* Adjust for top nav on mobile */
+            }
 
+            .main-footer {
+                padding: 40px 20px;
+            }
+
+            .footer-content-wrapper {
+                margin-left: 0;
+                width: 100%;
+                padding-right: 0;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-social-icons {
+                justify-content: center;
+            }
+
+            .floating-social-contact {
+                right: 10px;
+                bottom: 10px;
+                gap: 5px;
+                padding: 5px;
+                border-radius: 5px;
+            }
+
+            .floating-social-contact a {
+                font-size: 1.2em;
+                width: 35px;
+                height: 35px;
+            }
+
+            .banner-overlay-text h1 {
+                font-size: 2.5em;
+            }
+
+            .banner-overlay-text p {
+                font-size: 1em;
+            }
+
+            /* Mobile Timeline (Events) - One-sided, line on left, cards on right */
+            .timeline .line {
+                left: 20px; /* Move line to the left */
+                transform: translateX(0); /* Remove center transform */
+            }
+
+            .timeline .section {
+                justify-content: flex-end; /* All cards align to the right */
+                transform: translateX(0) scale(1); /* Remove initial offset animation for mobile */
+            }
+            /* Ensure initial state for odd/even sections is also reset for mobile */
+            .timeline .section:nth-of-type(odd),
+            .timeline .section:nth-of-type(even) {
+                justify-content: flex-end; /* All cards align to the right */
+                transform: translateX(0) scale(1); /* Remove initial offset animation for mobile */
+            }
+
+            .timeline .section .card {
+                width: calc(100% - 70px); /* Adjust width for left line and dot */
+                margin-left: 60px; /* Space for line and dot on the left */
+                margin-right: 0; /* No right margin */
+            }
+
+            /* Adjust dot position for all cards to be on the left of the card */
+            .timeline .section .card::after {
+                left: -30px; /* Dot on the left of the card */
+                right: auto;
+            }
+
+            /* Responsive for Top Nav (already handled, but ensuring no conflicts) */
+            .top-header-nav {
+                padding: 10px 0;
+            }
+            .top-header-nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            /* Mobile Sponsors - Normal boxes, stacked or simple wrap */
+            .sponsor-gallery {
+                flex-wrap: wrap; /* Allow cards to wrap */
+                justify-content: center; /* Center cards in rows */
+                gap: 20px; /* Add gap between wrapped cards */
+                overflow-x: hidden; /* No horizontal scrolling on mobile for this layout */
+                scroll-snap-type: none; /* Disable snapping */
+            }
+            .sponsor-card,
+            .sponsor-card:nth-child(1),
+            .sponsor-card:nth-child(2),
+            .sponsor-card:nth-child(3),
+            .sponsor-card:nth-child(4),
+            .sponsor-card:nth-child(5) {
+                width: 250px; /* Uniform width for all cards on mobile */
+                height: 350px; /* Uniform height for all cards on mobile */
+                border: 2px solid #31b8c4; /* Slightly thinner border */
+                clip-path: none; /* Remove clip-path for normal box shape */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Lighter shadow */
+            }
+            /* Remove hover effects for mobile to simplify */
+            .sponsor-gallery:hover .sponsor-card {
+                width: 250px; /* Reset to normal size */
+                height: 350px; /* Reset to normal size */
+            }
+            .sponsor-gallery .sponsor-card:hover {
+                transform: none; /* No transform on hover */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Reset shadow */
+                filter: none; /* No filter */
+                z-index: 1; /* Reset z-index */
+            }
+            .sponsor-card img {
+                opacity: 0.4; /* Slightly more visible background image */
+            }
+            .sponsor-card:hover img {
+                opacity: 0.4; /* Keep same opacity on hover */
+            }
+            .sponsor-card .sponsor-title {
+                position: static; /* Remove absolute positioning */
+                transform: none; /* Remove transform */
+                font-size: 1.5em; /* Smaller font size */
+                margin-bottom: 10px; /* Space below title */
+                opacity: 1; /* Always visible */
+                text-align: center;
+                white-space: normal; /* Allow text wrapping */
+                padding: 10px; /* Add some padding */
+                box-sizing: border-box;
+            }
+            .sponsor-card:hover .sponsor-title {
+                opacity: 1; /* Always visible */
+                font-size: 1.5em; /* Keep same font size */
+                top: auto; /* Reset top */
+                left: auto; /* Reset left */
+            }
+            .sponsor-card .sponsor-details {
+                position: static; /* Remove absolute positioning */
+                transform: none; /* Remove transform */
+                opacity: 1; /* Always visible */
+                background: none; /* Remove gradient background */
+                padding: 10px; /* Adjust padding */
+                text-align: center; /* Center align text */
+                align-items: center; /* Center align items */
+                height: auto; /* Auto height */
+            }
+            .sponsor-details h3 {
+                font-size: 1.5em; /* Smaller heading */
+            }
+            .sponsor-details p {
+                font-size: 0.9em; /* Smaller text */
+                max-width: 100%; /* Use full width */
+            }
+
+
+            /* Mobile Contact Us - Right panel only */
+            .contact-panels-container {
+                flex-direction: column; /* Stack panels vertically */
+                min-height: auto; /* Remove fixed min-height */
+                border-radius: 20px; /* Keep outer border radius */
+                width: 90%; /* Adjust width for mobile */
+                margin: 20px auto; /* Center with margin */
+            }
+            .contact-left-panel {
+                display: none; /* Hide left panel */
+            }
+            .contact-right-panel {
+                flex: 1; /* Take full available space */
+                width: 100%; /* Ensure it spans full width of container */
+                clip-path: none; /* Remove zig-zag clip-path */
+                border-radius: 20px; /* Apply border-radius to match container */
+                padding: 30px 20px; /* Adjust padding for mobile */
+            }
+            .contact-right-panel h3 {
+                font-size: 2em; /* Adjust heading size */
+                margin-bottom: 20px;
+            }
+            .contact-form {
+                margin: 0 auto; /* Center the form within the panel */
+                max-width: 100%; /* Allow form to take full width */
+                text-align: center; /* Center form elements */
+            }
+            .contact-form input,
+            .contact-form textarea {
+                width: 100%; /* Full width inputs */
+                padding: 12px 15px; /* Adjust padding */
+            }
+            .contact-form button[type="submit"],
+            .contact-right-panel .join-alumni-button {
+                width: 90%; /* Make buttons wider */
+                max-width: 280px; /* Max width for buttons */
+                margin-left: auto; /* Center buttons */
+                margin-right: auto; /* Center buttons */
+            }
+        }
+        
+        /* Responsive adjustments for Team Section */
+        @media (max-width: 768px) {
+            .team-member {
+                width: 100px; /* Smaller hexagons on mobile */
+                height: 100px;
+                margin: 0;
+                transform: none; /* Keep hexagon shape on mobile */
+            }
+            .team-member img, .overlay {
+                transform: none; /* Keep inner content straight */
+            }
+            .team-row {
+                margin-bottom: 20px; /* Reduced vertical spacing on mobile */
+                gap: 10px; /* Ensure gap on mobile */
+            }
+            .overlay {
+                font-size: 12px; /* Smaller font size for overlay text on mobile */
+            }
+            .overlay strong {
+                font-size: 1.1em; /* Adjust name size */
+            }
+        }
     </style>
 </head>
 <body>
@@ -1954,16 +2049,6 @@
         <p id="messageBoxContent"></p>
         <button id="messageBoxClose">OK</button>
     </div>
-
-    <!-- Visitor List Modal HTML (Removed) -->
-    <!-- <div class="message-box-overlay" id="visitorsModalOverlay"></div> -->
-    <!-- <div class="visitors-modal" id="visitorsModal"> -->
-    <!--     <h3>Recent Visitors</h3> -->
-    <!--     <ul id="visitorsList"> -->
-            <!-- Visitor data will be injected here -->
-    <!--     </ul> -->
-    <!--     <button class="close-button" id="closeVisitorsModal">Close</button> -->
-    <!-- </div> -->
 
     <!-- Preloader Video Page -->
     <div id="preload-video-container">
@@ -2046,7 +2131,10 @@
                         </div>
                         <h4 class="card-title">⚡Code Red</h4>
                         <h5 class="card-date">7/29/2025</h5>
-                        <p class="card-description">Code Red is an adrenaline packed 24 hour hackathon designed to simulate real world tech pressure. Participants form teams to tackle urgent and impactful problems in record time. The challenge is to think fast, build smart, and deliver a working prototype quickly. With themes focused on rapid response and real time systems, the energy stays high. Expect chaos, caffeine, creativity, and code that works when it counts. Mentors and checkpoints help teams stay sharp and keep pushing forward. From idea to execution, every moment is a test of skill and teamwork.</p>
+                        <p class="card-description" data-full-text="Code Red is an adrenaline packed 24 hour hackathon designed to simulate real world tech pressure. Participants form teams to tackle urgent and impactful problems in record time. The challenge is to think fast, build smart, and deliver a working prototype quickly. With themes focused on rapid response and real time systems, the energy stays high. Expect chaos, caffeine, creativity, and code that works when it counts. Mentors and checkpoints help teams stay sharp and keep pushing forward. From idea to execution, every moment is a test of skill and teamwork.">
+                            <span class="description-content"></span>
+                            <span class="view-more-text"></span>
+                        </p>
                         <div class="card-footer-container">
                             <span class="card-footer-text">Register now</span>
                             <button id="event1" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
@@ -2061,7 +2149,10 @@
                         </div>
                         <h4 class="card-title">🌟 Hackstars</h4>
                         <h5 class="card-date">8/25/2025</h5>
-                        <p class="card-description">Hackstars is a unique event combining a 24-hour immersive workshop with a 48-hour hackathon. Focused on responsible AI system development, it brings ethics and innovation hand in hand. Participants learn the principles of fairness, transparency, and accountability in AI. Expert-led sessions provide real-world insights into building ethical AI applications. Over the next 48 hours, teams apply these principles to solve impactful challenges. Whether you're a developer, researcher, or design thinker, Hackstars welcomes you. It’s a journey from awareness to action in the realm of artificial intelligence. Join Hackstars to build not just smart AI but responsible AI.</p>
+                        <p class="card-description" data-full-text="Hackstars is a unique event combining a 24-hour immersive workshop with a 48-hour hackathon. Focused on responsible AI system development, it brings ethics and innovation hand in hand. Participants learn the principles of fairness, transparency, and accountability in AI. Expert-led sessions provide real-world insights into building ethical AI applications. Over the next 48 hours, teams apply these principles to solve impactful challenges. Whether you're a developer, researcher, or design thinker, Hackstars welcomes you. It’s a journey from awareness to action in the realm of artificial intelligence. Join Hackstars to build not just smart AI but responsible AI.">
+                            <span class="description-content"></span>
+                            <span class="view-more-text"></span>
+                        </p>
                         <div class="card-footer-container">
                             <span class="card-footer-text">Register now</span>
                             <button id="event2" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
@@ -2076,7 +2167,10 @@
                         </div>
                         <h4 class="card-title">👩‍💻 HackHer 2025</h4>
                         <h5 class="card-date">9/15/2025</h5>
-                        <p class="card-description">HackHer 2025 is a 24-hour open-innovation hackathon welcoming diverse minds from every background. It’s a celebration of technology, creativity, and collaborative problem-solving. Whether you're a coder, designer, entrepreneur, or beginner, there's a place for you. Teams work around the clock to build impactful solutions for real-world challenges. Workshops, mentorship, and networking keep the energy flowing throughout the event. Participants push boundaries, learn by doing, and make lasting connections. With no barriers to entry, it's a space where innovation meets inclusivity.</p>
+                        <p class="card-description" data-full-text="HackHer 2025 is a 24-hour open-innovation hackathon welcoming diverse minds from every background. It’s a celebration of technology, creativity, and collaborative problem-solving. Whether you're a coder, designer, entrepreneur, or beginner, there's a place for you. Teams work around the clock to build impactful solutions for real-world challenges. Workshops, mentorship, and networking keep the energy flowing throughout the event. Participants push boundaries, learn by doing, and make lasting connections. With no barriers to entry, it's a space where innovation meets inclusivity.">
+                            <span class="description-content"></span>
+                            <span class="view-more-text"></span>
+                        </p>
                         <div class="card-footer-container">
                             <span class="card-footer-text">Register now</span>
                             <button id="event3" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
@@ -2091,7 +2185,10 @@
                         </div>
                         <h4 class="card-title">🏅 Code Olympics</h4>
                         <h5 class="card-date">10/12/2025</h5>
-                        <p class="card-description">Code Olympics is a vibrant week-long event packed with diverse coding contests, tech-based tasks, and a thrilling hackathon. Organized in collaboration with multiple technical clubs at VIT Chennai, it represents the spirit of collective innovation. Each day features fresh challenges that test different aspects of coding and technical creativity. Participants can compete solo or in teams, exploring fields like AI, web, cybersecurity, and more. Workshops, quizzes, and tech games add variety to the competitive atmosphere. The event encourages collaboration, skill-building, and interdisciplinary learning.</p>
+                        <p class="card-description" data-full-text="Code Olympics is a vibrant week-long event packed with diverse coding contests, tech-based tasks, and a thrilling hackathon. Organized in collaboration with multiple technical clubs at VIT Chennai, it represents the spirit of collective innovation. Each day features fresh challenges that test different aspects of coding and technical creativity. Participants can compete solo or in teams, exploring fields like AI, web, cybersecurity, and more. Workshops, quizzes, and tech games add variety to the competitive atmosphere. The event encourages collaboration, skill-building, and interdisciplinary learning.">
+                            <span class="description-content"></span>
+                            <span class="view-more-text"></span>
+                        </p>
                         <div class="card-footer-container">
                             <span class="card-footer-text">Register now</span>
                             <button id="event4" class="card-arrow-button"><i class="fas fa-arrow-right"></i></button>
@@ -2153,12 +2250,7 @@
         </section>
 
         <section id="alumni" data-aos="fade-up">
-            <div class="alumni-text-content">
-                <h2>Connect with our Alumni</h2>
-                <p>Our alumni network is a valuable resource for current members. Connect with successful professionals who started their journey with ACM-W and gain insights, advice, and potential career opportunities.</p>
-                <p>We regularly organize alumni networking events and a dedicated mentorship program to facilitate connections. Join our alumni community today!</p>
-                <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-top: 20px;">Join Alumni Network</button>
-            </div>
+            <!-- Removed alumni-text-content div -->
             
             <div class="team-section-with-video">
                 <video class="alumni-video-background" autoplay loop muted playsinline preload="auto">
@@ -2324,11 +2416,6 @@
         <section id="contact-us" data-aos="fade-up">
             <h2>Contact Us</h2> <!-- Added a main section title for clarity -->
             <div class="contact-panels-container">
-                <!-- Thank you message overlay (Removed) -->
-                <!-- <div class="contact-message-overlay" id="contactMessage">
-                    Thank You! Your message has been sent.
-                </div> -->
-
                 <div class="contact-left-panel">
                     <div class="contact-left-content">
                         <h3>Let's Connect!</h3>
@@ -2358,6 +2445,8 @@
                         <textarea id="message" name="message" rows="5" required placeholder="Your message here..."></textarea>
                         <button type="submit">Send Message</button>
                     </form>
+                    <!-- Moved "Join Alumni Network" button here -->
+                    <button class="join-alumni-button">Join Alumni Network</button>
                 </div>
             </div>
         </section>
@@ -2681,7 +2770,6 @@
             const bannerHeader = document.querySelector('.banner-header');
             const bannerVideo = document.querySelector('.banner-video');
             const topHeaderNav = document.querySelector('.top-header-nav');
-            // const topNavTextLogo = document.querySelector('.top-nav-text-logo'); // Removed
             const fixedAcmwLogo = document.querySelector('.acmw-logo');
             const hamburgerButton = document.getElementById('openNav');
             const fullScreenNav = document.getElementById('fullScreenNav');
@@ -2905,11 +2993,73 @@
                 handleVideoFade();
                 updateTimelineScroller();
                 setupInfiniteScroll(); // Re-setup on resize to adjust cloning
+                initializeCardDescriptions(); // Re-initialize descriptions on resize
             });
 
             // Initial setup and start scrolling for testimonials
             setupInfiniteScroll();
             startScrolling();
+
+            // Function to initialize/re-initialize card descriptions with "View More"
+            function initializeCardDescriptions() {
+                document.querySelectorAll('.card-description').forEach(descriptionElement => {
+                    const fullText = descriptionElement.getAttribute('data-full-text');
+                    const truncatedLength = 150; // Approximate length for 3.5 lines
+
+                    let descriptionContentSpan = descriptionElement.querySelector('.description-content');
+                    let viewMoreTextSpan = descriptionElement.querySelector('.view-more-text');
+
+                    // If these spans don't exist, create them and append them
+                    if (!descriptionContentSpan) {
+                        descriptionContentSpan = document.createElement('span');
+                        descriptionContentSpan.classList.add('description-content');
+                        descriptionElement.prepend(descriptionContentSpan);
+                    }
+                    if (!viewMoreTextSpan) {
+                        viewMoreTextSpan = document.createElement('span');
+                        viewMoreTextSpan.classList.add('view-more-text');
+                        descriptionElement.appendChild(viewMoreTextSpan);
+                    }
+
+                    // Check if the text actually needs truncation
+                    if (fullText.length > truncatedLength || fullText.split('\n').length > 4) {
+                        descriptionContentSpan.textContent = fullText.substring(0, truncatedLength) + '...';
+                        viewMoreTextSpan.textContent = 'View More';
+                        viewMoreTextSpan.style.display = 'inline'; // Show "View More"
+                        descriptionElement.classList.add('truncated');
+                        descriptionElement.classList.remove('expanded'); // Ensure not expanded initially
+                    } else {
+                        descriptionContentSpan.textContent = fullText;
+                        viewMoreTextSpan.style.display = 'none'; // Hide "View More" if not needed
+                        descriptionElement.classList.remove('truncated');
+                        descriptionElement.classList.remove('expanded');
+                    }
+
+                    // Attach event listener only once per span
+                    // Use a custom property as a flag to prevent multiple attachments
+                    if (!viewMoreTextSpan._hasClickListener) {
+                        viewMoreTextSpan.addEventListener('click', function(event) {
+                            event.stopPropagation(); // Prevent card-level clicks if any
+
+                            if (descriptionElement.classList.contains('truncated')) {
+                                descriptionContentSpan.textContent = fullText;
+                                this.textContent = 'View Less'; // 'this' refers to viewMoreTextSpan
+                                descriptionElement.classList.remove('truncated');
+                                descriptionElement.classList.add('expanded');
+                            } else {
+                                descriptionContentSpan.textContent = fullText.substring(0, truncatedLength) + '...';
+                                this.textContent = 'View More'; // 'this' refers to viewMoreTextSpan
+                                descriptionElement.classList.remove('expanded');
+                                descriptionElement.classList.add('truncated');
+                            }
+                        });
+                        viewMoreTextSpan._hasClickListener = true; // Set flag
+                    }
+                });
+            }
+
+            // Call it once on DOMContentLoaded
+            initializeCardDescriptions();
         });
 
         document.querySelector('.chatbot-button').addEventListener('click', function(e) {
