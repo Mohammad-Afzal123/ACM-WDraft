@@ -1311,6 +1311,11 @@
         #testimonials .review-summary .stars .fa-star {
             margin-right: 2px;
         }
+        /* Style for empty stars */
+        #testimonials .review-card .stars .far.fa-star {
+            color: rgba(255, 255, 255, 0.3); /* Lighter color for empty stars */
+        }
+
 
         #testimonials .testimonials-slider-container {
             overflow-x: hidden; /* Changed to hidden for seamless loop */
@@ -1367,6 +1372,11 @@
         #testimonials .review-card .stars .fa-star {
             margin-right: 2px;
         }
+        /* Style for empty stars */
+        #testimonials .review-card .stars .far.fa-star {
+            color: rgba(255, 255, 255, 0.3); /* Lighter color for empty stars */
+        }
+
 
         #testimonials .review-text {
             font-size: 0.95em;
@@ -1863,6 +1873,15 @@
             .banner-overlay-text p {
                 font-size: 1em;
             }
+            
+            /* Mobile specific style for the "Become a Member Now" button */
+            .banner-overlay-text .member-button {
+                padding: 12px 25px; /* Slightly smaller padding */
+                font-size: 1em; /* Slightly smaller font */
+                width: 80%; /* Make it take more width, but not full */
+                max-width: 250px; /* Limit max width */
+            }
+
 
             /* Mobile Timeline (Events) - One-sided, line on left, cards on right */
             .timeline .line {
@@ -2462,91 +2481,7 @@
             </div>
 
             <div class="testimonials-slider-container">
-                <div class="review-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">"The workshops were incredibly insightful and have significantly improved my coding skills. I feel more confident in my abilities thanks to ACM-W. Best atmosphere and top-tier facilities! Trainers are skilled, motivating and personable."</p>
-                    <div class="review-author-info">
-                        <a href="#" target="_blank" class="review-author-link">
-                            <div class="review-author-avatar">
-                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=OS" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=OS';">
-                            </div>
-                        </a>
-                        <div class="author-details">
-                            <a href="#" target="_blank" class="author-name">Ofa Ogden</a>
-                            <span class="review-date">7 months ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">"ACM-W provided me with an incredible network and mentorship opportunities that were crucial for my career growth. The support system is unmatched! Highly highly recommend! VT training is enjoyable for everyone so make sure you get..."</p>
-                    <div class="review-author-info">
-                        <a href="#" target="_blank" class="review-author-link">
-                            <div class="review-author-avatar">
-                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=JD" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=JD';">
-                            </div>
-                        </a>
-                        <div class="author-details">
-                            <a href="#" target="_blank" class="author-name">OgdenBoys_278</a>
-                            <span class="review-date">7 months ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">"Being part of ACM-W has opened so many doors for me. The community is welcoming, and the events are always relevant and engaging. VTT has great staff and Troy is a legend always looking out for his people and going the extra..."</p>
-                    <div class="review-author-info">
-                        <a href="#" target="_blank" class="review-author-link">
-                            <div class="review-author-avatar">
-                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=EC" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=EC';">
-                            </div>
-                        </a>
-                        <div class="author-details">
-                            <a href="#" target="_blank" class="author-name">Michael Faddoul</a>
-                            <span class="review-date">7 months ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">"I highly recommend ACM-W to any woman in computing. It's a fantastic platform for learning, networking, and invaluable personal development. Vale Tudo is the best gym in Sydney. They do group training classes with multiple personal."</p>
-                    <div class="review-author-info">
-                        <a href="#" target="_blank" class="review-author-link">
-                            <div class="review-author-avatar">
-                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=JM" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=JM';">
-                            </div>
-                        </a>
-                        <div class="author-details">
-                            <a href="#" target="_blank" class="author-name">Georgia Norris</a>
-                            <span class="review-date">11 months ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">"Joining ACM-W was one of the best decisions I made for my academic and professional journey. The support and resources are top-notch!"</p>
-                    <div class="review-author-info">
-                        <a href="#" target="_blank" class="review-author-link">
-                            <div class="review-author-avatar">
-                                <img src="https://placehold.co/40x40/555555/FFFFFF?text=KW" alt="Author Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=KW';">
-                            </div>
-                        </a>
-                        <div class="author-details">
-                            <a href="#" target="_blank" class="author-name">Kimberly White</a>
-                            <span class="review-date">5 months ago</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- Testimonials will be dynamically generated here by JavaScript -->
             </div>
         </section>
     </main>
@@ -2643,7 +2578,11 @@
             document.querySelectorAll('.card-arrow-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const eventId = this.id;
-                    showMessageBox('Event Details', `Register for ${eventId}! (Registration functionality not implemented yet)`);
+                    if (eventId === 'event1') { // Specific link for Code Red
+                        window.location.href = 'https://v0-code-red-landing-page.vercel.app/';
+                    } else {
+                        showMessageBox('Event Details', `Register for ${eventId}! (Registration functionality not implemented yet)`);
+                    }
                 });
             });
 
@@ -2783,30 +2722,100 @@
             let isPaused = false; // Flag to pause on hover
             let originalContentWidth = 0; // Variable to store original content width
 
+            // Testimonial Data
+            const testimonialsData = [
+                { author: "Ishita Nair", text: "ACM-W gave me the perfect platform to move beyond textbooks. Working on live projects helped me build real skills that I now showcase in interviews.", stars: 5 },
+                { author: "Rahul Deshpande", text: "Before ACM-W, I had ideas but didn’t know how to build them. With the mentorship and peer support, I finally started turning my ideas into working prototypes.", stars: 5 },
+                { author: "Emily T", text: "Joining ACM-W made me realize how fun and collaborative tech can be. The club helped me find my niche while building with people from diverse backgrounds.", stars: 5 },
+                { author: "Tanvi Reddy", text: "Every session in ACM-W felt like a step closer to becoming industry-ready. The hands-on experiences here taught me more than most of my courses.", stars: 5 },
+                { author: "Claire Morgan", text: "Hackathons used to intimidate me, but ACM-W changed that. Now, I look forward to them! I’ve met some of the most talented and helpful peers here.", stars: 5 },
+                { author: "Ankit Verma", text: "I thought clubs were mostly about events—but ACM-W is different. You actually build, learn, and grow with people who are serious about tech.", stars: 4 },
+                { author: "Li Ming", text: "The learning curve in ACM-W was steep but rewarding. I gained not just technical experience, but also communication and teamwork skills that really matter.", stars: 4 },
+                { author: "Sneha Patel", text: "Being part of ACM-W made me feel less alone in tech. The projects, the late-night debugging sessions, the wins — it all feels worth it now.", stars: 4 },
+                { author: "Daniel Cho", text: "ACM-W helped me connect theory to real-world work. Contributing to group projects gave me a sense of ownership and improved my coding a lot.", stars: 4 },
+                { author: "Mehul Shah", text: "One of the best things about ACM-W is that it doesn’t expect you to know everything — it teaches you along the way. That mindset helped me grow fast.", stars: 3 }
+            ];
+
+            // Function to generate testimonial cards
+            function generateTestimonials() {
+                testimonialsSlider.innerHTML = ''; // Clear existing content
+                testimonialsData.forEach(testimonial => {
+                    const reviewCard = document.createElement('div');
+                    reviewCard.classList.add('review-card');
+
+                    let starsHtml = '';
+                    for (let i = 0; i < testimonial.stars; i++) {
+                        starsHtml += '<i class="fas fa-star"></i>';
+                    }
+                    // Add empty stars for ratings less than 5
+                    for (let i = testimonial.stars; i < 5; i++) {
+                         starsHtml += '<i class="far fa-star"></i>'; // Use 'far' for empty star
+                    }
+
+                    const initials = testimonial.author.split(' ').map(n => n[0]).join('').toUpperCase();
+                    const avatarSrc = `https://placehold.co/40x40/555555/FFFFFF?text=${initials}`; // Placeholder for avatar
+
+                    reviewCard.innerHTML = `
+                        <div class="stars">
+                            ${starsHtml}
+                        </div>
+                        <p class="review-text">"${testimonial.text}"</p>
+                        <div class="review-author-info">
+                            <a href="#" target="_blank" class="review-author-link">
+                                <div class="review-author-avatar">
+                                    <img src="${avatarSrc}" alt="${testimonial.author} Avatar" onerror="this.onerror=null;this.src='https://placehold.co/40x40/555555/FFFFFF?text=${initials}';">
+                                </div>
+                            </a>
+                            <div class="author-details">
+                                <a href="#" target="_blank" class="author-name">${testimonial.author}</a>
+                                <span class="review-date">Recently</span>
+                            </div>
+                        </div>
+                    `;
+                    testimonialsSlider.appendChild(reviewCard);
+                });
+            }
+
+            // Call generateTestimonials on load
+            generateTestimonials();
+
+
             // Function to clone cards for infinite scroll effect
             function setupInfiniteScroll() {
-                const initialCards = Array.from(testimonialsSlider.querySelectorAll('.review-card'));
-                if (initialCards.length === 0) return;
+                // Get the original set of cards by cloning them from the current DOM
+                // This ensures we have fresh nodes to work with after clearing the slider
+                const originalNodes = Array.from(testimonialsSlider.children);
+                if (originalNodes.length === 0) return;
 
-                // Clear any existing clones to prevent issues on multiple runs (e.g., resize)
+                // Calculate the width of one set of original cards
+                // Assuming all original cards are currently in the DOM and visible
+                let widthOfOneSet = 0;
+                originalNodes.forEach(card => {
+                    widthOfOneSet += card.offsetWidth + 20; // 20px is the gap
+                });
+                originalContentWidth = widthOfOneSet; // Store this for the scroll reset
+
+                // Clear all existing content in the slider to rebuild it
                 testimonialsSlider.innerHTML = '';
-                originalContentWidth = 0; // Reset width calculation
 
-                // Append original cards back and calculate their total width
-                initialCards.forEach(card => {
-                    testimonialsSlider.appendChild(card); // Re-append original nodes
-                    originalContentWidth += card.offsetWidth + 20; // 20px is the gap
+                // Append original cards back first
+                originalNodes.forEach(node => {
+                    testimonialsSlider.appendChild(node);
                 });
 
-                // Append enough clones to create a seamless loop that spans at least twice the original content
-                // This ensures there's always enough content to scroll without seeing the end
+                // Now append enough clones to ensure seamless looping
+                // We need enough content so that when we reset scrollLeft, the user doesn't see a blank space.
+                // A common pattern is to clone at least one full set, or enough to fill the container twice.
                 let currentTotalWidth = originalContentWidth;
                 const containerWidth = testimonialsSlider.offsetWidth;
-                while (currentTotalWidth < containerWidth * 2) { // Ensure at least 2 full screens of content
-                    initialCards.forEach(card => {
-                        testimonialsSlider.appendChild(card.cloneNode(true));
-                        currentTotalWidth += card.offsetWidth + 20;
+
+                // Add enough clones so that the total content width is at least twice the original set's width
+                // plus the container width, to ensure smooth continuous scrolling without seeing the end.
+                while (currentTotalWidth < (containerWidth + originalContentWidth)) {
+                    originalNodes.forEach(node => {
+                        testimonialsSlider.appendChild(node.cloneNode(true));
                     });
+                    currentTotalWidth += originalContentWidth;
                 }
                 
                 // Reset scroll position to the very beginning after cloning
@@ -2825,10 +2834,11 @@
 
                     testimonialsSlider.scrollLeft += scrollSpeed;
 
-                    // If scroll position is beyond the original content, reset to the beginning
-                    // This creates the infinite loop effect
+                    // If scroll position is beyond the original content width,
+                    // instantly jump back to the equivalent position in the first set.
+                    // This creates the seamless infinite loop.
                     if (testimonialsSlider.scrollLeft >= originalContentWidth) {
-                        testimonialsSlider.scrollLeft = 0;
+                        testimonialsSlider.scrollLeft -= originalContentWidth; // Subtract one full set's width
                     }
                     animationFrameId = requestAnimationFrame(scrollStep);
                 };
@@ -2912,18 +2922,15 @@
 
                 const threshold = bannerHeight - 50; // Hamburger appears when scrolled past most of the banner
 
-                if (scrollPosition > threshold) {
-                    // User has scrolled down, hamburger button should be active
+                if (window.innerWidth <= 768) { // Only apply this logic for phone mode
+                    // For phone mode, always hide top nav and show hamburger
+                    topHeaderNav.style.opacity = '0';
+                    topHeaderNav.style.visibility = 'hidden';
+                    topHeaderNav.style.pointerEvents = 'none';
+
                     hamburgerButton.style.opacity = '1';
                     hamburgerButton.style.visibility = 'visible';
                     hamburgerButton.style.pointerEvents = 'auto';
-
-                    // Hide top nav
-                    if (topHeaderNav) {
-                        topHeaderNav.style.opacity = '0';
-                        topHeaderNav.style.visibility = 'hidden';
-                        topHeaderNav.style.pointerEvents = 'none';
-                    }
                     
                     // Show the original fixed ACMW image logo (top-left)
                     if (fixedAcmwLogo) {
@@ -2932,24 +2939,46 @@
                         fixedAcmwLogo.style.pointerEvents = 'auto';
                     }
 
-                } else {
-                    // User is at the top, top nav should be active.
-                    hamburgerButton.style.opacity = '0';
-                    hamburgerButton.style.visibility = 'hidden';
-                    hamburgerButton.style.pointerEvents = 'none';
+                } else { // Desktop mode
+                    if (scrollPosition > threshold) {
+                        // User has scrolled down, hamburger button should be active
+                        hamburgerButton.style.opacity = '1';
+                        hamburgerButton.style.visibility = 'visible';
+                        hamburgerButton.style.pointerEvents = 'auto';
 
-                    // Show top nav (fully opaque)
-                    if (topHeaderNav) {
-                        topHeaderNav.style.opacity = '1';
-                        topHeaderNav.style.visibility = 'visible';
-                        topHeaderNav.style.pointerEvents = 'auto';
-                    }
-                    
-                    // Hide the original fixed ACMW image logo
-                    if (fixedAcmwLogo) {
-                        fixedAcmwLogo.style.opacity = '0';
-                        fixedAcmwLogo.style.visibility = 'hidden';
-                        fixedAcmwLogo.style.pointerEvents = 'none';
+                        // Hide top nav
+                        if (topHeaderNav) {
+                            topHeaderNav.style.opacity = '0';
+                            topHeaderNav.style.visibility = 'hidden';
+                            topHeaderNav.style.pointerEvents = 'none';
+                        }
+                        
+                        // Show the original fixed ACMW image logo (top-left)
+                        if (fixedAcmwLogo) {
+                            fixedAcmwLogo.style.opacity = '1';
+                            fixedAcmwLogo.style.visibility = 'visible';
+                            fixedAcmwLogo.style.pointerEvents = 'auto';
+                        }
+
+                    } else {
+                        // User is at the top, top nav should be active.
+                        hamburgerButton.style.opacity = '0';
+                        hamburgerButton.style.visibility = 'hidden';
+                        hamburgerButton.style.pointerEvents = 'none';
+
+                        // Show top nav (fully opaque)
+                        if (topHeaderNav) {
+                            topHeaderNav.style.opacity = '1';
+                            topHeaderNav.style.visibility = 'visible';
+                            topHeaderNav.style.pointerEvents = 'auto';
+                        }
+                        
+                        // Hide the original fixed ACMW image logo
+                        if (fixedAcmwLogo) {
+                            fixedAcmwLogo.style.opacity = '0';
+                            fixedAcmwLogo.style.visibility = 'hidden';
+                            fixedAcmwLogo.style.pointerEvents = 'none';
+                        }
                     }
                 }
                 highlightNavLink(); // Call highlight after state change
