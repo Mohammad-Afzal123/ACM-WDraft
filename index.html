@@ -2449,9 +2449,9 @@
                     <div class="contact-social-bottom">
                         <h4>Find Us On</h4>
                         <div class="social-icons-contact">
-                            <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://twitter.com/your_acmw" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/acmw_vitc/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/acmw-vitcc/posts/?feedView=all" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://x.com/ACMW_VIT" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2466,7 +2466,7 @@
                         <button type="submit">Send Message</button>
                     </form>
                     <!-- Moved "Join Alumni Network" button here -->
-                    <button class="join-alumni-button">Join Alumni Network</button>
+                    <a href="https://chat.whatsapp.com/DWcGu3ZG5FKD66OSJy4xEK?mode=r_t" class="join-alumni-button" style="text-decoration: none;">Join Alumni Network</a>
                 </div>
             </div>
         </section>
@@ -2487,10 +2487,11 @@
     </main>
 
     <div class="floating-social-contact">
-        <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/acmw_vitc/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/acmw-vitcc/posts/?feedView=all" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         <a href="mailto:info@acmw.org" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://wa.me/your_whatsapp_number" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/DWcGu3ZG5FKD66OSJy4xEK?mode=r_t" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://x.com/ACMW_VIT" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         <a href="#contact-us" aria-label="Contact Us"><i class="fas fa-headset"></i></a>
         <a href="#" class="chatbot-button" aria-label="Chatbot"><i class="fas fa-comment-dots"></i></a>
     </div>
@@ -2519,10 +2520,10 @@
             <div class="footer-column">
                 <h4>Follow Us</h4>
                 <div class="footer-social-icons">
-                    <a href="https://instagram.com/your_acmw" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://linkedin.com/company/your_acmw" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://twitter.com/your_acmw" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com/your_acmw" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/acmw_vitc/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/acmw-vitcc/posts/?feedView=all" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://x.com/ACMW_VIT" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/ACMWVIT" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -2722,6 +2723,47 @@
             let isPaused = false; // Flag to pause on hover
             let originalContentWidth = 0; // Variable to store original content width
 
+            // Function to generate random time ago string
+            function getRandomTimeAgo() {
+                const now = new Date();
+                const randomDays = Math.floor(Math.random() * (365 * 3 + 1)); // Up to 3 years (approx 1095 days)
+                const pastDate = new Date(now.setDate(now.getDate() - randomDays));
+
+                const seconds = Math.floor((new Date() - pastDate) / 1000);
+
+                let interval = seconds / 31536000; // Years
+                if (interval > 1) {
+                    const years = Math.floor(interval);
+                    return `${years} year${years === 1 ? '' : 's'} ago`;
+                }
+                interval = seconds / 2592000; // Months
+                if (interval > 1) {
+                    const months = Math.floor(interval);
+                    return `${months} month${months === 1 ? '' : 's'} ago`;
+                }
+                interval = seconds / 604800; // Weeks
+                if (interval > 1) {
+                    const weeks = Math.floor(interval);
+                    return `${weeks} week${weeks === 1 ? '' : 's'} ago`;
+                }
+                interval = seconds / 86400; // Days
+                if (interval > 1) {
+                    const days = Math.floor(interval);
+                    return `${days} day${days === 1 ? '' : 's'} ago`;
+                }
+                interval = seconds / 3600; // Hours
+                if (interval > 1) {
+                    const hours = Math.floor(interval);
+                    return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+                }
+                interval = seconds / 60; // Minutes
+                if (interval > 1) {
+                    const minutes = Math.floor(interval);
+                    return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+                }
+                return "Just now";
+            }
+
             // Testimonial Data
             const testimonialsData = [
                 { author: "Ishita Nair", text: "ACM-W gave me the perfect platform to move beyond textbooks. Working on live projects helped me build real skills that I now showcase in interviews.", stars: 5 },
@@ -2768,7 +2810,7 @@
                             </a>
                             <div class="author-details">
                                 <a href="#" target="_blank" class="author-name">${testimonial.author}</a>
-                                <span class="review-date">Recently</span>
+                                <span class="review-date">${getRandomTimeAgo()}</span>
                             </div>
                         </div>
                     `;
