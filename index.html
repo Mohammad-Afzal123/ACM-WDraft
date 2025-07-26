@@ -160,7 +160,7 @@
 
         /* New button styling for "Become a Member Now" */
         .banner-overlay-text .member-button {
-            background-color: #1ABC9C; /* Teal background */
+            background-color: #c59766; /* Updated color */
             color: #fff;
             padding: 15px 30px;
             border: none;
@@ -176,7 +176,7 @@
         }
 
         .banner-overlay-text .member-button:hover {
-            background-color: #16A085; /* Darker teal on hover */
+            background-color: #a77c4e; /* Darker shade on hover */
             transform: translateY(-5px); /* Lift effect */
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
         }
@@ -273,8 +273,8 @@
         }
 
         #alumni h2 {
-            color: #1ABC9C; /* Ensure heading color stands out */
-            border-bottom-color: #1ABC9C;
+            color: #c59766; /* Ensure heading color stands out */
+            border-bottom-color: #c59766;
         }
         #alumni p {
             color: #ccc; /* Lighter text for paragraphs */
@@ -300,8 +300,8 @@
 
         h2 {
             font-family: 'Playfair Display', serif;
-            color: #1ABC9C;
-            border-bottom: 2px solid #1ABC9C;
+            color: #c59766;
+            border-bottom: 2px solid #c59766;
             padding-bottom: 10px;
             margin-bottom: 30px;
             font-size: 2.5em;
@@ -372,7 +372,7 @@
         }
         .top-header-nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
-            color: #1ABC9C;
+            color: #c59766;
         }
 
         /* NEW Hamburger Menu Button */
@@ -382,7 +382,7 @@
             right: 20px;
             width: 50px;
             height: 50px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #1A1A1A; /* Darker background */
             color: #fff;
             border: none;
             border-radius: 50%;
@@ -443,7 +443,7 @@
 
         .full-screen-nav-overlay .close-button:hover {
             transform: rotate(90deg);
-            color: #1ABC9C;
+            color: #c59766;
         }
 
         .full-screen-nav-overlay ul {
@@ -471,7 +471,7 @@
 
         .full-screen-nav-overlay ul li a:hover {
             background-color: rgba(255, 255, 255, 0.1);
-            color: #1ABC9C;
+            color: #c59766;
             transform: scale(1.05);
         }
         
@@ -498,13 +498,13 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background-color: #333;
+            background-color: #1A1A1A; /* Darker background */
             transition: background-color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
         }
 
         .floating-social-contact a:hover {
-            background-color: #555;
+            background-color: #555; /* Fallback for hover, but gradient will override */
             transform: scale(1.1);
         }
 
@@ -526,12 +526,12 @@
 
         /* --- Decorative Footer Styles --- */
         .main-footer {
-            background: linear-gradient(to right, #1ABC9C, #0056b3);
+            background: linear-gradient(to right, #c59766, #666666); /* Changed second color to #666666 */
             color: #fff;
             text-align: center;
             padding: 40px 0;
             width: 100%; /* Ensures it takes full width */
-            border-top: 5px solid #16A085;
+            border-top: 5px solid #a77c4e; /* Changed border color */
             z-index: 1;
             position: relative;
             box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
@@ -606,13 +606,20 @@
 
         .footer-social-icons a {
             color: #fff;
-            font-size: 1.8em;
+            background: none; /* Removed background */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em; /* Kept font size for icon */
             transition: color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
         }
 
         .footer-social-icons a:hover {
-            color: #f0f8ff;
+            color: #c59766; /* Changed hover color to main theme color */
             transform: scale(1.2);
         }
 
@@ -652,7 +659,7 @@
         .timeline .line .scroller-indicator {
             position: absolute;
             width: 100%;
-            background-color: #1ABC9C; /* Vibrant Teal scroller */
+            background-color: #c59766; /* Updated color */
             top: 0;
             left: 0;
             height: 0; /* Initial height, will be updated by JS */
@@ -709,7 +716,7 @@
 
         /* Specific styles for odd cards (left) */
         .timeline .section:nth-of-type(odd) .card {
-            background-color: #50D0A5; /* Green from image */
+            background-color: #E2BE8E; /* Updated color */
             margin-right: 40px; /* Space between card and central line */
             color: #fff; /* White text for dark background */
         }
@@ -743,7 +750,7 @@
         .timeline .section .card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            border-color: #1ABC9C; /* Vibrant Teal border on hover */
+            border-color: #c59766; /* Updated color */
         }
 
         /* Pseudo-elements for the dots */
@@ -752,7 +759,7 @@
             position: absolute;
             width: 15px;
             height: 15px;
-            background-color: #1ABC9C; /* Vibrant Teal dot color */
+            background-color: #c59766; /* Updated color */
             border-radius: 50%;
             top: 50%;
             transform: translateY(-50%);
@@ -856,7 +863,7 @@
         }
 
         .card-arrow-button {
-            background-color: rgba(255, 255, 255, 0.2); /* Subtle white background */
+            background-color: #c59766; /* Updated color */
             color: #fff;
             width: 40px;
             height: 40px;
@@ -871,13 +878,13 @@
         }
 
         .card-arrow-button:hover {
-            background-color: rgba(255, 255, 255, 0.4);
+            background-color: #a77c4e; /* Darker shade on hover */
             transform: translateX(3px);
         }
 
         /* New inline "View More" text */
         .view-more-text {
-            color: #1ABC9C; /* Teal color for the link */
+            color: #666666; /* Updated color to RGB(102, 102, 102) */
             cursor: pointer;
             font-weight: bold;
             /* margin-left: 5px; Removed to allow it to flow naturally after ellipsis */
@@ -887,7 +894,7 @@
         }
 
         .view-more-text:hover {
-            color: #50D0A5; /* Lighter teal on hover */
+            color: #c59766; /* Changed hover color to main theme color */
             text-decoration: underline;
         }
 
@@ -950,7 +957,6 @@
             background-color: #00BFFF; /* Neon blue color for the glow */
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             z-index: -2; /* Place it behind the main content and image */
-            transform: scale(1.08); /* Make it slightly larger to act as a border */
             box-shadow: 0 0 25px rgba(0, 191, 255, 1.5), /* Stronger neon glow */
                         inset 0 0 10px rgba(0, 191, 255, 0.8); /* Inner glow for depth */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1034,7 +1040,7 @@
         }
 
         .overlay .social-icons a:hover {
-            color: #1ABC9C; /* Teal highlight on hover */
+            color: #c59766; /* Updated color */
             transform: scale(1.1); /* Slight scale on hover */
         }
         
@@ -1052,8 +1058,8 @@
 
         #sponsors h2 {
             font-family: 'Playfair Display', serif;
-            color: #1ABC9C;
-            border-bottom: 2px solid #1ABC9C;
+            color: #c59766;
+            border-bottom: 2px solid #c59766;
             padding-bottom: 10px;
             margin-bottom: 30px;
             font-size: 2.5em;
@@ -1081,7 +1087,7 @@
             height: 8px;
         }
         .sponsor-gallery::-webkit-scrollbar-thumb {
-            background-color: #1ABC9C;
+            background-color: #c59766; /* Updated color */
             border-radius: 4px;
         }
         .sponsor-gallery::-webkit-scrollbar-track {
@@ -1109,49 +1115,70 @@
 
             /* Removed clip-path for box shape */
             clip-path: none;
+
+            /* Define CSS variables for card dimensions */
+            --card-width: 160px; /* Default for smallest card */
+            --card-height: 400px; /* Default for smallest card */
         }
         
         /* Default sizing for sponsors (increased) */
         .sponsor-card:nth-child(1), .sponsor-card:nth-child(5) {
-            width: 160px;
-            height: 400px;
+            --card-width: 160px;
+            --card-height: 400px;
+            width: var(--card-width);
+            height: var(--card-height);
         }
         .sponsor-card:nth-child(2), .sponsor-card:nth-child(4) {
-            width: 200px;
-            height: 480px;
+            --card-width: 200px;
+            --card-height: 480px;
+            width: var(--card-width);
+            height: var(--card-height);
         }
         .sponsor-card:nth-child(3) {
-            width: 240px;
-            height: 560px;
+            --card-width: 240px;
+            --card-height: 560px;
+            width: var(--card-width);
+            height: var(--card-height);
         }
 
         /* Hover effect: make all non-hovered smaller, hovered larger (increased) */
         .sponsor-gallery:hover .sponsor-card {
-            width: 160px; /* Match new smallest width when others are hovered */
-            height: 400px; /* Match new smallest height when others are hovered */
+            --card-width: 160px; /* Match new smallest width when others are hovered */
+            --card-height: 400px; /* Match new smallest height when others are hovered */
+            width: var(--card-width);
+            height: var(--card-height);
         }
 
         .sponsor-gallery .sponsor-card:hover {
-            width: 400px; /* Adjusted expanded width on hover */
-            height: 600px; /* Proportional adjustment */
+            --card-width: 400px;
+            --card-height: 600px;
+            width: var(--card-width);
+            height: var(--card-height);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             filter: brightness(1.1);
             z-index: 10; /* Ensure hovered card is on top */
         }
 
         .sponsor-card img {
-            width: 100%;
-            height: 100%;
+            /* When rotated 90deg, original width becomes visual height, original height becomes visual width */
+            /* To make visual width match card height, set original width to card height */
+            /* To make visual height match card width, set original height to card width */
+            width: var(--card-height);
+            height: var(--card-width);
             object-fit: cover;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%; /* Center the image */
+            left: 50%; /* Center the image */
+            transform: translate(-50%, -50%) rotate(90deg); /* Center and rotate */
             opacity: 0.2; /* Dimmed by default */
-            transition: opacity 0.7s ease;
+            transition: opacity 0.7s ease, transform 0.3s ease, width 0.7s ease-in-out, height 0.7s ease-in-out; /* Add width/height to transition */
         }
 
         .sponsor-card:hover img {
-            opacity: 0.6; /* Brighter on hover */
+            opacity: 1; /* Brighter on hover */
+            transform: translate(-50%, -50%) rotate(0deg); /* Rotate to normal on hover */
+            width: 100%; /* When unrotated, fill its own container */
+            height: 100%; /* When unrotated, fill its own container */
         }
 
         .sponsor-card .sponsor-title {
@@ -1231,14 +1258,14 @@
         }
 
         .sponsor-details a {
-            color: #1ABC9C;
+            color: #c59766; /* Updated color */
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
 
         .sponsor-details a:hover {
-            color: #50D0A5;
+            color: #e2be8e; /* Lighter shade on hover */
             text-decoration: underline;
         }
 
@@ -1281,8 +1308,8 @@
         #testimonials h2 {
             display: none; /* Hidden as per request */
             font-family: 'Playfair Display', serif;
-            color: #1ABC9C;
-            border-bottom: 2px solid #1ABC9C;
+            color: #c59766;
+            border-bottom: 2px solid #c59766;
             padding-bottom: 10px;
             font-size: 2.5em;
             text-align: center;
@@ -1296,7 +1323,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-            color: #1ABC9C; /* Changed to green */
+            color: #c59766; /* Changed to new color */
             font-size: 1.2em;
             font-weight: bold;
             justify-content: center; /* Center the stars */
@@ -1333,7 +1360,7 @@
             height: 8px;
         }
         #testimonials .testimonials-slider-container::-webkit-scrollbar-thumb {
-            background-color: #1ABC9C;
+            background-color: #c59766; /* Updated color */
             border-radius: 4px;
         }
         #testimonials .testimonials-slider-container::-webkit-scrollbar-track {
@@ -1345,7 +1372,7 @@
         #testimonials .review-card {
             flex-shrink: 0; /* Prevent cards from shrinking */
             width: 300px; /* Fixed width for cards */
-            background-color: #1D1D1D; /* Dark background */
+            background-color: #666666; /* Updated to RGB(102, 102, 102) */
             color: #fff;
             border-radius: 10px;
             padding: 20px;
@@ -1545,7 +1572,7 @@
             color: #555; /* Slightly lighter grey for text */
         }
         .contact-details-list i {
-            color: #1ABC9C; /* Teal for icons, good contrast */
+            color: #c59766; /* Updated color */
             font-size: 1.3em;
         }
 
@@ -1569,7 +1596,7 @@
         }
         .social-icons-contact a {
             color: #fff;
-            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Purple gradient for icons */
+            background: radial-gradient(circle, rgba(226, 190, 142, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(154, 109, 75, 1) 73%, rgba(29, 25, 24, 1) 100%); /* Applied gradient */
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -1590,7 +1617,7 @@
         .contact-right-panel {
             flex: 0.55; /* Decreased width for the right panel (purple panel) */
             padding: 40px; /* Keep internal padding for content */
-            background: linear-gradient(135deg, #2C007C, #6A0DAD); /* Deep purple to lighter purple gradient */
+            background-color: #666666; /* Changed to #666666 */
             color: #fff; /* White text for dark background */
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
@@ -1684,7 +1711,7 @@
         }
 
         .contact-form button[type="submit"] {
-            background: linear-gradient(45deg, #007BFF, #6A0DAD); /* Blue to Purple gradient for submit button */
+            background-color: #c59766; /* Updated color */
             color: #fff;
             padding: 15px 30px;
             border: none;
@@ -1706,6 +1733,7 @@
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
             filter: brightness(1.1);
+            background-color: #a77c4e; /* Darker shade on hover */
         }
 
         /* Animation for tearing apart panels */
@@ -1718,7 +1746,7 @@
 
         /* New style for the "Join Alumni Network" button in contact form */
         .contact-right-panel .join-alumni-button {
-            background: linear-gradient(45deg, #1ABC9C, #50D0A5); /* Teal to lighter green gradient */
+            background-color: #c59766; /* Updated color */
             color: #fff;
             padding: 15px 30px;
             border: none;
@@ -1740,6 +1768,7 @@
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
             filter: brightness(1.1);
+            background-color: #a77c4e; /* Darker shade on hover */
         }
 
         /* Custom Message Box (replacing alert/confirm) */
@@ -1770,7 +1799,7 @@
 
         .custom-message-box h3 {
             margin-top: 0;
-            color: #1ABC9C;
+            color: #c59766; /* Updated color */
             font-size: 1.6em;
             margin-bottom: 15px;
         }
@@ -1935,16 +1964,18 @@
             .sponsor-card:nth-child(3),
             .sponsor-card:nth-child(4),
             .sponsor-card:nth-child(5) {
-                width: 250px; /* Uniform width for all cards on mobile */
-                height: 350px; /* Uniform height for all cards on mobile */
+                --card-width: 250px; /* Uniform width for all cards on mobile */
+                --card-height: 350px; /* Uniform height for all cards on mobile */
+                width: var(--card-width);
+                height: var(--card-height);
                 border: 2px solid #31b8c4; /* Slightly thinner border */
                 clip-path: none; /* Remove clip-path for normal box shape */
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Lighter shadow */
             }
             /* Remove hover effects for mobile to simplify */
             .sponsor-gallery:hover .sponsor-card {
-                width: 250px; /* Reset to normal size */
-                height: 350px; /* Reset to normal size */
+                width: var(--card-width); /* Reset to normal size */
+                height: var(--card-height); /* Reset to normal size */
             }
             .sponsor-gallery .sponsor-card:hover {
                 transform: none; /* No transform on hover */
@@ -1954,9 +1985,13 @@
             }
             .sponsor-card img {
                 opacity: 0.4; /* Slightly more visible background image */
+                width: var(--card-width); /* On mobile, image fills card without rotation */
+                height: var(--card-height);
+                transform: none; /* No rotation on mobile */
             }
             .sponsor-card:hover img {
                 opacity: 0.4; /* Keep same opacity on hover */
+                transform: none; /* No rotation on mobile */
             }
             .sponsor-card .sponsor-title {
                 position: static; /* Remove absolute positioning */
@@ -2221,48 +2256,48 @@
             <h2>Our Sponsors</h2>
             <div class="sponsor-gallery">
                 <div class="sponsor-card">
-                    <img src="https://placehold.co/400x300/663399/FFFFFF?text=Sponsor+1+Logo" alt="Sponsor 1 Logo">
-                    <h3 class="sponsor-title">Sponsor 1</h3>
+                    <img src="https://placehold.co/400x300/000000/FFFFFF?text=ASTA" alt="Asta Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x300/000000/FFFFFF?text=ASTA';">
+                    <h3 class="sponsor-title">Asta</h3>
                     <div class="sponsor-details">
-                        <h3>Sponsor 1 Name</h3>
-                        <p>A leading technology company supporting women in STEM.</p>
-                        <a href="#">Visit Website</a>
+                        <h3>Asta</h3>
+                        <p>A leading technology solutions provider.</p>
+                        <a href="https://www.asta.com/" target="_blank">Visit Website</a>
                     </div>
                 </div>
                 <div class="sponsor-card">
-                    <img src="https://placehold.co/400x300/336699/FFFFFF?text=Sponsor+2+Logo" alt="Sponsor 2 Logo">
-                    <h3 class="sponsor-title">Sponsor 2</h3>
+                    <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/download.png?raw=true" alt="Redbull Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FF0000/FFFFFF?text=REDBULL';">
+                    <h3 class="sponsor-title">Redbull</h3>
                     <div class="sponsor-details">
-                        <h3>Sponsor 2 Name</h3>
-                        <p>Innovators in AI, committed to fostering diverse talent.</p>
-                        <a href="#">Visit Website</a>
+                        <h3>Redbull</h3>
+                        <p>Red Bull gives you wings and powers innovation.</p>
+                        <a href="https://www.redbull.com/" target="_blank">Visit Website</a>
                     </div>
                 </div>
                 <div class="sponsor-card">
-                    <img src="https://placehold.co/400x300/993366/FFFFFF?text=Sponsor+3+Logo" alt="Sponsor 3 Logo">
-                    <h3 class="sponsor-title">Sponsor 3</h3>
+                    <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/raw/refs/heads/main/enlight-wisdom-tiruvottiyur-chennai-education-consultants-9601kjqlb1.avif" alt="Enlight Wisdom Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x300/333333/FFFFFF?text=ENLIGHT+WISDOM';">
+                    <h3 class="sponsor-title">Enlight Wisdom</h3>
                     <div class="sponsor-details">
-                        <h3>Sponsor 3 Name</h3>
-                        <p>Global leaders in software solutions, empowering the next generation.</p>
-                        <a href="#">Visit Website</a>
+                        <h3>Enlight Wisdom</h3>
+                        <p>Enlight Wisdom focuses on educational and personal development.</p>
+                        <a href="https://enlightwisdom.com/" target="_blank">Visit Website</a>
                     </div>
                 </div>
                 <div class="sponsor-card">
-                    <img src="https://placehold.co/400x300/008080/FFFFFF?text=Sponsor+4+Logo" alt="Sponsor 4 Logo">
-                    <h3 class="sponsor-title">Sponsor 4</h3>
+                    <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/a27a43b7-f1ec-4586-9898-5f43c9b7cdbf_1000x1000.png?raw=true" alt="IBM Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x300/0000FF/FFFFFF?text=IBM';">
+                    <h3 class="sponsor-title">IBM</h3>
                     <div class="sponsor-details">
-                        <h3>Sponsor 4 Name</h3>
-                        <p>Dedicated to educational initiatives and community building.</p>
-                        <a href="#">Visit Website</a>
+                        <h3>IBM</h3>
+                        <p>IBM is a global technology and consulting company.</p>
+                        <a href="https://www.ibm.com/" target="_blank">Visit Website</a>
                     </div>
                 </div>
                 <div class="sponsor-card">
-                    <img src="https://placehold.co/400x300/FF7F50/FFFFFF?text=Sponsor+5+Logo" alt="Sponsor 5 Logo">
-                    <h3 class="sponsor-title">Sponsor 5</h3>
+                    <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/Honeywell-logo.png?raw=true" alt="Honeywell Logo" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FFD700/000000?text=HONEYWELL';">
+                    <h3 class="sponsor-title">Honeywell</h3>
                     <div class="sponsor-details">
-                        <h3>Sponsor 5 Name</h3>
-                        <p>Providing essential resources for aspiring tech professionals.</p>
-                        <a href="#">Visit Website</a>
+                        <h3>Honeywell</h3>
+                        <p>Honeywell invents and manufactures technologies to address tough challenges.</p>
+                        <a href="https://www.honeywell.com/" target="_blank">Visit Website</a>
                     </div>
                 </div>
             </div>
@@ -2581,6 +2616,12 @@
                     const eventId = this.id;
                     if (eventId === 'event1') { // Specific link for Code Red
                         window.location.href = 'https://v0-code-red-landing-page.vercel.app/';
+                    } else if (eventId === 'event2') { // Link for Hackstars
+                        window.location.href = 'http://v0-hackstars-landing-page.vercel.app';
+                    } else if (eventId === 'event3') { // Link for HackHer
+                        window.location.href = 'https://v0-hackathon-landing-page-design-brown.vercel.app/';
+                    } else if (eventId === 'event4') { // Link for Code Olympics
+                        window.location.href = 'https://v0-code-olympics-coming-soon.vercel.app/';
                     } else {
                         showMessageBox('Event Details', `Register for ${eventId}! (Registration functionality not implemented yet)`);
                     }
@@ -2997,11 +3038,10 @@
                         
                         // Show the original fixed ACMW image logo (top-left)
                         if (fixedAcmwLogo) {
-                            fixedAcmwLogo.style.opacity = '1';
-                            fixedAcmwLogo.style.visibility = 'visible';
-                            fixedAcmwLogo.style.pointerEvents = 'auto';
+                            fixedAcmwLogo.style.opacity = '0';
+                            fixedAcmwLogo.style.visibility = 'hidden';
+                            fixedAcmwLogo.style.pointerEvents = 'none';
                         }
-
                     } else {
                         // User is at the top, top nav should be active.
                         hamburgerButton.style.opacity = '0';
