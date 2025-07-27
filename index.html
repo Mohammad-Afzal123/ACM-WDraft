@@ -169,14 +169,14 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 30px; /* Space above the button */
-            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease; /* Added background to transition */
+            transition: transform 0.2s ease, box-shadow 0.3s ease; /* Removed background from transition */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .banner-overlay-text .member-button:hover {
-            background: radial-gradient(circle, rgba(154, 109, 75, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(226, 190, 142, 1) 73%, rgba(29, 25, 24, 1) 100%); /* Inverted gradient on hover */
+            /* Removed background change on hover */
             transform: translateY(-5px); /* Lift effect */
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
         }
@@ -273,8 +273,8 @@
         }
 
         #alumni h2 {
-            color: #c59766; /* Ensure heading color stands out */
-            border-bottom-color: #c59766;
+            color: #E0E0E0; /* Changed to shade of white */
+            border-bottom-color: #E0E0E0; /* Changed to shade of white */
         }
         #alumni p {
             color: #ccc; /* Lighter text for paragraphs */
@@ -714,12 +714,11 @@
             margin: 0; /* Remove explicit large margins from here */
         }
 
-        /* Specific styles for odd cards (left) */
+        /* Specific styles for odd cards (left) - Code Red, HackHer */
         .timeline .section:nth-of-type(odd) .card {
-            background-color: #E2BE8E; /* Updated color */
+            background-color: #F8F8F8; /* Shade of white */
             margin-right: 40px; /* Space between card and central line */
-            /* Text color for odd cards (Code Red, HackHer) */
-            color: #555; /* Dark text as requested */
+            color: #333; /* Dark text */
         }
         .timeline .section:nth-of-type(odd) .card .card-category {
             color: rgba(0, 0, 0, 0.7); /* Darker category text for light cards */
@@ -728,15 +727,14 @@
         .timeline .section:nth-of-type(odd) .card h5,
         .timeline .section:nth-of-type(odd) .card h6,
         .timeline .section:nth-of-type(odd) .card p {
-            color: #555; /* Dark text */
+            color: #333; /* Dark text */
         }
 
-        /* Specific styles for even cards (right) */
+        /* Specific styles for even cards (right) - Hackstars, Code Olympics */
         .timeline .section:nth-of-type(even) .card {
             background-color: #1D1D1D; /* Black from image */
             margin-left: 40px; /* Space between card and central line */
-            /* Text color for even cards (Hackstars, Code Olympics) */
-            color: #fff; /* White text as requested */
+            color: #fff; /* White text for dark background */
         }
         .timeline .section:nth-of-type(even) .card .card-category {
             color: rgba(255, 255, 255, 0.7); /* Lighter category text */
@@ -983,6 +981,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Ensures the image covers the entire hexagon shape */
+            object-position: top; /* Crop 20% from bottom, show top part */
             transform: none; /* No rotation for content */
             transition: transform 0.3s ease;
             position: relative; /* Needed for z-index to work */
@@ -1061,8 +1060,8 @@
 
         #sponsors h2 {
             font-family: 'Playfair Display', serif;
-            color: #c59766;
-            border-bottom: 2px solid #c59766;
+            color: #E0E0E0; /* Changed to shade of white */
+            border-bottom: 2px solid #E0E0E0; /* Changed to shade of white */
             padding-bottom: 10px;
             margin-bottom: 30px;
             font-size: 2.5em;
@@ -1261,7 +1260,7 @@
         }
 
         .sponsor-details a {
-            color: #c59766; /* Updated color */
+            color: #fff; /* Changed to white */
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
@@ -1725,7 +1724,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease; /* Added background to transition */
+            transition: transform 0.2s ease, box-shadow 0.3s ease; /* Removed background from transition */
             align-self: flex-end; /* Align the button to the right */
             margin-top: 20px;
             width: 80%; /* Make button wider */
@@ -1733,7 +1732,7 @@
         }
 
         .contact-form button[type="submit"]:hover {
-            background: radial-gradient(circle, rgba(154, 109, 75, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(226, 190, 142, 1) 73%, rgba(29, 25, 24, 1) 100%); /* Inverted gradient on hover */
+            /* Removed background change on hover */
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
             filter: brightness(1.1);
@@ -1752,7 +1751,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease; /* Added background to transition */
+            transition: transform 0.2s ease, box-shadow 0.3s ease; /* Removed background from transition */
             align-self: flex-end; /* Align to the right */
             margin-top: 20px; /* Space above */
             width: 80%;
@@ -1760,7 +1759,7 @@
         }
 
         .contact-right-panel .join-alumni-button:hover {
-            background: radial-gradient(circle, rgba(154, 109, 75, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(226, 190, 142, 1) 73%, rgba(29, 25, 24, 1) 100%); /* Inverted gradient on hover */
+            /* Removed background change on hover */
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
             filter: brightness(1.1);
@@ -2256,7 +2255,7 @@
                     <div class="sponsor-details">
                         <h3>Asta</h3>
                         <p>A leading technology solutions provider.</p>
-                        <a href="https://www.asta.com/" target="_blank">Visit Website</a>
+                        <a href="https://www.asta.com/" target="_blank">Learn more</a>
                     </div>
                 </div>
                 <div class="sponsor-card">
@@ -2265,7 +2264,7 @@
                     <div class="sponsor-details">
                         <h3>Redbull</h3>
                         <p>Red Bull gives you wings and powers innovation.</p>
-                        <a href="https://www.redbull.com/" target="_blank">Visit Website</a>
+                        <a href="https://www.redbull.com/" target="_blank">Learn more</a>
                     </div>
                 </div>
                 <div class="sponsor-card">
@@ -2274,7 +2273,7 @@
                     <div class="sponsor-details">
                         <h3>Enlight Wisdom</h3>
                         <p>Enlight Wisdom focuses on educational and personal development.</p>
-                        <a href="https://enlightwisdom.com/" target="_blank">Visit Website</a>
+                        <a href="https://enlightwisdom.com/" target="_blank">Learn more</a>
                     </div>
                 </div>
                 <div class="sponsor-card">
@@ -2283,7 +2282,7 @@
                     <div class="sponsor-details">
                         <h3>IBM</h3>
                         <p>IBM is a global technology and consulting company.</p>
-                        <a href="https://www.ibm.com/" target="_blank">Visit Website</a>
+                        <a href="https://www.ibm.com/" target="_blank">Learn more</a>
                     </div>
                 </div>
                 <div class="sponsor-card">
@@ -2292,7 +2291,7 @@
                     <div class="sponsor-details">
                         <h3>Honeywell</h3>
                         <p>Honeywell invents and manufactures technologies to address tough challenges.</p>
-                        <a href="https://www.honeywell.com/" target="_blank">Visit Website</a>
+                        <a href="https://www.honeywell.com/" target="_blank">Learn more</a>
                     </div>
                 </div>
             </div>
@@ -2310,13 +2309,13 @@
 
                 <div class="team-content-inner">
                     <h2 style="margin-top: 30px;">Our Team</h2>
-                    <p>Meet the dedicated individuals who make ACM-W possible, from our faculty coordinator to our student leadership team.</p>
+                    <!-- Removed the paragraph below -->
                     <div class="team-hive-container">
                         <div class="team-row">
                             <!-- Row 1: 5 members -->
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Dr. Suganya">
-                                <div class="overlay"><strong>Dr. Suganya</strong><br/>Faculty Coordinator
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0040.JPG?raw=true" alt="VRT Kaarthik">
+                                <div class="overlay"><strong>VRT Kaarthik</strong><br/>Logistics Chair
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2324,8 +2323,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Bharathi">
-                                <div class="overlay"><strong>Bharathi</strong><br/>Chairperson
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0064.JPG?raw=true" alt="Pranay Karvi">
+                                <div class="overlay"><strong>Pranay Karvi</strong><br/>Technical Lead
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2333,8 +2332,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Shibani">
-                                <div class="overlay"><strong>Shibani</strong><br/>Vice-chair
+                                <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=MAK" alt="M Afzal Khan">
+                                <div class="overlay"><strong>M Afzal Khan</strong><br/>Web Master
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2342,8 +2341,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Lakshmi Priya">
-                                <div class="overlay"><strong>Lakshmi Priya</strong><br/>Secretary
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0061.JPG?raw=true" alt="Vasu Arya">
+                                <div class="overlay"><strong>Vasu Arya</strong><br/>Design Lead
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2351,8 +2350,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sathvik">
-                                <div class="overlay"><strong>Sathvik</strong><br/>Treasurer
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0043.JPG?raw=true" alt="Azra Fathima">
+                                <div class="overlay"><strong>Azra Fathima</strong><br/>Content
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2363,8 +2362,8 @@
                         <div class="team-row">
                             <!-- Row 2: 5 members -->
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Nandhakishore">
-                                <div class="overlay"><strong>Nandhakishore</strong><br/>Membership chair
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0052.JPG?raw=true" alt="Shiva Jyothi">
+                                <div class="overlay"><strong>Shiva Jyothi</strong><br/>Treasurer
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2372,8 +2371,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Manya">
-                                <div class="overlay"><strong>Manya</strong><br/>Technical
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0041.JPG?raw=true" alt="Archana Arunachalam">
+                                <div class="overlay"><strong>Archana Arunachalam</strong><br/>Secretary
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2381,8 +2380,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=Team+Member" alt="CH L Sudheera">
-                                <div class="overlay"><strong>CH L Sudheera</strong><br/>Design
+                                <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=AS" alt="Abhiram Sharma">
+                                <div class="overlay"><strong>Abhiram Sharma</strong><br/>Chairperson
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2390,8 +2389,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Hrituja">
-                                <div class="overlay"><strong>Hrituja</strong><br/>Event Management
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0001.JPG?raw=true" alt="Shreya S Shirol">
+                                <div class="overlay"><strong>Shreya S Shirol</strong><br/>Vice Chairperson
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2399,8 +2398,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="J Jahnvi">
-                                <div class="overlay"><strong>J Jahnvi</strong><br/>Outreach
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0059.JPG?raw=true" alt="V Shriya">
+                                <div class="overlay"><strong>V Shriya</strong><br/>Finance & Awards
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2411,8 +2410,8 @@
                         <div class="team-row">
                             <!-- Row 3: 5 members -->
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Sireesha">
-                                <div class="overlay"><strong>Sireesha</strong><br/>Social media
+                                <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=S" alt="Sudeep">
+                                <div class="overlay"><strong>Sudeep</strong><br/>Social Media
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2420,8 +2419,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/women/96.jpg" alt="Lynda">
-                                <div class="overlay"><strong>Lynda</strong><br/>Finance & Awards
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0006.JPG?raw=true" alt="Rithika">
+                                <div class="overlay"><strong>Rithika</strong><br/>Membership and Branding
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2429,8 +2428,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Robert">
-                                <div class="overlay"><strong>Robert Fox</strong><br/>ML Engineer
+                                <img src="https://github.com/Mohammad-Afzal123/ACM-WDraft/blob/main/DSC_0020.JPG?raw=true" alt="Lokhitha">
+                                <div class="overlay"><strong>Lokhitha</strong><br/>Management
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2438,8 +2437,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Samantha">
-                                <div class="overlay"><strong>Samantha Ray</strong><br/>Content Strategist
+                                <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=S" alt="Smruthi">
+                                <div class="overlay"><strong>Smruthi</strong><br/>Outreach
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -2447,8 +2446,8 @@
                                 </div>
                             </div>
                             <div class="team-member">
-                                <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Jason">
-                                <div class="overlay"><strong>Jason Park</strong><br/>Cloud Architect
+                                <img src="https://placehold.co/400x300/6A0DAD/FFFFFF?text=Dr.S" alt="Dr. Suganya R">
+                                <div class="overlay"><strong>Dr. Suganya R</strong><br/>Faculty Co-ordinator
                                     <div class="social-icons">
                                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -3135,7 +3134,7 @@
                     const parentCard = descriptionElement.closest('.card');
                     let textColorForCard = '#fff'; // Default for dark cards (even)
                     if (parentCard && parentCard.parentElement.classList.contains('section') && parentCard.parentElement.matches(':nth-of-type(odd)')) {
-                        textColorForCard = '#555'; // Dark text for light cards (Code Red, HackHer)
+                        textColorForCard = '#333'; // Dark text for light cards (Code Red, HackHer)
                     }
 
                     // Apply text color to content
