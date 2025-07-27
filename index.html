@@ -1506,13 +1506,14 @@
             box-sizing: border-box; /* Include padding in the width calculation */
             align-items: stretch; /* Make flex items stretch to fill container height */
             /* Only transition background-color and box-shadow for the container itself */
-            transition: background-color 0.8s ease-out, box-shadow 0.8s ease-out; 
+            transition: background-color 0.8s ease-out, box-shadow 0.8s ease-out, opacity 0.8s ease-out, visibility 0.8s ease-in-out; 
         }
 
         .contact-panels-container.tear-out {
             background-color: transparent; /* Make the background transparent */
             box-shadow: none; /* Remove the shadow */
-            /* No transform, no opacity, no visibility changes for the container itself */
+            opacity: 0; /* Fade out the container */
+            visibility: hidden; /* Hide the container */
         }
 
         /* Zig-zag shape for the left panel - now white */
@@ -1548,7 +1549,12 @@
                 0 100% /* Straight bottom to left */
             );
             border: none; /* No border for the left panel */
-            transition: transform 0.5s ease-out; /* Keep panel slide transition */
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Added opacity transition */
+        }
+
+        .contact-left-panel.tear-out {
+            transform: translateX(-150%); /* Move far left */
+            opacity: 0; /* Fade out as it moves */
         }
 
         .contact-left-content h3 {
@@ -1647,7 +1653,12 @@
                 8% 10%, 6% 5%,
                 8% 0 /* Less pointed zig-zag to 8% at top */
             );
-            transition: transform 0.5s ease-out; /* Keep panel slide transition */
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Added opacity transition */
+        }
+
+        .contact-right-panel.tear-out {
+            transform: translateX(150%); /* Move far right */
+            opacity: 0; /* Fade out as it moves */
         }
 
         .contact-right-panel h3 {
@@ -1674,7 +1685,7 @@
         .contact-form.hidden {
             opacity: 0;
             visibility: hidden;
-            position: absolute; /* Take out of flow when hidden */
+            /* Removed position: absolute; */
         }
 
         .contact-form input[type="text"],
@@ -2644,28 +2655,35 @@
                     return;
                 }
 
-                // Add classes to trigger "tear apart" animation for inner panels
+                // 1. Start panels moving out and fading out
                 leftPanel.classList.add('tear-out');
                 rightPanel.classList.add('tear-out');
-                contactForm.classList.add('hidden'); // Hide the form itself during transition
-                
-                // Add tear-out to the container (for background transparency and shadow removal)
-                contactPanelsContainer.classList.add('tear-out'); 
+                contactPanelsContainer.classList.add('tear-out'); // Container also fades out
 
-                // Wait for the panels' tear-out animation to complete (0.5s)
+                // 2. Hide the form content immediately (or fade out quickly)
+                contactForm.classList.add('hidden'); // This will trigger its opacity/visibility transition
+
+                // Duration for panels to slide out (0.5s)
+                const panelAnimationDuration = 500;
+                // Duration for container to fade out (0.8s)
+                const containerFadeDuration = 800;
+
+                // After panels have slid out and container has faded
                 setTimeout(() => {
                     // Reset form fields
                     contactForm.reset();
 
-                    // After some time, hide thank you and show the new empty form again
+                    // Remove tear-out classes to reset their visual state for next appearance
+                    leftPanel.classList.remove('tear-out');
+                    rightPanel.classList.remove('tear-out');
+                    contactPanelsContainer.classList.remove('tear-out'); // Reset container
+
+                    // After a short delay to ensure classes are removed and elements are ready,
+                    // make the form visible again. This will trigger its fade-in transition.
                     setTimeout(() => {
-                        // Immediately remove tear-out classes to reset their position for when they reappear
-                        leftPanel.classList.remove('tear-out');
-                        rightPanel.classList.remove('tear-out');
-                        contactPanelsContainer.classList.remove('tear-out'); // Remove tear-out from container
-                        contactForm.classList.remove('hidden'); // Show the form again
-                    }, 800); // Allow container background/shadow transition to complete (0.8s)
-                }, 500); // Wait for inner panels to start moving (0.5s)
+                        contactForm.classList.remove('hidden');
+                    }, 100); // Small delay to ensure CSS reset takes effect before showing
+                }, Math.max(panelAnimationDuration, containerFadeDuration)); // Wait for the longest animation to finish
             });
         }; // Close window.onload
     </script>
