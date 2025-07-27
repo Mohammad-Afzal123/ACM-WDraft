@@ -160,7 +160,7 @@
 
         /* New button styling for "Become a Member Now" */
         .banner-overlay-text .member-button {
-            background-color: #c59766; /* Updated color */
+            background: radial-gradient(circle, rgba(226, 190, 142, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(154, 109, 75, 1) 73%, rgba(29, 25, 24, 1) 100%);
             color: #fff;
             padding: 15px 30px;
             border: none;
@@ -169,14 +169,14 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 30px; /* Space above the button */
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease; /* Added background to transition */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .banner-overlay-text .member-button:hover {
-            background-color: #a77c4e; /* Darker shade on hover */
+            background: radial-gradient(circle, rgba(154, 109, 75, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(226, 190, 142, 1) 73%, rgba(29, 25, 24, 1) 100%); /* Inverted gradient on hover */
             transform: translateY(-5px); /* Lift effect */
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
         }
@@ -526,7 +526,7 @@
 
         /* --- Decorative Footer Styles --- */
         .main-footer {
-            background: linear-gradient(to right, #c59766, #666666); /* Changed second color to #666666 */
+            background: linear-gradient(to right, #3A3A47, #4C4F59); /* Changed to user-specified gradient */
             color: #fff;
             text-align: center;
             padding: 40px 0;
@@ -718,23 +718,25 @@
         .timeline .section:nth-of-type(odd) .card {
             background-color: #E2BE8E; /* Updated color */
             margin-right: 40px; /* Space between card and central line */
-            color: #fff; /* White text for dark background */
+            /* Text color for odd cards (Code Red, HackHer) */
+            color: #555; /* Dark text as requested */
         }
         .timeline .section:nth-of-type(odd) .card .card-category {
-            color: rgba(255, 255, 255, 0.7); /* Lighter category text */
+            color: rgba(0, 0, 0, 0.7); /* Darker category text for light cards */
         }
         .timeline .section:nth-of-type(odd) .card h4,
         .timeline .section:nth-of-type(odd) .card h5,
         .timeline .section:nth-of-type(odd) .card h6,
         .timeline .section:nth-of-type(odd) .card p {
-            color: #fff; /* White text */
+            color: #555; /* Dark text */
         }
 
         /* Specific styles for even cards (right) */
         .timeline .section:nth-of-type(even) .card {
             background-color: #1D1D1D; /* Black from image */
             margin-left: 40px; /* Space between card and central line */
-            color: #fff; /* White text for dark background */
+            /* Text color for even cards (Hackstars, Code Olympics) */
+            color: #fff; /* White text as requested */
         }
         .timeline .section:nth-of-type(even) .card .card-category {
             color: rgba(255, 255, 255, 0.7); /* Lighter category text */
@@ -863,7 +865,7 @@
         }
 
         .card-arrow-button {
-            background-color: #c59766; /* Updated color */
+            background-color: #c59766; /* Solid color as requested */
             color: #fff;
             width: 40px;
             height: 40px;
@@ -884,7 +886,8 @@
 
         /* New inline "View More" text */
         .view-more-text {
-            color: #666666; /* Updated color to RGB(102, 102, 102) */
+            /* Default color for light cards, will be overridden by JS for consistency */
+            color: #666666;
             cursor: pointer;
             font-weight: bold;
             /* margin-left: 5px; Removed to allow it to flow naturally after ellipsis */
@@ -1101,7 +1104,7 @@
             /* Border-radius applied to all corners for a rounded box */
             border-radius: 15px;
             overflow: hidden; /* Important for inner content to respect border-radius */
-            border: 4px solid #31b8c4; /* Blue border */
+            border: 4px solid #c59766; /* Changed border color to #c59766 */
             transition: width 0.7s ease-in-out, height 0.7s ease-in-out, filter 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             display: flex;
@@ -1163,8 +1166,8 @@
             /* When rotated 90deg, original width becomes visual height, original height becomes visual width */
             /* To make visual width match card height, set original width to card height */
             /* To make visual height match card width, set original height to card width */
-            width: var(--card-height);
-            height: var(--card-width);
+            width: var(--card-height); /* This makes the rotated image's visual width match the card's height */
+            height: var(--card-width); /* This makes the rotated image's visual height match the card's width */
             object-fit: cover;
             position: absolute;
             top: 50%; /* Center the image */
@@ -1372,7 +1375,7 @@
         #testimonials .review-card {
             flex-shrink: 0; /* Prevent cards from shrinking */
             width: 300px; /* Fixed width for cards */
-            background-color: #666666; /* Updated to RGB(102, 102, 102) */
+            background-color: #232323; /* Changed to #232323 as requested */
             color: #fff;
             border-radius: 10px;
             padding: 20px;
@@ -1617,7 +1620,7 @@
         .contact-right-panel {
             flex: 0.55; /* Decreased width for the right panel (purple panel) */
             padding: 40px; /* Keep internal padding for content */
-            background-color: #666666; /* Changed to #666666 */
+            background-color: #232323; /* Changed to #232323 as requested */
             color: #fff; /* White text for dark background */
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
@@ -1711,7 +1714,7 @@
         }
 
         .contact-form button[type="submit"] {
-            background-color: #c59766; /* Updated color */
+            background: radial-gradient(circle, rgba(226, 190, 142, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(154, 109, 75, 1) 73%, rgba(29, 25, 24, 1) 100%);
             color: #fff;
             padding: 15px 30px;
             border: none;
@@ -1722,7 +1725,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease; /* Added background to transition */
             align-self: flex-end; /* Align the button to the right */
             margin-top: 20px;
             width: 80%; /* Make button wider */
@@ -1730,23 +1733,15 @@
         }
 
         .contact-form button[type="submit"]:hover {
+            background: radial-gradient(circle, rgba(154, 109, 75, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(226, 190, 142, 1) 73%, rgba(29, 25, 24, 1) 100%); /* Inverted gradient on hover */
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
             filter: brightness(1.1);
-            background-color: #a77c4e; /* Darker shade on hover */
-        }
-
-        /* Animation for tearing apart panels */
-        .contact-left-panel.tear-out {
-            transform: translateX(-100%);
-        }
-        .contact-right-panel.tear-out {
-            transform: translateX(100%);
         }
 
         /* New style for the "Join Alumni Network" button in contact form */
         .contact-right-panel .join-alumni-button {
-            background-color: #c59766; /* Updated color */
+            background: radial-gradient(circle, rgba(226, 190, 142, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(154, 109, 75, 1) 73%, rgba(29, 25, 24, 1) 100%);
             color: #fff;
             padding: 15px 30px;
             border: none;
@@ -1757,7 +1752,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease; /* Added background to transition */
             align-self: flex-end; /* Align to the right */
             margin-top: 20px; /* Space above */
             width: 80%;
@@ -1765,10 +1760,10 @@
         }
 
         .contact-right-panel .join-alumni-button:hover {
+            background: radial-gradient(circle, rgba(154, 109, 75, 1) 6%, rgba(226, 192, 148, 1) 31%, rgba(226, 190, 142, 1) 73%, rgba(29, 25, 24, 1) 100%); /* Inverted gradient on hover */
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
             filter: brightness(1.1);
-            background-color: #a77c4e; /* Darker shade on hover */
         }
 
         /* Custom Message Box (replacing alert/confirm) */
@@ -1968,7 +1963,7 @@
                 --card-height: 350px; /* Uniform height for all cards on mobile */
                 width: var(--card-width);
                 height: var(--card-height);
-                border: 2px solid #31b8c4; /* Slightly thinner border */
+                border: 2px solid #c59766; /* Changed border color to #c59766 */
                 clip-path: none; /* Remove clip-path for normal box shape */
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Lighter shadow */
             }
@@ -2614,17 +2609,20 @@
             document.querySelectorAll('.card-arrow-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const eventId = this.id;
+                    let url = '';
                     if (eventId === 'event1') { // Specific link for Code Red
-                        window.location.href = 'https://v0-code-red-landing-page.vercel.app/';
+                        url = 'https://v0-code-red-landing-page.vercel.app/';
                     } else if (eventId === 'event2') { // Link for Hackstars
-                        window.location.href = 'http://v0-hackstars-landing-page.vercel.app';
+                        url = 'http://v0-hackstars-landing-page.vercel.app';
                     } else if (eventId === 'event3') { // Link for HackHer
-                        window.location.href = 'https://v0-hackathon-landing-page-design-brown.vercel.app/';
+                        url = 'https://v0-hackathon-landing-page-design-brown.vercel.app/';
                     } else if (eventId === 'event4') { // Link for Code Olympics
-                        window.location.href = 'https://v0-code-olympics-coming-soon.vercel.app/';
+                        url = 'https://v0-code-olympics-coming-soon.vercel.app/';
                     } else {
                         showMessageBox('Event Details', `Register for ${eventId}! (Registration functionality not implemented yet)`);
+                        return; // Exit if no URL is found
                     }
+                    window.open(url, '_blank', 'noopener,noreferrer'); // Open in new tab
                 });
             });
 
@@ -3133,6 +3131,16 @@
                         descriptionElement.appendChild(viewMoreTextSpan);
                     }
 
+                    // Determine the parent card's text color based on its section type
+                    const parentCard = descriptionElement.closest('.card');
+                    let textColorForCard = '#fff'; // Default for dark cards (even)
+                    if (parentCard && parentCard.parentElement.classList.contains('section') && parentCard.parentElement.matches(':nth-of-type(odd)')) {
+                        textColorForCard = '#555'; // Dark text for light cards (Code Red, HackHer)
+                    }
+
+                    // Apply text color to content
+                    descriptionContentSpan.style.color = textColorForCard;
+
                     // Check if the text actually needs truncation
                     if (fullText.length > truncatedLength || fullText.split('\n').length > 4) {
                         descriptionContentSpan.textContent = fullText.substring(0, truncatedLength) + '...';
@@ -3147,8 +3155,10 @@
                         descriptionElement.classList.remove('expanded');
                     }
 
+                    // Set "View More" text color to match the card's main text color
+                    viewMoreTextSpan.style.color = textColorForCard;
+
                     // Attach event listener only once per span
-                    // Use a custom property as a flag to prevent multiple attachments
                     if (!viewMoreTextSpan._hasClickListener) {
                         viewMoreTextSpan.addEventListener('click', function(event) {
                             event.stopPropagation(); // Prevent card-level clicks if any
